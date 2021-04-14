@@ -1,0 +1,71 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminSayfaInsertUpdateViewModel
+@{
+    ViewData["Title"] = "Sayfa Düzenleme";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="p-3">
+    <form asp-area="Admin" asp-controller="Sayfa" asp-action="SayfaDuzenleOnay" asp-route-ProductId="Sayfa.Id" enctype="multipart/form-data" method="post">
+        <div class="card card-primary col-9 float-left">
+            <div class="card-body">
+                <div class="form-group" hidden>
+                    <input type="text" name="Id" value="@Model.sayfaUpdateDto.Id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label name="Baslik">Sayfa Başlığı</label>
+                    <input type="text" name="Baslik" value="@Model.sayfaUpdateDto.Baslik" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label name="Icerik">Sayfa Metni</label>
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-outline card-info">
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea name="Icerik" class="textarea" style="width: 100%; height: 800px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                                        @Model.sayfaUpdateDto.Icerik
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-->
+                        </div>
+                        <!-- ./row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-primary col-3">
+            <div class="card-body">
+                <div class="row">
+                    <input type="submit" value="Kaydet" class="form-control btn btn-success m-2">
+                </div>
+                <label name="OnayDurumuId">Onay Durumu</label>
+                <div class="card card-primary">
+                    <select class="form-control custom-select" required name="OnayDurumuId">
+                        <option selected disabled value="">Seçim Yapınız</option>
+                        <option value="1">Yayınla</option>
+                        <option value="0">Taslak Olarak Kaydet</option>
+                    </select>
+                </div>
+                <dl>
+                    <dt>
+                        <label>Sayfa Üst Görseli</label>
+                    </dt>
+                    <dt>
+                        <img src="~/uploads/@Model.sayfaUpdateDto.OneCikanGorsel" width="210" alt="@Model.sayfaUpdateDto.Baslik" />
+                    </dt>
+                    <dd>
+                        <input type="file" name="OneCikanGorsel" id="OneCikanGorsel" class="inputfile" asp-for="sayfaUpdateDto.OneCikanGorsel">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </form>
+</div>

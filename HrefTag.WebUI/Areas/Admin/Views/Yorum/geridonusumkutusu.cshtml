@@ -1,0 +1,148 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminYorumViewModel
+
+@{
+    ViewData["Title"] = "Geri Dönüşüm Kutusu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Silinmiş Yorumlar</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    @foreach (var item in Model.yorumDtos)
+                    {
+                        <tr>
+                            <td>
+                                <strong>Ad Soyad : </strong>@item.AdSoyad<br />
+                                <strong>E-Posta  : </strong>@item.Email<br />
+                                <strong>Websitesi: </strong>@item.Website<br />
+                            </td>
+                            <td>
+                                @item.KullaniciYorumu
+                            </td>
+                            <td>
+                                @item.InsertDate<br />
+                                @item.IpAdres
+                            </td>
+                            <td>
+                                <a class="btn btn-success btn-sm" title="Geri Yükle" onclick="geriyukleId('@item.Id')" data-toggle="modal" data-target="#modal-geriyukle">
+                                    <i class="nav-icon fas fa-save"></i>
+                                </a>
+                                <a class="btn btn-info btn-sm" title="Düzenle" onclick="duzenleId('@item.Id', '@item.AdSoyad', '@item.Email', '@item.Website', '@item.KullaniciYorumu')" data-toggle="modal" data-target="#modal-duzenle">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" title="Kalıcı Olarak Sil" onclick="silId('@item.Id')" data-toggle="modal" data-target="#modal-danger">
+                                    <i class="nav-icon fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.card -->
+
+
+
+<div class="modal fade" id="modal-geriyukle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="geriyukle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Yorumu Geri Yükle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz yorum çöp kutusundan geri alınacaktır silinecektir. Emin misiniz?</p>
+                    <input id="txtgeriyukleid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="kalicisil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Yorumu Geri Yükle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuzkayıt kalıcı olarak silinecektir. Emin misiniz?</p>
+                    <input id="txtid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="YorumDuzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Öğeyi kurtar</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kaydı geri yüklemek istediğinizden emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="id" value="" />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script>
+    function geriyukleId(id) {
+        document.getElementById("txtgeriyukleid").value = id;
+    }
+
+    function silId(id) {
+        document.getElementById("txtid").value = id;
+    }
+
+    function duzenleId(id) {
+        document.getElementById("txtduzenleid").value = id;
+    }
+</script>

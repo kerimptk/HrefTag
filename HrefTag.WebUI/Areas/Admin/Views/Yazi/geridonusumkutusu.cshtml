@@ -1,0 +1,129 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminYaziViewModel
+
+@{
+    ViewData["Title"] = "Geri Dönüşüm Kutusu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Geri Dönüşüm Kutusu</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Başlık</th>
+                            <th>Oluşturan</th>
+                            <th>Eklenme Tarihi</th>
+                            <th>Okunma Sayısı</th>
+                            <th>Yorum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form asp-area="Admin" asp-controller="Yazi" asp-action="Yazisil" method="post">
+                            @foreach (var item in Model.yaziDtos)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Baslik</td>
+                                    <td>@item.CreateUserFullName </td>
+                                    <td>@item.InsertDate</td>
+                                    <td>@item.OkunmaSayisi Okunma</td>
+                                    <td>@item.YorumSayisi Yorum</td>
+                                    <td>
+                                        <a onclick="silId('@item.Id')" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-danger">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Sil
+                                        </a>
+                                        <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id')" data-toggle="modal" data-target="#modal-duzenle">
+                                            <i class="fas fa-trash-restore">
+                                            </i>
+                                            Geri Yükle
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- /.card -->
+
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Yazi" asp-action="kalicisil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kalıcı olarak sil</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kayıt silinecektir. Emin misiniz?</p>
+                    <input id="txtid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Yazi" asp-action="geriyukle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Öğeyi kurtar</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kaydı geri yüklemek istediğinizden emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="id" value="" />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function silId(id) {
+        document.getElementById("txtid").value = id;
+    }
+
+    function duzenleId(id) {
+        document.getElementById("txtduzenleid").value = id;
+    }
+</script>

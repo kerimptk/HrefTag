@@ -1,0 +1,53 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminIletisimBilgileriViewModel
+
+@{
+    ViewData["Title"] = "Görünüm Ayarları";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- general form elements -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">İletişim Formu Ayarları</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form" asp-area="Admin" asp-controller="IletisimBilgileri" asp-action="index" method="post">
+
+        <div class="card-body">
+            @foreach (var item in Model.iletisimBilgileriDtos)
+            {
+                <input type="text" name="id" value="@item.Id" hidden />
+                <div class="row float-left">
+                    <div class="col-6 form-group">
+                        <label name="Eposta">Eposta Adresi</label>
+                        <input name="Eposta" type="text" class="form-control" value="@item.Eposta" placeholder="Site Adı">
+                    </div>
+                    <div class="col-6 form-group">
+                        <label name="Telefon">Telefon</label>
+                        <input name="Telefon" type="text" class="form-control" value="@item.Telefon" placeholder="Site Başlığı">
+                    </div>
+                    <div class="col-3 form-group">
+                        <label name="Adres">Adres</label>
+                        <textarea name="Adres" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@item.Adres</textarea>
+                    </div>
+                    <div class="col-3 form-group">
+                        <label name="Aciklama">Açıklama Metni</label>
+                        <textarea name="Aciklama" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@item.Aciklama</textarea>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label name="Harita">Harita Kodu</label>
+                        <textarea name="Harita" class="form-control" rows="7" placeholder="Maximum 2500 karakter...">@item.Harita</textarea>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+<!-- /.card -->

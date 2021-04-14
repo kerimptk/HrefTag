@@ -1,0 +1,38 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminOrtamKutuphanesiViewModel
+
+@{
+    ViewData["Title"] = "Ortam Kütüphanesi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Ortam Kütüphanesi
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            @foreach (var item in Model.ImagePath)
+                            {
+                                <div class="col-sm-2">
+                                    <a href="~/uploads/@item" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                        <img src="~/uploads/@item" class="img-fluid mb-2" alt="white sample" />
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>

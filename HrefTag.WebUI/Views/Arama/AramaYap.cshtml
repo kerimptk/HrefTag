@@ -1,0 +1,45 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model SearchViewModel
+@{
+    ViewData["Title"] = "Arama Yap";
+}
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+
+                    <div class="clearfix visible-md visible-lg"></div>
+
+                    <div class="search-form" style="margin-bottom:50px;">
+                        <label class="text-center p-2 h2">Arama yapmak için aşağıdaki arama kutucuğuna değer giriniz.</label>
+                    </div>
+                    <!-- post -->
+                    <div class="search-form" style="margin-bottom:50px;">
+                        <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
+                            <input style="width: 60%; height: 75px;margin:0px 10%" type="text" asp-for="@Model.keyword" placeholder="Arama Yap...">
+
+                            <input type="submit" value="Arama Yap" class="btn btn-success pr-2 pl-2" style="height: 75px;">
+                        </form>
+                    </div>
+                    <!-- /post -->
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <partial name="Reklamlar/AllPageSidebar" for="@Model.reklamAlanlariDtos" />
+                <!-- post widget -->
+                @await Component.InvokeAsync("SidebarTop")
+                <!-- /post widget -->
+                <!-- catagories -->
+                @await Component.InvokeAsync("SidebarBottom")
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->

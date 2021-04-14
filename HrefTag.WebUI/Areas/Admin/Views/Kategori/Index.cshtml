@@ -1,0 +1,201 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminKategoriViewModel
+@{
+    ViewData["Title"] = "Kategori İşlemleri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row p-3">
+
+    <div class="col-4">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Kategori Ekleme Formu</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="post" asp-area="Admin" asp-controller="Kategori" asp-action="index">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label name="Ad">Kategori Adı</label>
+                        <input name="Ad" required type="text" class="form-control" placeholder="Kategori Adı">
+                    </div>
+                    <div class="form-group">
+                        <label name="UrlAd">Url'de Görünen</label>
+                        <input name="UrlAd" required type="text" class="form-control" placeholder="Url'de Görünen">
+                    </div>
+                    <div class="form-group">
+                        <label name="RenkKodu">Kategori Rengi Seçiniz</label>
+                        <select class="form-control" name="RenkKodu">
+                            <option value="-">Seçiniz</option>
+                            <option value="cat-1">cat-1 / Yeşil</option>
+                            <option value="cat-2">cat-2 / Turuncu</option>
+                            <option value="cat-3">cat-3 / Mavi</option>
+                            <option value="cat-4">cat-4 / Mor</option>
+                            @*<option value="cat-5">cat-5 / Turkuaz</option>
+                                <option value="cat-6">cat-6 / Kırmızı</option>
+                                <option value="cat-7">cat-7 / Pembe</option>*@
+                        </select>
+                    </div>
+                    @*<div class="form-group">
+                            <label name="ParentId">Üst Kategorisi Varmı?</label>
+                            <select class="form-control" name="ParentId">
+                                <option>Seçiniz</option>
+                                @foreach (var item in Model.GetTblKategoriler)
+                                {
+                                    <option value="@item.Id">@item.Ad</option>
+                                }
+                            </select>
+                        </div>*@
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="col-md-8">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Kategori Listesi</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kategori Adı</th>
+                            <th>Url Adı</th>
+                            <th>Renk Kodu</th>
+                            @*<th>Üst Kategori</th>*@
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.kategoriDtos)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Ad</td>
+                                <td>@item.UrlAd</td>
+                                <td>@item.RenkKodu</td>
+                                @*<td>@item.ParentId</td>*@
+                                <td>
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id','@item.Ad','@item.UrlAd','@item.RenkKodu')" data-toggle="modal" data-target="#modal-duzenle">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Düzenle
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')" data-toggle="modal" data-target="#modal-danger">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Kategori" asp-action="KategoriSil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kategori Silme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kategori silinecektir. Emin misiniz?</p>
+                    <input id="txtid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Kategori" asp-action="KategoriDuzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kategori Güncelleme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kategori bilgisi güncellenecektir.. Emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="id" value="" hidden />
+                    @*<input id="txtduzenleParentId" type="text" name="parentId" value="" hidden/>*@
+
+                    <div class="form-group">
+                        <label name="Ad">Kategori Adı</label>
+                        <input name="Ad" id="txtduzenleAd" type="text" class="form-control" placeholder="Kategori Adı">
+                    </div>
+                    <div class="form-group">
+                        <label name="UrlAd">Url Adı</label>
+                        <input name="UrlAd" id="txtduzenleUrlAd" type="text" class="form-control" placeholder="Url Adı">
+                    </div>
+                    <div class="form-group">
+                        <label name="RenkKodu">Renk Kodu</label>
+                        <input name="RenkKodu" id="txtduzenleRenkKodu" type="text" class="form-control" placeholder="Renk Kodu">
+                    </div>
+                    @*<div class="form-group">
+                            <label name="ParentId">Üst Kategorisi Varmı?</label>
+                            <select class="form-control" name="ParentId">
+                                <option>Seçiniz</option>
+                                @foreach (var item in Model.GetTblKategoriler)
+                                {
+                                    <option name="ParentId" value="@item.ParentId">@item.Ad</option>
+                                }
+                            </select>
+                        </div>*@
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function silId(id) {
+        document.getElementById("txtid").value = id;
+    }
+
+    function duzenleId(id, ad, UrlAd, RenkKodu, /*ParentId*/) {
+        document.getElementById("txtduzenleid").value = id;
+        document.getElementById("txtduzenleAd").value = ad;
+        document.getElementById("txtduzenleUrlAd").value = UrlAd;
+        document.getElementById("txtduzenleRenkKodu").value = RenkKodu;
+        //document.getElementById("txtduzenleParentId").value = ParentId;
+    }
+</script>

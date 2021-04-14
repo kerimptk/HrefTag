@@ -1,0 +1,95 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminGenelAyarlarVievModel
+
+@{
+    ViewData["Title"] = "Genel Ayarlar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- general form elements -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Genel Ayarlar</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form" asp-area="Admin" asp-controller="GenelAyarlar" asp-action="index" enctype="multipart/form-data" method="post">
+
+        <div class="card-body">
+            <input type="text" name="id" value="@Model.genelAyarlarDto.Id" hidden />
+            <div class="row pb-2">
+                <div class="col-6  float-left">
+                    <div class="col-6  float-left">
+                        <div class="form-group">
+                            <label name="LogoUrl">Site Logosu</label>
+                            <dl>
+                                <dd>
+                                    <input type="file" name="LogoUrl" id="LogoUrl" class="inputfile" asp-for="@Model.genelAyarlarDto.LogoUrl">
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="col-6  float-left">
+                        @if (@Model.genelAyarlarDto.LogoUrl != null)
+                        {
+                            <img width="150" src="/uploads/@Model.genelAyarlarDto.LogoUrl">
+                        }
+                    </div>
+                </div>
+                <div class="col-6  float-left">
+                    <div class="col-6  float-left">
+                        <div class="form-group">
+                            <label name="LogoUrl">Favicon</label>
+                            <dl>
+                                <dd>
+                                    <input type="file" name="Favicon" id="Favicon" class="inputfile" asp-for="@Model.genelAyarlarDto.Favicon">
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="col-6  float-left">
+                        @if (@Model.genelAyarlarDto.Favicon != null)
+                        {
+                            <img width="150" src="/uploads/@Model.genelAyarlarDto.Favicon">
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">             
+                <div class="col-4  float-left">
+                    <label name="VideoIceriklerAktif">Video İçerikler</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.VideoIceriklerAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4  float-left">
+                    <label name="EditorunSectikleriAktif">Editorün Seçtikleri</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.EditorunSectikleriAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4  float-left">
+                    <label name="AraclarAktif">Hazır Site Araçları</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.AraclarAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+<!-- /.card -->

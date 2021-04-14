@@ -1,0 +1,57 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model KategoriYaziViewModel
+@{
+    ViewData["Title"] = "Kategoriler";
+}
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- post -->
+            <div class="col-md-8 float-left">
+                @{int sayac = 0;}
+                @foreach (var item in Model.kategoriYaziListDtos.Take(20))
+                {
+                    sayac++;
+                    <div class="col-md-6 float-left" style="min-height:350px;">
+                        <div class="post">
+                            <a class="post-img" asp-controller="Yazi" asp-action="Yazi" asp-route-Post="@item.UrlBaslik"><img src="/uploads/@item.OneCikanGorsel" alt="@item.Baslik"></a>
+                            <div class="post-body">
+                                <div class="post-meta">
+                                    <a class="post-category @item.KategoriRenkKodu" asp-controller="Kategori" asp-action="Kategori" asp-route-kat="@item.KategoriUrlAd"> @item.KategoriAd</a>
+                                </div>
+                                <h3 class="post-title"><a asp-controller="Yazi" asp-action="Yazi" asp-route-Post="@item.UrlBaslik">@item.Baslik</a></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (sayac == 2)
+                    {
+                        <partial name="Reklamlar/IndexTop" for="@Model.reklamAlanlariDtos" />
+                    }
+                }
+
+            </div>
+            <div class="col-md-4 float-left">
+                <div class="aside-widget text-center">
+                    @foreach (var item in Model.reklamAlanlariDtos)
+                        {
+                            if (item.AlanAdi.Equals("AllPageSidebar"))
+                            {
+                                <p>@Html.Raw(@item.Kodu)</p>
+                            }
+                        }
+                </div>
+                @await Component.InvokeAsync("SidebarTop")
+                @await Component.InvokeAsync("SidebarBottom")
+            </div>
+            <!-- /post -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->

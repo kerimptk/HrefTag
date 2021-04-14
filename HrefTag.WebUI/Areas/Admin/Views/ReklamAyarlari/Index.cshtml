@@ -1,0 +1,47 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminReklamAlanlariViewModel
+
+@{
+    ViewData["Title"] = "Reklam Ayarları";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- general form elements -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Reklam Alanı Ayarları</h3>
+    </div>
+</div>
+@foreach (var item in Model.reklamAlanlariDtos)
+{
+    <div class="card-body col-6 float-left">
+        <form asp-area="Admin" asp-controller="ReklamAyarlari" asp-action="ReklamDuzenle" method="post">
+            <div class="form-group bg-info p-4">
+                <div class="row pb-2">
+                    <div class="col-2 float-left">
+                        <input type="text" name="Id" readonly value="@item.Id" class="form-control">
+                    </div>
+                    <div class="col-10 float-left">
+                        <input type="text" name="AlanAdi" readonly value="@item.AlanAdi" class="form-control">
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-12 float-left">
+                        <input type="text" name="Aciklama" readonly value="@item.Aciklama" class="form-control">
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <textarea name="Kodu" class="form-control" rows="8" placeholder="Reklam kodunu bu alana gireceksiniz...">@item.Kodu</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" readonly value="@item.UpdateDate" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="Güncelle" class="form-control btn btn-success">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}

@@ -1,0 +1,11 @@
+﻿@using Blog.Domain.DataTransferObjects
+@model List<ReklamAlanlariDto>
+<div class="aside-widget text-center">
+    @foreach (var item in Model)
+    {
+        if (item.AlanAdi.Equals("SidebarCategorysTop"))
+        {
+            <p>@Html.Raw(@item.Kodu)</p>
+        }
+    }
+</div>

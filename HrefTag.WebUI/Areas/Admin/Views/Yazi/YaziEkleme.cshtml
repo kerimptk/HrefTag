@@ -1,0 +1,103 @@
+﻿@using Blog.Domain.DataTransferObjects
+@model YaziInsertDto
+@{
+    ViewData["Title"] = "Yeni Yazı Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="p-3">
+    <form asp-area="Admin" asp-controller="Yazi" asp-action="YaziEkleme" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="All"></div>
+
+        <label name="Olusturan" hidden>ViewBag.CurrentUser</label>
+        <div class="card card-primary col-9 float-left">
+            <div class="card-body">
+                <div class="form-group">
+                    <label name="Baslik">Yazı Başlığı</label>
+                    <input type="text" asp-for="Baslik" placeholder="Başlık metnini giriniz..." class="form-control">
+                </div>
+                <div class="form-group">
+                    <label name="Icerik">Yazı Metni</label>
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-outline card-info">
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea asp-for="Icerik" required class="textarea" placeholder="Place some text here"
+                                                      style="width: 100%; height: 800px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-->
+                        </div>
+                        <!-- ./row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <div class="form-group">
+                    <label name="">Etiketler (Aralarına virgül koyarak giriniz)</label>
+                    <input type="text" name="" placeholder="Yazı etiketleri..." class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-primary col-3">
+            <div class="card-body">
+                <div class="row">
+                    <input type="submit" value="Kaydet" class="form-control btn btn-success m-2">
+                </div>
+                <label>Onay Durumu</label>
+                <div class="card card-primary">
+                    <select class="form-control custom-select" asp-for="OneCikan" required>
+                        <option value="0">Hayır</option>
+                        <option value="1">Evet</option>
+                    </select>
+                </div>
+                @if (Model.GenelAyarlarDto.EditorunSectikleriAktif == true)
+                {
+                    <label for="input Description">Editörün Sektiklerinde Yayınlansın mı?</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="OneCikan" required>
+                            <option value="0">Hayır</option>
+                            <option value="1">Evet</option>
+                        </select>
+                    </div>
+                }
+
+                <label for="input Description">Kategori Seçimi</label>
+                <div class="card card-primary">
+
+                    @foreach (var kategori in Model.kategoriDtos)
+                    {
+                        <div class="form-check">
+                            <input name="SelectedCategoryIds" type="checkbox" value="@kategori.Id" />@kategori.Ad<br />
+                        </div>
+                    }
+                </div>
+                <label for="input Description">Öne Çıkan Görsel</label>
+                <dl>
+                    <dd>
+                        <input type="file" name="OneCikanGorsel" id="OneCikanGorsel" class="inputfile" asp-for="OneCikanGorsel">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </form>
+</div>
+
+section Scripts{
+<script src="~/jquery/jquery.min.js"></script>
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+<script>
+    function failure(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message.responseJSON.error
+        });
+    }
+</script>
+<script src="~/sweetalert/sweetalert.min.js"></script>
+}

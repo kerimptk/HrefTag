@@ -1,0 +1,94 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminYaziViewModel
+
+@{
+    ViewData["Title"] = "Yazı İşlemleri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Yazı Listesi</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Başlık</th>
+                            <th>Oluşturan</th>
+                            <th>Durum</th>
+                            <th>Eklenme Tarihi</th>
+                            <th>Okunma Sayısı</th>
+                            <th>Yorum</th>
+                            <th>İşlem Yap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.yaziDtos)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Baslik</td>
+                                <td>@item.CreateUserFullName</td>
+                                <td>@(item.OnayDurumuId == 1 ? "Yayınlandı" : "Taslak")</td>
+                                <td>@item.InsertDate</td>
+                                <td>@item.OkunmaSayisi Okunma</td>
+                                <td>@item.YorumSayisi Yorum</td>
+                                <td>
+                                    @if (item.OnayDurumuId == 0)
+                                    {
+                                        <a class="btn btn-success btn-sm"
+                                           onclick="yayinlaId('@item.Id')">
+                                            <i class="nav-icon fas fa-check"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-warning btn-sm"
+                                           onclick="yayindankaldirId('@item.Id')">
+                                            <i class="nav-icon fas fa-undo"></i>
+                                        </a>
+                                    }
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId(@item.Id)">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')">
+                                        <i class="nav-icon fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.card -->
+
+
+@section Scripts{
+
+    <script>
+        function yayinlaId(id) {
+            window.location.href = "/Admin/Yazi/yayinla?Id=" + id
+        }
+
+        function yayindankaldirId(id) {
+            window.location.href = "/Admin/Yazi/yayindankaldir?Id=" + id
+        }
+
+        function silId(id) {
+            window.location.href = "/Admin/Yazi/copeat?Id=" + id
+        }
+
+        function duzenleId(id) {
+            window.location.href = "/Admin/Yazi/YaziDuzenle?Id=" + id
+        }
+    </script>
+
+}

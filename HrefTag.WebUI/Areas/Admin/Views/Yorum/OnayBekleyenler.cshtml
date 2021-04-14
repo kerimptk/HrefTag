@@ -1,0 +1,189 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminYorumViewModel
+
+@{
+    ViewData["Title"] = "Onay Bekleyen Yorumlar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Onay Bekleyen Yorumlar</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="w-25">Yorumu Yapan Bilgileri</th>
+                            <th class="w-auto">Yorum Detayı</th>
+                            <th class="w-auto">Tarih</th>
+                            <th style="width:85px;">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.yorumDtos)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>Ad Soyad : </strong>@item.AdSoyad<br />
+                                    <strong>E-Posta  : </strong>@item.Email<br />
+                                    <strong>Websitesi: </strong>@item.Website<br />
+                                </td>
+                                <td>
+                                    <a asp-controller="yazi" asp-action="yazi" asp-route-Post="@item.YaziUrlBaslik">@item.YaziBaslik</a> <br />
+                                    @item.KullaniciYorumu
+                                </td>
+                                <td>
+                                    @item.InsertDate<br />
+                                    @item.IpAdres
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-sm float-left" title="Onayla"
+                                       onclick="onaylaId('@item.Id')"
+                                       data-toggle="modal" data-target="#modal-confirm">
+                                        <i class="nav-icon fas fa-check"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm float-left" title="Düzenle"
+                                       onclick="duzenleId('@item.Id', '@item.AdSoyad', '@item.Email','@item.Website','@item.KullaniciYorumu')"
+                                       data-toggle="modal" data-target="#modal-duzenle">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm float-left" title="Çöpe At"
+                                       onclick="silId('@item.Id')"
+                                       data-toggle="modal" data-target="#modal-danger">
+                                        <i class="nav-icon fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.card -->
+
+
+
+<div class="modal fade" id="modal-confirm">
+    <div class="modal-dialog">
+        <div class="modal-content bg-success">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="onayla" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Yorumu Onayla</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz yorum yayınlanacaktır. Emin misiniz?</p>
+                    <input id="txtonayid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="copeat" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Yorum Silme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz yorum silinecektir. Emin misiniz?</p>
+                    <input id="txtsilid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Yorum" asp-action="YorumDuzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kategori Güncelleme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz yorumu güncellemek istediğinizden emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="Id" value="" hidden />
+                    <div class="form-group col-4 float-left">
+                        <label name="AdSoyad">Ad Soyad</label>
+                        <input name="AdSoyad" id="txtduzenleAdSoyad" type="text" class="form-control" placeholder="Ad Soyad">
+                    </div>
+                    <div class="form-group col-4 float-left">
+                        <label name="Email">Email</label>
+                        <input name="Email" id="txtduzenleEmail" type="text" class="form-control" placeholder="Email Adresi">
+                    </div>
+                    <div class="form-group col-4 float-left">
+                        <label name="Website">Website</label>
+                        <input name="Website" id="txtduzenleWebsite" type="text" class="form-control" placeholder="Website Adresi">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label name="Yorum">Yorum</label>
+                            <textarea name="Yorum" id="txtduzenleYorum" type="text" class="form-control" rows="6" placeholder="Yorum"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function onaylaId(id) {
+        document.getElementById("txtonayid").value = id;
+    }
+
+    function silId(id) {
+        document.getElementById("txtsilid").value = id;
+    }
+
+    function duzenleId(id, AdSoyad, Email, Website, Yorum) {
+        document.getElementById("txtduzenleid").value = id;
+        document.getElementById("txtduzenleAdSoyad").value = AdSoyad;
+        document.getElementById("txtduzenleEmail").value = Email;
+        document.getElementById("txtduzenleWebsite").value = Website;
+        document.getElementById("txtduzenleYorum").value = Yorum;
+    }
+</script>

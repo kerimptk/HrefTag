@@ -1,0 +1,64 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminToDoListVievModel
+@{
+    ViewData["Title"] = "To Do List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">To Do List</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>İşin Adı</th>
+                            <th>Durum</th>
+                            <th>Olusturan</th>
+                            <th>Son Tarih</th>
+                            <th>İşlem Yap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.toDoListaDtos)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.IsinAdi</td>
+                                <td>@item.Durum</td>
+                                <td>@item.Olusturan</td>1
+                                <td>@item.SonTarih</td>
+                                <td>
+                                    @if (item.Durum == 0)
+                                    {
+                                        <a class="btn btn-success btn-sm"
+                                           onclick="yayinlaId('@item.Id')">
+                                            <i class="nav-icon fas fa-check"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-warning btn-sm"
+                                           onclick="yayindankaldirId('@item.Id')">
+                                            <i class="nav-icon fas fa-undo"></i>
+                                        </a>
+                                    }
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId(@item.Id)">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')">
+                                        <i class="nav-icon fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

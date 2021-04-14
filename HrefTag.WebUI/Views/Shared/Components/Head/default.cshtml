@@ -1,0 +1,16 @@
+﻿@using HrefTag.WebUI.ViewModels;
+@model HeadViewModel;
+
+
+    <meta name="author" content="Kerim Potuk">
+    <meta name="description" content="@Model.seoAyarlariDto.Description">
+    <meta name="keywords" content="@Model.seoAyarlariDto.Keywords">
+    <title>@Model.seoAyarlariDto.Ad - @Model.seoAyarlariDto.Title</title>
+
+
+    @Html.Raw(Model.seoAyarlariDto.Analytics)
+
+@foreach (var item in Model.genelAyarlarDtos)
+{
+    <link rel="shortcut icon" href="/uploads/@item.Favicon" type="image/x-icon" />
+}

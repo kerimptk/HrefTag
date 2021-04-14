@@ -1,0 +1,51 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminSosyalMedyaViewModel
+@{
+    ViewData["Title"] = "Sosyal Medya";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- general form elements -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Sosyal Medya Hesap Ayarları</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form" asp-area="Admin" asp-controller="SosyalMedya" asp-action="Index" method="post">
+
+        <div class="card-body">
+            <div class="col-6 float-left">
+                <input type="text" name="id" value="@Model.sosyalMedyaDto.Id" hidden />
+                <div class="form-group">
+                    <label name="Facebook">Facebook</label>
+                    <input name="Facebook" type="text" class="form-control" value="@Model.sosyalMedyaDto.Facebook" placeholder="Facebook Kullanici Adı">
+                </div>
+                <div class="form-group">
+                    <label name="Twitter">Twitter</label>
+                    <input name="Twitter" type="text" class="form-control" value="@Model.sosyalMedyaDto.Twitter" placeholder="Twitter Kullanici Adı">
+                </div>
+                <div class="form-group">
+                    <label name="Instagram">Instagram</label>
+                    <input name="Instagram" type="text" class="form-control" value="@Model.sosyalMedyaDto.Instagram" placeholder="Instagram Kullanici Adı">
+                </div>
+                <div class="form-group">
+                    <label name="Instagram">Linkedin</label>
+                    <input name="Instagram" type="text" class="form-control" value="@Model.sosyalMedyaDto.Linkedin" placeholder="Linkedin Kullanici Adı">
+                </div>
+                <div class="form-group">
+                    <label name="Youtube">Youtube</label>
+                    <input name="Youtube" type="text" class="form-control" value="@Model.sosyalMedyaDto.Youtube" placeholder="Youtube Kullanici Adı">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+<!-- /.card -->

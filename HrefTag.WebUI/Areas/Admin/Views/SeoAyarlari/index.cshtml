@@ -1,0 +1,51 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminSeoAyarlariViewModel
+
+@{
+    ViewData["Title"] = "Seo Ayarlar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- general form elements -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Seo Ayarları</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form" asp-area="Admin" asp-controller="SeoAyarlari" asp-action="index" method="post">
+
+        <div class="card-body">
+                <input type="text" name="id" value="@Model.seoAyarlariDto.Id" hidden />
+                <div class="row float-left">
+                    <div class="col-6 form-group">
+                        <label name="Ad">Site Adı</label>
+                        <input name="Ad" type="text" class="form-control" value="@Model.seoAyarlariDto.Ad" placeholder="Site Adı">
+                    </div>
+                    <div class="col-6 form-group">
+                        <label name="Title">Site Başlığı</label>
+                        <input name="Title" type="text" class="form-control" value="@Model.seoAyarlariDto.Title" placeholder="Site Başlığı">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label name="Description">Description</label>
+                        <textarea name="Description" class="form-control" rows="4" placeholder="Site Description (Max 160 karakter)">@Model.seoAyarlariDto.Description</textarea>
+                    </div>
+                    <div class="col-4 form-group">
+                        <label name="Keywords">Keywords</label>
+                        <textarea name="Keywords" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Keywords</textarea>
+                    </div>
+                    <div class="col-4 form-group">
+                        <label name="Analytics">Analytics Kodu</label>
+                        <textarea name="Analytics" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Analytics</textarea>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+<!-- /.card -->

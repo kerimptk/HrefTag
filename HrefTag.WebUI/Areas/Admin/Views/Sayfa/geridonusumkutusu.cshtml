@@ -1,0 +1,64 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminSayfaViewModel
+
+@{
+    ViewData["Title"] = "Geri Dönüşüm Kutusu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Geri Dönüşüm Kutusu</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Başlık</th>
+                            <th>İşlem Yap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form asp-area="Admin" asp-controller="Sayfa" asp-action="geridonusumkutusu" method="post">
+                            @foreach (var item in Model.sayfaDtos)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Baslik</td>
+                                    <td>
+                                        <a onclick="silId('@item.Id')"
+                                           class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Sil
+                                        </a>
+                                        <a class="btn btn-info btn-sm"
+                                           onclick="geriyukleId('@item.Id')">
+                                            <i class="fas fa-trash-restore">
+                                            </i>
+                                            Geri Yükle
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.card -->
+
+<script>
+    function silId(id) {
+        window.location.href = "/Admin/Sayfa/kalicisil?Id=" + id
+    }
+
+    function geriyukleId(id) {
+        window.location.href = "/Admin/Sayfa/geriyukle?Id=" + id
+    }
+</script>

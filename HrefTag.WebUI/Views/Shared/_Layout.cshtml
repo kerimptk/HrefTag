@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    @await Component.InvokeAsync("Head")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="~/assets/scss/icons.css">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="~/assets/css/uikit.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/icons.css">
+    <link rel="stylesheet" href="~/assets/css/tailwind.css">
+
+</head>
+<body>
+
+    <!-- Header -->
+    @await Component.InvokeAsync("Header")
+    @await Component.InvokeAsync("Sidebar")
+
+    @RenderBody()
+
+    <!-- Javascript
+    ================================================== -->
+    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/js/uikit.js"></script>
+    <script src="~/assets/js/simplebar.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+</body>
+</html>

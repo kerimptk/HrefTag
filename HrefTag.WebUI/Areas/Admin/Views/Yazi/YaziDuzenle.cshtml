@@ -1,0 +1,131 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminYaziUpdateViewModel
+@{
+    ViewData["Title"] = "Yazı Güncelleme";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="p-3" style="clear:both">
+    <form asp-area="Admin"
+          asp-controller="Yazi" 
+          asp-action="YaziDuzenleOnay" 
+          enctype="multipart/form-data"
+          data-ajax="true"
+          data-ajax-success="success"
+          data-ajax-failure="failure">
+
+        <div class="card card-primary col-9 float-left">
+            <div class="card-body">
+                <div class="form-group" hidden>
+                    <input type="text" asp-for="@Model.yaziUpdateDto.Id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Yazı Başlığı</label>
+                    <input type="text" asp-for="@Model.yaziUpdateDto.Baslik" required placeholder="Başlık metnini giriniz..." class="form-control" value="@Model.yaziUpdateDto.Baslik">
+                </div>
+                <div class="form-group">
+                    <label>Yazı Metni</label>
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-outline card-info">
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            <textarea asp-for="@Model.yaziUpdateDto.Icerik" required class="textarea" rows="10">
+                                                @Model.yaziUpdateDto.Baslik
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-->
+                        </div>
+                        <!-- ./row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <div class="form-group">
+                    <label>Etiketler (Aralarına virgül koyarak giriniz)</label>
+                    @*<input type="text" asp-for="@Model.TblYazilar.TblEtiketYazi" placeholder="Yazı etiketleri..." class="form-control">*@
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-primary col-3">
+            <div class="card-body">
+                <div class="row">
+                    <input type="submit" value="Kaydet" class="form-control btn btn-success m-2">
+                </div>
+                <label>Onay Durumu</label>
+                <div class="card card-primary">
+                    <select class="form-control custom-select" asp-for="yaziUpdateDto.OnayDurumuId" required>
+                        <option selected disabled value="">Seçim Yapınız</option>
+                        <option value="1">Yayınla</option>
+                        <option value="0">Taslak Olarak Kaydet</option>
+                    </select>
+                </div>
+                @if (Model.genelAyarlarDto.EditorunSectikleriAktif == true)
+                {
+                    <label for="input Description">Editörün Seçtiklerinde Yayınlansın mı?</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="yaziUpdateDto.OneCikan" required>
+                            <option value="0">Hayır</option>
+                            <option value="1">Evet</option>
+                        </select>
+                    </div>
+                }
+
+                <label for="input Description">Kategori Seçimi</label>
+                <div class="card card-primary">
+
+
+                    @foreach (var kategori in Model.kategoriDtos)
+                    {
+                        <div class="form-check">
+                            <input name="yaziUpdateDto.SelectedCategoryIds" checked="@(Model.yaziUpdateDto.SelectedCategoryIds.Where(i=> i == kategori.Id).Count() >= 1 ? true  : false)" type="checkbox" value="@kategori.Id" />@kategori.Ad<br />
+                        </div>
+                    }
+
+                </div>
+                <dl>
+                    <dt>
+                        <label>Yazı Üst Görseli</label>
+                    </dt>
+                    <dt>
+                        <img src="~/uploads/@Model.yaziUpdateDto.OneCikanGorsel" width="210" alt="@Model.yaziUpdateDto.Baslik" />
+                    </dt>
+                    <dd>
+                        <input type="file" id="OneCikanGorsel" class="inputfile" asp-for="yaziUpdateDto.OneCikanGorsel">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function success(message) {
+            Swal.fire({
+                title: 'Good job!',
+                text: message,
+                icon: 'success'
+
+            });
+        }
+
+        function failure(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message.responseJSON.error
+            });
+        }
+    </script> 
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+}

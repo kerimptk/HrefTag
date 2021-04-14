@@ -1,0 +1,152 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminPostaKutusuViewModel
+
+@{
+    ViewData["Title"] = "Geri Dönüşüm Kutusu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Posta Kutusu</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>Gönderici</th>
+                            <th>Konu</th>
+                            <th>Mesaj</th>
+                            <th>Tarih</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.postaKutusuDtos)
+                        {
+                            <tr>
+                                <td>@item.Ad @item.Soyad</td>
+                                <td>@item.Konu</td>
+                                <td>@item.Mesaj</td>
+                                <td>@item.InsertDate</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id', '@item.Ad','@item.Soyad', '@item.Email','@item.Konu','@item.Mesaj','@item.InsertDate','@item.IpAdresi')" data-toggle="modal" data-target="#modal-duzenle">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')" data-toggle="modal" data-target="#modal-danger">
+                                        <i class="nav-icon fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.card -->
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="PostaKutusu" asp-action="KaliciSil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mesaj Silme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz mesaj silinecektir. Emin misiniz?</p>
+                    <input id="txtsilid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="PostaKutusu" asp-action="GeriYukle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mesaj Kurtarma İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="txtduzenleid" type="text" name="id" readonly value="" hidden />
+                    <div class="form-group col-6 float-left">
+                        <label name="Ad">Ad</label>
+                        <input name="Ad" id="txtduzenleAd" type="text" readonly class="form-control" placeholder="Ad">
+                    </div>
+                    <div class="form-group col-6 float-left">
+                        <label name="Soyad">Soyad</label>
+                        <input name="Soyad" id="txtduzenleSoyad" type="text" readonly class="form-control" placeholder="Soyad">
+                    </div>
+                    <div class="form-group col-6 float-left" ">
+                        <label name="Email">Email</label>
+                        <input name="Email" id="txtduzenleEmail" type="text" readonly class="form-control" placeholder="Email Adresi">
+                    </div>
+                    <div class="form-group col-6 float-left" ">
+                        <label name="IpAdresi">Ip Adresi</label>
+                        <input name="IpAdresi" id="txtduzenleIpAdresi" type="text" readonly class="form-control" placeholder="Ip Adresi">
+                    </div>
+                    <div class="form-group col-6 float-left" ">
+                        <label name="Konu">Konu</label>
+                        <input name="Konu" id="txtduzenleKonu" type="text" readonly class="form-control" placeholder="Konu">
+                    </div>
+                    <div class="form-group col-6 float-left" ">
+                        <label name="InsertDate">Tarih</label>
+                        <input name="InsertDate" id="txtduzenleInsertDate" readonly type="text" class="form-control" placeholder="Mesaj Tarihi">
+                    </div>
+                    <div class="form-group">
+                        <label name="Mesaj">Mesaj</label>
+                        <textarea name="Mesaj" id="txtduzenleMesaj" readonly type="text" class="form-control" placeholder="Mesaj"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Geri Yükle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function silId(id) {
+        document.getElementById("txtsilid").value = id;
+    }
+
+    function duzenleId(id, Ad, Soyad, Email, Konu, Mesaj, InsertDate, IpAdresi) {
+        document.getElementById("txtduzenleid").value = id;
+        document.getElementById("txtduzenleAd").value = Ad;
+        document.getElementById("txtduzenleSoyad").value = Soyad;
+        document.getElementById("txtduzenleEmail").value = Email;
+        document.getElementById("txtduzenleKonu").value = Konu;
+        document.getElementById("txtduzenleMesaj").value = Mesaj;
+        document.getElementById("txtduzenleInsertDate").value = InsertDate;
+        document.getElementById("txtduzenleIpAdresi").value = IpAdresi;
+    }
+</script>
