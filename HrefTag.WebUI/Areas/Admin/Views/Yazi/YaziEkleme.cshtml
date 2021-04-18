@@ -82,22 +82,29 @@
                         <input type="file" name="OneCikanGorsel" id="OneCikanGorsel" class="inputfile" asp-for="OneCikanGorsel">
                     </dd>
                 </dl>
+
+                <div class="card card-primary">
+                    <div class="form-group">
+                        <label for="input Description">Özet Bilgi</label>
+                        <input type="text" style ="height:80px;" id="Ozet" placeholder="Önerilen 200 karakter max 500 karakter" class="form-control" required>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 </div>
 
-section Scripts{
-<script src="~/jquery/jquery.min.js"></script>
-<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
-<script>
-    function failure(message) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: message.responseJSON.error
-        });
-    }
-</script>
-<script src="~/sweetalert/sweetalert.min.js"></script>
+@section Scripts{
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function failure(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message.responseJSON.error
+            });
+        }
+    </script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
 }

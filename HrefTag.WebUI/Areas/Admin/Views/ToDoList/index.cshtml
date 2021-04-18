@@ -11,54 +11,357 @@
             <div class="card-header">
                 <h3 class="card-title">To Do List</h3>
             </div>
-            <div class="p-3">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>İşin Adı</th>
-                            <th>Durum</th>
-                            <th>Olusturan</th>
-                            <th>Son Tarih</th>
-                            <th>İşlem Yap</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.toDoListaDtos)
-                        {
-                            <tr>
-                                <td>@item.Id</td>
-                                <td>@item.IsinAdi</td>
-                                <td>@item.Durum</td>
-                                <td>@item.Olusturan</td>1
-                                <td>@item.SonTarih</td>
-                                <td>
-                                    @if (item.Durum == 0)
-                                    {
-                                        <a class="btn btn-success btn-sm"
-                                           onclick="yayinlaId('@item.Id')">
-                                            <i class="nav-icon fas fa-check"></i>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-warning btn-sm"
-                                           onclick="yayindankaldirId('@item.Id')">
-                                            <i class="nav-icon fas fa-undo"></i>
-                                        </a>
-                                    }
-                                    <a class="btn btn-info btn-sm" onclick="duzenleId(@item.Id)">
-                                        <i class="nav-icon fas fa-edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')">
-                                        <i class="nav-icon fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+
+        </div>
+        <div class="col-12">
+            <div class="card card-primary card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Devam Eden İşler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Tamamlananlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">İptal Edilenler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Yeni Kayıt Ekle</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>İşin Adı</th>
+                                            <th>Durum</th>
+                                            <th>Olusturan</th>
+                                            <th>Son Tarih</th>
+                                            <th>İşlem Yap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.toDoListDtos.Where(i => i.Durum == 0))
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.IsinAdi</td>
+                                                <td>Devam Ediyor</td>
+                                                <td>@item.CreateUserFullName</td>
+                                                <td>@item.SonTarih</td>
+                                                <td>
+                                                    <a class="btn btn-light btn-sm" onclick="gorId('@item.Id','@item.IsinAdi','@item.Icerik','@item.SonTarih')" data-toggle="modal" data-target="#modal-gor">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-success btn-sm" onclick="onaylaId('@item.Id')" data-toggle="modal" data-target="#modal-onayla">
+                                                        <i class="fas fa-check">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id','@item.IsinAdi','@item.Icerik','@item.SonTarih')" data-toggle="modal" data-target="#modal-duzenle">
+                                                        <i class="fas fa-edit">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" onclick="iptaletId('@item.Id')" data-toggle="modal" data-target="#modal-iptalet">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>İşin Adı</th>
+                                            <th>Durum</th>
+                                            <th>Olusturan</th>
+                                            <th>Son Tarih</th>
+                                            <th>İşlem Yap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.toDoListDtos.Where(i => i.Durum == 1))
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.IsinAdi</td>
+                                                <td>Tamamlandı</td>
+                                                <td>@item.CreateUserFullName</td>
+                                                <td>@item.SonTarih</td>
+                                                <td>
+                                                    <a class="btn btn-light btn-sm" onclick="gorId('@item.Id','@item.IsinAdi','@item.Icerik','@item.SonTarih')" data-toggle="modal" data-target="#modal-gor">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-warning btn-sm" onclick="gerialId('@item.Id')" data-toggle="modal" data-target="#modal-gerial">
+                                                        <i class="fas fa-undo">
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>İşin Adı</th>
+                                            <th>Durum</th>
+                                            <th>Olusturan</th>
+                                            <th>Son Tarih</th>
+                                            <th>İşlem Yap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.toDoListDtos.Where(i => i.Durum == 2))
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.IsinAdi</td>
+                                                <td>İptal Edildi</td>
+                                                <td>@item.CreateUserFullName</td>
+                                                <td>@item.SonTarih</td>
+                                                <td>
+                                                    <a class="btn btn-light btn-sm" onclick="gorId('@item.Id','@item.IsinAdi','@item.Icerik','@item.SonTarih')" data-toggle="modal" data-target="#modal-gor">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-warning btn-sm" onclick="gerialId('@item.Id')" data-toggle="modal" data-target="#modal-gerial">
+                                                        <i class="fas fa-undo">
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
+                            <div class="bg-info">
+                                <form method="post" asp-area="Admin" asp-controller="ToDoList" asp-action="Ekle">
+                                    <div class="card-body">
+                                        <div class="form-group col-9 float-left">
+                                            <label>İşin Adı</label>
+                                            <input asp-for="@Model.toDoListDto.IsinAdi" required type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group col-3 float-left">
+                                            <label>Son Tarih</label>
+                                            <input asp-for="@Model.toDoListDto.SonTarih" type="date" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Detay Bilgi</label>
+                                            <textarea asp-for="@Model.toDoListDto.Icerik" required class="form-control"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-outline-light btn-primary">İş Öğesi Ekle</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-iptalet">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="ToDoList" asp-action="IptalEt" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">İşi iptali</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz iş iptal edilecektir. Emin misiniz?</p>
+                    <input id="txtiptaletId" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+
+<div class="modal fade" id="modal-onayla">
+    <div class="modal-dialog">
+        <div class="modal-content bg-success">
+            <form asp-area="Admin" asp-controller="ToDoList" asp-action="YapildiOlarakIsaretle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">İşi Tamamla</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz iş tamamlandır olarak güncellenecektir. Emin misiniz?</p>
+                    <input id="txtonaylaId" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-gerial">
+    <div class="modal-dialog">
+        <div class="modal-content bg-warning">
+            <form asp-area="Admin" asp-controller="ToDoList" asp-action="geriYukle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Geri Al</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz iş tamamlandır olarak güncellenecektir. Emin misiniz?</p>
+                    <input id="txtgerialId" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="ToDoList" asp-action="duzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">İşi Güncelle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz iş güncellenecektir.. Emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="id" value="" hidden />
+
+                    <div class="form-group">
+                        <label name="IsinAdi">İşin Adı</label>
+                        <input name="IsinAdi" id="txtduzenleIsinAdi" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label name="Icerik">İçerik</label>
+                        <input name="Icerik" id="txtduzenleIcerik" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label name="SonTarih">Son Tarih</label>
+                        <input name="SonTarih" id="txtduzenleSonTarih" type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+
+
+<div class="modal fade" id="modal-gor">
+    <div class="modal-dialog">
+        <div class="modal-content bg-cyan">
+            <div class="modal-header">
+                <h4 class="modal-title">Detay</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="txtgorid" type="text" name="id" value="" hidden />
+
+                <div class="form-group">
+                    <label name="IsinAdi">İşin Adı</label>
+                    <input name="IsinAdi" id="txtgorIsinAdi" type="text" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label name="Icerik">İçerik</label>
+                    <textarea name="Icerik" id="txtgorIcerik" type="text" class="form-control" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label name="SonTarih">Son Tarih</label>
+                    <input name="SonTarih" id="txtgorSonTarih" type="text" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
             </div>
         </div>
     </div>
 </div>
+<!-- /.modal -->
+
+<script>
+    function iptaletId(id) {
+        document.getElementById("txtiptaletId").value = id;
+    }
+    function onaylaId(id) {
+        document.getElementById("txtonaylaId").value = id;
+    }
+    function gerialId(id) {
+        document.getElementById("txtgerialId").value = id;
+    }
+
+    function duzenleId(id, IsinAdi, Icerik, SonTarih) {
+        document.getElementById("txtduzenleid").value = id;
+        document.getElementById("txtduzenleIsinAdi").value = IsinAdi;
+        document.getElementById("txtduzenleIcerik").value = Icerik;
+        document.getElementById("txtduzenleSonTarih").value = SonTarih;
+    }
+
+    function gorId(id, IsinAdi, Icerik, SonTarih) {
+        document.getElementById("txtgorid").value = id;
+        document.getElementById("txtgorIsinAdi").value = IsinAdi;
+        document.getElementById("txtgorIcerik").value = Icerik;
+        document.getElementById("txtgorSonTarih").value = SonTarih;
+    }
+</script>

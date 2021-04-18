@@ -91,7 +91,7 @@
                 </div>
                 <dl>
                     <dt>
-                        <label>Yazı Üst Görseli</label>
+                        <label>Öne Çıkan Görsel</label>
                     </dt>
                     <dt>
                         <img src="~/uploads/@Model.yaziUpdateDto.OneCikanGorsel" width="210" alt="@Model.yaziUpdateDto.Baslik" />
@@ -100,6 +100,12 @@
                         <input type="file" id="OneCikanGorsel" class="inputfile" asp-for="yaziUpdateDto.OneCikanGorsel">
                     </dd>
                 </dl>
+                <div class="card card-primary">
+                    <div class="form-group">
+                        <label for="input Description">Özet Bilgi</label>
+                        <input type="text" style="height:80px;" id="Ozet" placeholder="Önerilen 200 karakter max 500 karakter" class="form-control" required>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

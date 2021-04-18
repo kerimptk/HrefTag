@@ -5,6 +5,7 @@ namespace HrefTag.WebUI.ViewModels
 {
     public class AdminToDoListVievModel
     {
-        public List<ToDoListaDto> toDoListaDtos { get; set; }
+        public List<ToDoListDto> toDoListDtos { get; set; }
+        public ToDoListDto toDoListDto { get; set; }
     }
 }

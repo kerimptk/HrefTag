@@ -17,26 +17,22 @@ namespace Blog.Application.AutoMapper
             CreateMap<Yazi, BlogYaziListDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))
-                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)))
-                .ForMember(d => d.Icerik, o => o.MapFrom(s => s.Icerik.Length > 200 ? s.Icerik.Substring(0, 200) + "..." : s.Icerik));
+                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)));
 
             CreateMap<Yazi, PopulerIceriklerDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))
-                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)))
-                .ForMember(d => d.Icerik, o => o.MapFrom(s => s.Icerik.Length > 200 ? s.Icerik.Substring(0, 200) + "..." : s.Icerik));
+                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)));
 
             CreateMap<Yazi, EditorunSectikleriDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
                 .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)))
-                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))
-                .ForMember(d => d.Icerik, o => o.MapFrom(s => s.Icerik.Length > 200 ? s.Icerik.Substring(0, 200) + "..." : s.Icerik));
+                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));
 
             CreateMap<KategoriYazi, KategoriYaziListDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.Kategori.UrlAd)))
                 .ForMember(d => d.UrlBaslik, o => o.MapFrom(s => (s.Yazi.UrlBaslik)))
                 .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.Kategori.Ad)))
-                .ForMember(d => d.Icerik, o => o.MapFrom(s => s.Yazi.Icerik.Length > 200 ? s.Yazi.Icerik.Substring(0, 200) + "..." : s.Yazi.Icerik))
                 .ForMember(d => d.OneCikanGorsel, o => o.MapFrom(s => s.Yazi.OneCikanGorsel))
                 .ForMember(d => d.Baslik, o => o.MapFrom(s => s.Yazi.Baslik));
 
@@ -89,8 +85,12 @@ namespace Blog.Application.AutoMapper
 
             CreateMap<SeoAyarlari, SeoAyarlariDto>();
 
-            CreateMap<Yazi, SearchResponseDto>()
-                .ForMember(d => d.Icerik, o => o.MapFrom(s => s.Icerik.Length > 200 ? s.Icerik.Substring(0, 200) + "..." : s.Icerik));
+            CreateMap<Yazi, SearchResponseDto>();
+
+            CreateMap<ToDoList, ToDoListDto>()
+                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));
+
+            CreateMap<ToDoListDto, ToDoList>();
 
             CreateMap<CekilisSonuclari, CekilisSonuclariDto>();
 

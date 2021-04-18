@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using BaseCore.Controllers.MVC;
 using Blog.Domain.DataTransferObjects;
+using Blog.Domain.Entities;
 using Blog.Domain.Interfaces;
 using HrefTag.WebUI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,80 +16,87 @@ namespace BlogUI.Areas.yp.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    public class ToDoListController : Controller
+    public class ToDoListController : BaseController
     {
         IToDoListService _toDoListService;
+        IUserService _userService;
+        IHttpContextAccessor _httpContextAccessor;
         IMapper _mapper;
 
         public ToDoListController(
             IToDoListService toDoListService,
-            IMapper mapper)
+            IHttpContextAccessor httpContextAccessor,
+            IUserService userService,
+            IMapper mapper) : base(httpContextAccessor)
         {
             _toDoListService = toDoListService;
+            _userService = userService;
+            _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
         public IActionResult Index()
         {
             var toDoList = _toDoListService.GetList();
-            var toDoListMap = _mapper.Map<List<ToDoListaDto>>(toDoList);
+            var toDoListMap = _mapper.Map<List<ToDoListDto>>(toDoList);
 
             var viewModel = new AdminToDoListVievModel()
             {
-                toDoListaDtos = toDoListMap
+                toDoListDtos = toDoListMap
             };
             return View(viewModel);
         }
 
-        //[HttpPost]
-        //public IActionResult Ekle(ModelAdminToDoList item)
-        //{
-        //    var user = _userManager.GetUserId(_httpContext.HttpContext.User);
-        //    var CurrentUser = _userManager.Users.FirstOrDefault(x => x.Id == Convert.ToInt32(user));
+        [HttpPost]
+        public IActionResult Ekle(ToDoListDto toDoListDto)
+        {
+            toDoListDto.Olusturan = GetUserId();
+            var toDoListMap = _mapper.Map<ToDoList>(toDoListDto);
 
-        //    if (item.TblToDoList.Olusturan == null || item.TblToDoList.Olusturan == 0)
-        //    {
-        //        item.TblToDoList.Olusturan = CurrentUser.Id;
-        //    }
+            toDoListMap.InsertDate = DateTime.Now;
 
-        //    item.TblToDoList.Durum = 0;
+            _toDoListService.Add(toDoListMap);
+            return RedirectToAction("Index");
+        }
 
-        //    _ToDoListService.Add(item.TblToDoList);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public IActionResult YapildiOlarakIsaretle(int id)
+        {
+            var yapilacakis = _toDoListService.GetById(id);
+            yapilacakis.Durum = 1;
+            _toDoListService.Update(yapilacakis);
+            return RedirectToAction("index");
+        }
 
-        //[HttpPost]
-        //public IActionResult YapildiOlarakIsaretle(int id)
-        //{
-        //    var yapilacakis = _ToDoListService.GetTblToDoListToId(id);
-        //    yapilacakis.Durum = 1;
-        //    _ToDoListService.Update(yapilacakis);
-        //    return RedirectToAction("DevamEdenIsler");
-        //}
+        [HttpPost]
+        public IActionResult IptalEt(int id)
+        {
+            var yapilacakis = _toDoListService.GetById(id);
+            yapilacakis.Durum = 2;
+            _toDoListService.Update(yapilacakis);
+            return RedirectToAction("index");
+        }
 
-        //[HttpPost]
-        //public IActionResult IptalEt(int id)
-        //{
-        //    var yapilacakis = _ToDoListService.GetTblToDoListToId(id);
-        //    yapilacakis.Durum = 2;
-        //    _ToDoListService.Update(yapilacakis);
-        //    return RedirectToAction("DevamEdenIsler");
-        //}
-
-        //[HttpPost]
-        //public IActionResult geriYukle(int id)
-        //{
-        //    var yapilacakis = _ToDoListService.GetTblToDoListToId(id);
-        //    yapilacakis.Durum = 0;
-        //    _ToDoListService.Update(yapilacakis);
-        //    return RedirectToAction("DevamEdenIsler");
-        //}
+        [HttpPost]
+        public IActionResult geriYukle(int id)
+        {
+            var yapilacakis = _toDoListService.GetById(id);
+            yapilacakis.Durum = 0;
+            _toDoListService.Update(yapilacakis);
+            return RedirectToAction("index");
+        }
 
 
-        //[HttpPost]
-        //public IActionResult duzenle(ToDoList item)
-        //{
-        //    _ToDoListService.Update(item);
-        //    return RedirectToAction("DevamEdenIsler");
-        //}
+        [HttpPost]
+        public IActionResult duzenle(ToDoListDto toDoListDto)
+        {
+            var yapilacakis = _toDoListService.GetById(toDoListDto.Id);
+            yapilacakis.Durum = 0;
+            yapilacakis.IsinAdi = toDoListDto.IsinAdi;
+            yapilacakis.Icerik = toDoListDto.Icerik;
+            yapilacakis.SonTarih = toDoListDto.SonTarih;
+            yapilacakis.UpdateDate = DateTime.Now;
+            _toDoListService.Update(yapilacakis);
+            return RedirectToAction("index");
+        }
     }
 }

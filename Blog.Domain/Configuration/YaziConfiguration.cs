@@ -22,12 +22,21 @@ namespace Blog.Domain.Configuration
                .HasMaxLength(500)
                .IsUnicode(false);
 
+            builder.Property(e => e.Ozet)
+                .HasColumnName("ozet")
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
             builder.Property(e => e.Icerik)
                 .HasColumnName("icerik")
                 .IsUnicode(false);
 
             builder.Property(e => e.OkunmaSayisi)
                 .HasColumnName("okunma_sayisi")
+                .HasDefaultValueSql("((0))");
+
+            builder.Property(e => e.YorumSayisi)
+                .HasColumnName("yorum_sayisi")
                 .HasDefaultValueSql("((0))");
 
             builder.Property(e => e.OnayDurumuId).HasColumnName("onay_durumu_id");

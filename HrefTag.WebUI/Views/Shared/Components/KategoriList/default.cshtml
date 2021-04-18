@@ -1,0 +1,22 @@
+﻿@using HrefTag.WebUI.ViewModels;
+@model KategoriListViewModel;
+
+
+<div>
+    <h2 class="text-2xl font-semibold mb-3"> Kategoriler </h2>
+    <ul class="mb-3">
+        @foreach (var item in Model.kategoriDtos)
+        {
+            <li>
+                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
+                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block"
+                   style="{background:#fff} : hover(@item.RenkKodu)">
+                    <h3 class="font-medium line-clamp-2">
+                        @item.Ad
+                        <span class="float-right">  (@item.YaziSayisi)</span>
+                    </h3>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

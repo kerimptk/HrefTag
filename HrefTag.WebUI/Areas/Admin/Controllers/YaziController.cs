@@ -189,6 +189,7 @@ namespace BlogUI.Areas.Admin.Controllers
 
             eskiYazi.Baslik = yazi.Baslik;
             eskiYazi.Icerik = yazi.Icerik;
+            eskiYazi.Ozet = yazi.Ozet;
             eskiYazi.InsertDate = eskiYazi.InsertDate;
             eskiYazi.OkunmaSayisi = eskiYazi.OkunmaSayisi;
             eskiYazi.OnayDurumuId = yazi.OnayDurumuId;

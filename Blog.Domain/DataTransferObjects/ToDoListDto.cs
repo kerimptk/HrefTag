@@ -2,7 +2,7 @@
 
 namespace Blog.Domain.DataTransferObjects
 {
-    public class ToDoListaDto
+    public class ToDoListDto
     {
         public int Id { get; set; }
         public string IsinAdi { get; set; }
@@ -10,5 +10,6 @@ namespace Blog.Domain.DataTransferObjects
         public int Olusturan { get; set; }
         public int Durum { get; set; }
         public DateTime SonTarih { get; set; }
+        public string CreateUserFullName { get; set; }
     }
 }
