@@ -86,7 +86,11 @@
                 <div class="card card-primary">
                     <div class="form-group">
                         <label for="input Description">Özet Bilgi</label>
-                        <input type="text" style ="height:80px;" id="Ozet" placeholder="Önerilen 200 karakter max 500 karakter" class="form-control" required>
+                        <div>
+                            <textarea name="Ozet" asp-for="Ozet" placeholder="Maksimum 160 karakter" required rows="5" cols="40" maxlength="160">
+                                                
+                                            </textarea>
+                        </div>
                     </div>
                 </div>
             </div>

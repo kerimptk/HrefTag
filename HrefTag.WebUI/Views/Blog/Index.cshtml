@@ -32,7 +32,7 @@
                                 <div class="flex-1 lg:pt-0 pt-4">
                                     <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik"
                                        class="text-xl font-semibold line-clamp-2"> @item.Baslik</a>
-                                    <p class="line-clamp-2 pt-1"> @item.Ozet </p>
+                                    <p class="line-clamp-3 pt-1"> @item.Ozet </p>
                                     <div class="flex space-x-2 items-center text-sm pt-1 text-sm">
                                         <div class="flex items-center pt-3">
                                             <div class="flex items-center">  <ion-icon name="thumbs-up-outline" class="text-xl mr-2"></ion-icon>@item.OkunmaSayisi görüntülenme </div>
@@ -50,6 +50,7 @@
                 <div class="lg:w-1/4 w-full flex-shrink-0">
 
                     @await Component.InvokeAsync("KategoriList")
+
                     <div uk-sticky="offset:100" class="uk-sticky">
 
                         <h2 class="text-2xl font-semibold mb-3"> Popüler İçerikler </h2>

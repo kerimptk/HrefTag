@@ -8,8 +8,8 @@
 
 <div class="p-3" style="clear:both">
     <form asp-area="Admin"
-          asp-controller="Yazi" 
-          asp-action="YaziDuzenleOnay" 
+          asp-controller="Yazi"
+          asp-action="YaziDuzenleOnay"
           enctype="multipart/form-data"
           data-ajax="true"
           data-ajax-success="success"
@@ -34,7 +34,7 @@
                                     <div class="card-body pad">
                                         <div class="mb-3">
                                             <textarea asp-for="@Model.yaziUpdateDto.Icerik" required class="textarea" rows="10">
-                                                @Model.yaziUpdateDto.Baslik
+                                                @Model.yaziUpdateDto.Icerik
                                             </textarea>
                                         </div>
                                     </div>
@@ -103,7 +103,11 @@
                 <div class="card card-primary">
                     <div class="form-group">
                         <label for="input Description">Özet Bilgi</label>
-                        <input type="text" style="height:80px;" id="Ozet" placeholder="Önerilen 200 karakter max 500 karakter" class="form-control" required>
+                        <div>
+                            <textarea asp-for="@Model.yaziUpdateDto.Ozet" placeholder="Maksimum 160 karakter" required rows="5" cols="40" maxlength="160">
+                                                @Model.yaziUpdateDto.Ozet
+                                            </textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,6 +136,6 @@
                 text: message.responseJSON.error
             });
         }
-    </script> 
+    </script>
     <script src="~/sweetalert/sweetalert.min.js"></script>
 }
