@@ -13,6 +13,7 @@ namespace Blog.Domain.DataTransferObjects
         public int? CevaplananYorumId { get; set; }
         public string IpAdres { get; set; }
         public int OnayDurumuId { get; set; }
+        public int SilId { get; set; }
         public DateTime InsertDate { get; set; }
         public string YaziUrlBaslik { get; set; }
         public string YaziBaslik { get; set; }

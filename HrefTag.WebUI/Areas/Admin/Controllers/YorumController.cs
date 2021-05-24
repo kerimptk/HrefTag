@@ -88,6 +88,14 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             return RedirectToAction("OnayBekleyenler");
         }
 
+        [HttpPost]
+        public IActionResult kalicisil(int id)
+        {
+            var yorum = _yorumService.GetById(id);
+            _yorumService.Delete(yorum);
+            return RedirectToAction("geridonusumkutusu");
+        }
+
 
         [HttpPost]
         public IActionResult YorumDuzenle(YorumDto item)

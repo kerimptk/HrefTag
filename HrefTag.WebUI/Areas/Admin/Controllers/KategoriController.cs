@@ -53,7 +53,13 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult KategoriDuzenle(Kategori item)
         {
-            _kategoriService.Update(item);
+            var eski = _kategoriService.GetById(item.Id);
+            eski.UpdateDate = DateTime.Now;
+            eski.Ad = item.Ad;
+            eski.ParentId = item.ParentId;
+            eski.RenkKodu = item.RenkKodu;
+            eski.UrlAd = item.UrlAd;
+            _kategoriService.Update(eski);
             return RedirectToAction("Index");
         }
     }

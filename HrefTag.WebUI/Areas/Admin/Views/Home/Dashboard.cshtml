@@ -45,7 +45,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>@Model.yorumDtos.Count(i => i.OnayDurumuId == 0)</h3>
+                        <h3>@Model.yorumDtos.Count(i => i.OnayDurumuId == 0 && i.SilId == 0)</h3>
                         <p>Onay Bekleyen Yorum</p>
                     </div>
                     <div class="icon">
