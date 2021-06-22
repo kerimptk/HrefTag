@@ -4,54 +4,74 @@
     ViewData["Title"] = "Kategoriler";
 }
 
-<!-- section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <!-- post -->
-            <div class="col-md-8 float-left">
-                @{int sayac = 0;}
-                @foreach (var item in Model.kategoriYaziListDtos.Take(20))
-                {
-                    sayac++;
-                    <div class="col-md-6 float-left" style="min-height:350px;">
-                        <div class="post">
-                            <a class="post-img" asp-controller="Yazi" asp-action="Yazi" asp-route-Post="@item.UrlBaslik"><img src="/uploads/@item.OneCikanGorsel" alt="@item.Baslik"></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category @item.KategoriRenkKodu" asp-controller="Kategori" asp-action="Kategori" asp-route-kat="@item.KategoriUrlAd"> @item.KategoriAd</a>
-                                </div>
-                                <h3 class="post-title"><a asp-controller="Yazi" asp-action="Yazi" asp-route-Post="@item.UrlBaslik">@item.Baslik</a></h3>
-                            </div>
-                        </div>
-                    </div>
 
-                    @if (sayac == 2)
-                    {
-                        <partial name="Reklamlar/IndexTop" for="@Model.reklamAlanlariDtos" />
-                    }
-                }
+<div id="wrapper">
+    <!-- Main Contents -->
+    <div class="main_content">
+        <div class="mcontainer">
 
-            </div>
-            <div class="col-md-4 float-left">
-                <div class="aside-widget text-center">
-                    @foreach (var item in Model.reklamAlanlariDtos)
+
+            <div class="lg:flex  lg:space-x-12">
+
+                <div class="lg:w-3/4">
+
+                    <div class="divide-y">
+                        @foreach (var item in Model.kategoriYaziListDtos)
                         {
-                            if (item.AlanAdi.Equals("AllPageSidebar"))
-                            {
-                                <p>@Html.Raw(@item.Kodu)</p>
-                            }
+
+                            <div class="lg:flex lg:space-x-6 py-6">
+                                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik">
+                                    <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
+                                        <img src="~/uploads/@item.OneCikanGorsel" alt="@item.Baslik" class="w-full h-full absolute inset-0 object-cover">
+                                        <div class="absolute bg-blue-100 font-semibold px-2.5 py-1 rounded-full text-blue-500 text-xs top-2.5 left-2.5">
+                                            @item.KategoriAd
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="flex-1 lg:pt-0 pt-4">
+                                    <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik"
+                                       class="text-xl font-semibold line-clamp-2"> @item.Baslik</a>
+                                    <p class="line-clamp-3 pt-1"> @item.Ozet </p>
+                                    <div class="flex space-x-2 items-center text-sm pt-1 text-sm">
+                                        <div class="flex items-center pt-3">
+                                            <div class="flex items-center">  <ion-icon name="thumbs-up-outline" class="text-xl mr-2"></ion-icon>@item.OkunmaSayisi görüntülenme </div>
+                                            <div class="flex items-center mx-4">
+                                                <ion-icon name="chatbubble-ellipses-outline" class="text-xl mr-2"></ion-icon> @item.YorumSayisi Yorum
+                                            </div>
+                                            <div class="flex items-center"> <ion-icon name="bookmark-outline" class="text-xl mr-2"></ion-icon> @item.CreateUserFullName</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
+                    </div>
                 </div>
-                @await Component.InvokeAsync("SidebarTop")
-                @await Component.InvokeAsync("SidebarBottom")
+                <div class="lg:w-1/4 w-full flex-shrink-0">
+
+                    @await Component.InvokeAsync("KategoriList")
+
+                    <div uk-sticky="offset:100" class="uk-sticky">
+
+                        <h2 class="text-2xl font-semibold mb-3"> Popüler İçerikler </h2>
+                        <ul>
+                            @foreach (var item in Model.kategoriYaziListDtos.OrderByDescending(i => i.OkunmaSayisi).Take(6))
+                            {
+                                <li>
+                                    <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
+                                       class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
+                                        <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
+                                        <div class="flex items-center my-auto text-xs space-x-1.5">
+                                            <div>Okunma Sayısı</div>
+                                            <div>@item.OkunmaSayisi</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                        <br>
+                    </div>
+                </div>
             </div>
-            <!-- /post -->
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /section -->

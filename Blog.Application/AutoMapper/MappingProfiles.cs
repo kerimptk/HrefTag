@@ -33,7 +33,10 @@ namespace Blog.Application.AutoMapper
                 .ForMember(d => d.UrlBaslik, o => o.MapFrom(s => (s.Yazi.UrlBaslik)))
                 .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.Kategori.Ad)))
                 .ForMember(d => d.OneCikanGorsel, o => o.MapFrom(s => s.Yazi.OneCikanGorsel))
-                .ForMember(d => d.Baslik, o => o.MapFrom(s => s.Yazi.Baslik));
+                .ForMember(d => d.OkunmaSayisi, o => o.MapFrom(s => s.Yazi.OkunmaSayisi))
+                .ForMember(d => d.Baslik, o => o.MapFrom(s => s.Yazi.Baslik))
+                .ForMember(d => d.Ozet, o => o.MapFrom(s => s.Yazi.Ozet))
+                /*.ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname))*/;
 
             CreateMap<Yazi, YaziDto>()
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));

@@ -50,11 +50,6 @@
                                    data-toggle="modal" data-target="#modal-duzenle">
                                     <i class="nav-icon fas fa-edit"></i>
                                 </a>
-                                <a class="btn btn-danger btn-sm float-left" title="Çöpe At"
-                                   onclick="silId('@item.Id')"
-                                   data-toggle="modal" data-target="#modal-danger">
-                                    <i class="nav-icon fas fa-trash"></i>
-                                </a>
                             </td>
                         </tr>
                     }
@@ -88,35 +83,6 @@
                     <button type="submit" class="btn btn-outline-light">Onayla</button>
                 </div>
             </form>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-
-
-<div class="modal fade" id="modal-danger">
-    <div class="modal-dialog">
-        <div class="modal-content bg-danger">
-            <form asp-area="Admin" asp-controller="Yorum" asp-action="copeat" method="post">
-                <div class="modal-header">
-                    <h4 class="modal-title">Yorum Silme İşlemi</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Seçmiş olduğunuz yorum silinecektir. Emin misiniz?</p>
-                    <input id="txtsilid" type="text" name="id" value="" hidden />
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
-                    <button type="submit" class="btn btn-outline-light">Onayla</button>
-                </div>
-            </form>
-
         </div>
         <!-- /.modal-content -->
     </div>
@@ -172,9 +138,6 @@
 <script>
     function onayKaldirId(id) {
         document.getElementById("txtonayKaldirid").value = id;
-    }
-    function silId(id) {
-        document.getElementById("txtsilid").value = id;
     }
 
     function duzenleId(id, AdSoyad, Email, Website, Yorum) {

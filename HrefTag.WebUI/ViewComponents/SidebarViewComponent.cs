@@ -39,8 +39,8 @@ namespace HrefTag.WebUI.ViewComponents
             var sayfa = _sayfaService.GetOnayliList();
             var sayfaMap = _mapper.Map<List<SayfaDto>>(sayfa);
 
-            var sosyalMedya = _sosyalMedyaService.GetList();
-            var sosyalMedyaMap = _mapper.Map<List<SosyalMedyaDto>>(sosyalMedya);
+            var sosyalMedya = _sosyalMedyaService.GetById(1);
+            var sosyalMedyaMap = _mapper.Map<SosyalMedyaDto>(sosyalMedya);
 
             var genelAyarlar = _genelAyarlarService.GetById(1);
             var genelAyarlarMap = _mapper.Map<GenelAyarlarDto>(genelAyarlar);
@@ -52,7 +52,7 @@ namespace HrefTag.WebUI.ViewComponents
             {
                 KategoriDtos = kategoriListMap,
                 sayfaDtos = sayfaMap,
-                sosyalMedyaDtos = sosyalMedyaMap,
+                sosyalMedyaDto = sosyalMedyaMap,
                 genelAyarlarDto = genelAyarlarMap,
                 seoAyarlariDto = seoAyarlariMap
             };
