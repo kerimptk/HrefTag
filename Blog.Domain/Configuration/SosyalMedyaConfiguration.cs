@@ -12,11 +12,6 @@ namespace Blog.Domain.Configuration
 
             builder.Property(e => e.Id).HasColumnName("id");
 
-            builder.Property(e => e.Facebook)
-                .HasColumnName("Facebook")
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
             builder.Property(e => e.Twitter)
                 .HasColumnName("Twitter")
                 .HasMaxLength(500)

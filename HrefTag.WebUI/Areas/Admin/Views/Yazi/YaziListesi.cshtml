@@ -16,6 +16,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th hidden>Eklenme Tarihi</th>
                             <th>ID</th>
                             <th>Başlık</th>
                             <th>Oluşturan</th>
@@ -29,37 +30,38 @@
                     <tbody>
                         @foreach (var item in Model.yaziDtos)
                         {
-                            <tr>
-                                <td>@item.Id</td>
-                                <td>@item.Baslik</td>
-                                <td>@item.CreateUserFullName</td>
-                                <td>@(item.OnayDurumuId == 1 ? "Yayınlandı" : "Taslak")</td>
-                                <td>@item.InsertDate</td>
-                                <td>@item.OkunmaSayisi Okunma</td>
-                                <td>@item.YorumSayisi Yorum</td>
-                                <td>
-                                    @if (item.OnayDurumuId == 0)
-                                    {
-                                        <a class="btn btn-success btn-sm"
-                                           onclick="yayinlaId('@item.Id')">
-                                            <i class="nav-icon fas fa-check"></i>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-warning btn-sm"
-                                           onclick="yayindankaldirId('@item.Id')">
-                                            <i class="nav-icon fas fa-undo"></i>
-                                        </a>
-                                    }
-                                    <a class="btn btn-info btn-sm" onclick="duzenleId(@item.Id)">
-                                        <i class="nav-icon fas fa-edit"></i>
+                        <tr>
+                            <td hidden>@item.InsertDate</td>
+                            <td>@item.Id</td>
+                            <td>@item.Baslik</td>
+                            <td>@item.CreateUserFullName</td>
+                            <td>@(item.OnayDurumuId == 1 ? "Yayınlandı" : "Taslak")</td>
+                            <td>@item.InsertDate</td>
+                            <td>@item.OkunmaSayisi Okunma</td>
+                            <td>@item.YorumSayisi Yorum</td>
+                            <td>
+                                @if (item.OnayDurumuId == 0)
+                                {
+                                    <a class="btn btn-success btn-sm"
+                                       onclick="yayinlaId('@item.Id')">
+                                        <i class="nav-icon fas fa-check"></i>
                                     </a>
-                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')">
-                                        <i class="nav-icon fas fa-trash"></i>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-warning btn-sm"
+                                       onclick="yayindankaldirId('@item.Id')">
+                                        <i class="nav-icon fas fa-undo"></i>
                                     </a>
-                                </td>
-                            </tr>
+                                }
+                                <a class="btn btn-info btn-sm" onclick="duzenleId(@item.Id)">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')">
+                                    <i class="nav-icon fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

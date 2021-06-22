@@ -108,11 +108,16 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             return RedirectToAction("OkunmamisMesajlar");
         }
 
-        public async Task<IActionResult> geridonusumkutusu(int id)
+        public async Task<IActionResult> geridonusumkutusu()
         {
             var mesajlar = _postaKutusuService.GetSilinmisList();
             var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            return View(mesajlarMap);
+
+            var viewModel = new AdminPostaKutusuViewModel()
+            {
+                postaKutusuDtos = mesajlarMap
+            };
+            return View(viewModel);
         }
 
 

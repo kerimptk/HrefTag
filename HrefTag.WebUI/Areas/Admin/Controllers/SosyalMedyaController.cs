@@ -36,7 +36,6 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         public IActionResult Index(SosyalMedyaDto sosyalMedyaDto)
         {
             var sosyalMedya = _sosyalMedyaService.GetList().Where(i => i.Id == sosyalMedyaDto.Id).FirstOrDefault();
-            sosyalMedya.Facebook = sosyalMedyaDto.Facebook;
             sosyalMedya.Instagram = sosyalMedyaDto.Instagram;
             sosyalMedya.Twitter = sosyalMedyaDto.Twitter;
             sosyalMedya.Linkedin = sosyalMedyaDto.Linkedin;
