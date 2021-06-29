@@ -7,6 +7,7 @@ namespace HrefTag.WebUI.ViewModels
     {
         public GenelAyarlarDto genelAyarlarDto { get; set; }
         public SeoAyarlariDto seoAyarlariDto { get; set; }
+        public SosyalMedyaDto sosyalMedyaDto { get; set; }
         public string keyword { get; set; }
     }
 }

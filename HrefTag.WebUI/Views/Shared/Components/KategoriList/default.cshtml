@@ -9,10 +9,9 @@
         {
             <li>
                 <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
-                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block"
-                   style="{background:#fff} : hover(@item.RenkKodu)">
+                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
                     <h3 class="font-medium line-clamp-2">
-                        @item.Ad
+                        <span style="background:#@item.RenkKodu">&nbsp</span>&nbsp @item.Ad
                         <span class="float-right">  (@item.YaziSayisi)</span>
                     </h3>
                 </a>

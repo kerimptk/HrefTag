@@ -93,7 +93,7 @@ namespace BlogUI.Areas.Admin.Controllers
 
             if (files == null || files.Count == 0)
             {
-                yazi.OneCikanGorsel = "c7c888b2-623a-4d7c-b67a-88a205d29199c.net_.png";
+                yazi.OneCikanGorsel = "default.png";
             }
             else
             {

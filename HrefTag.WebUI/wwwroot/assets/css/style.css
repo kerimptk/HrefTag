@@ -6833,7 +6833,7 @@ header .header_inner .left_side #logo {
 
 header .header_inner .left_side #logo img {
   max-width: none;
-  height: 32px;
+  height: 48px;
 }
 
 header .header_inner .left_side #logo img.logo_inverse, header .header_inner .left_side #logo img.logo_mobile {
@@ -6956,9 +6956,9 @@ header .header_inner .right_side {
   top: 3px;
 }
 
-.header_widgets .is_avatar {
-  width: 32px;
-  height: 32px;
+.header_widgets .sm-icons {
+  width: 48px;
+  height: 48px;
   border-radius: 100%;
   margin-left: 15px;
 }
