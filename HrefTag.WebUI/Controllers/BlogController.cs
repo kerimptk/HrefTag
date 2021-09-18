@@ -60,7 +60,10 @@ namespace HrefTag.WebUI.Controllers
             _yaziService.Update(yazilar);
 
             var reklamlar = _reklamAlanlariService.GetList();
-            var reklamMaap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
+            var reklamMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
+
+            var yorumlar = _yorumService.GetList();
+            var yorumlarMap = _mapper.Map<List<YorumDto>>(yorumlar);
 
             var populerIcerikler = _yaziService.GetListCokOkunanlar();
             var populerIceriklerMap = _mapper.Map<List<PopulerIceriklerDto>>(populerIcerikler);
@@ -71,14 +74,15 @@ namespace HrefTag.WebUI.Controllers
             {
                 Yazi = YaziMap,
                 populerIceriklerDtos = populerIceriklerMap,
-                Reklamlar = reklamMaap,
+                Reklamlar = reklamMap,
+                Yorumlar = yorumlarMap
             };
             return View(viewModel);
         }
 
 
         [HttpPost]
-        public IActionResult yorumyap(Yorum item)
+        public IActionResult yorumYap(Yorum item)
         {
             item.InsertDate = DateTime.Now;
             item.OnayDurumuId = (int)EOnayDurum.Taslak;

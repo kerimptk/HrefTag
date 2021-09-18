@@ -86,7 +86,7 @@ namespace Blog.Application.Services
 
         public List<Yazi> GetListOneCikan()
         {
-            return _yaziRepository.GetListWithKategori(i => i.OneCikan == 1 && i.OnayDurumuId == 1).ToList();
+            return _yaziRepository.GetListWithKategori(i => i.OneCikan == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList().ToList();
         }
 
         public List<Yazi> GetListSilinmemisWithUser()

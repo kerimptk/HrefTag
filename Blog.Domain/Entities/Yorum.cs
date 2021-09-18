@@ -7,6 +7,7 @@ namespace Blog.Domain.Entities
         public string AdSoyad { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string? Meslek { get; set; }
         public string KullaniciYorumu { get; set; }
 
         public int? CevaplananYorumId { get; set; }

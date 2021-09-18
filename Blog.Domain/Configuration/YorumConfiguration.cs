@@ -24,6 +24,11 @@ namespace Blog.Domain.Configuration
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
+            builder.Property(e => e.Meslek)
+                 .HasColumnName("meslek")
+                 .HasMaxLength(100)
+                 .IsUnicode(false);
+
             builder.Property(e => e.IpAdres)
                 .HasColumnName("ip_adres")
                 .HasMaxLength(50)

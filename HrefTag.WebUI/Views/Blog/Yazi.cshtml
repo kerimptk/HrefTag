@@ -17,46 +17,63 @@
                         @Html.Raw(Model.Yazi.Icerik)
                     </div>
 
-                    <h3 class="mb-8 mt-20 font-semibold text-2xl"> Yorumlar (4610) </h3>
-                    <div class="flex gap-x-4 mb-5 relative">
-                        <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
-                        <div>
-                            <h4 class="text-base m-0"> Stella Johnson</h4>
-                            <span class="text-gray-700 text-sm"> Student </span>
-                            <p class="mt-3">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam ut laoreet dolore
-                                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                            </p>
-
-                        </div>
-                    </div>
+                    <h3 class="mb-8 mt-20 font-semibold text-2xl"> Yorumlar</h3>
+                    @if (Model.Yorumlar.Count == 0)
+                    {
+                        <span>
+                            Bu içerik için henüz yorum yapılmamış.
+                            İlk yorumu yapan sen ol...
+                        </span>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Yorumlar.Where(x => x.YaziId == Model.Yazi.Id && x.OnayDurumuId == 1).ToList())
+                        {
+                            <div class="flex gap-x-4 mb-5 relative">
+                                <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                                <div>
+                                    <h4 class="text-base m-0"> @item.AdSoyad</h4>
+                                    <span class="text-gray-700 text-sm"> @item.Meslek </span>
+                                    <p class="mt-3">
+                                        @item.KullaniciYorumu
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
 
 
                     <div class="lg:mt-9 mt-5">
                         <!-- Add comment -->
                         <h3 class="mb-8 mt-20 font-semibold text-xl"> Yorum Yap </h3>
-                        <div class="flex space-x-4 mb-5 relative">
-                            <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
-                            <div class="flex-1">
-                                <div class="grid md:grid-cols-3 gap-4">
-                                    <div>
-                                        <input type="text" name="AdSoyad" placeholder="Ad Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div>
-                                        <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>                                    <div>
-                                        <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div class="col-span-3">
-                                        <textarea name="" id="" cols="30" rows="6" class="bg-gradient-to-b from-gray-100 to-gray-100"></textarea>
-                                    </div>
-                                    <div class="col-span-2 flex justify-between py-4">
-                                        <input type="submit" value="Yorumu Gönder">
+                        <form asp-controller="Blog" asp-action="yorumYap" method="post">
+                            <input type="text" name="YaziId" hidden value="@Model.Yazi.Id" class="form-control">
+                            <div class="flex space-x-4 mb-5 relative">
+                                <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
+                                <div class="flex-1">
+                                    <div class="grid md:grid-cols-4 gap-4">
+                                        <div>
+                                            <input type="text" name="AdSoyad" placeholder="Ad Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                                        </div>
+                                        <div>
+                                            <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                                        </div>
+                                        <div>
+                                            <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                                        </div>
+                                        <div>
+                                            <input type="text" name="Meslek" placeholder="Meslek Bilgisi" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                                        </div>
+                                        <div class="col-span-4">
+                                            <textarea name="KullaniciYorumu" cols="30" rows="6" class="bg-gradient-to-b from-gray-100 to-gray-100"></textarea>
+                                        </div>
+                                        <div class="col-span-2 flex justify-between py-4">
+                                            <input type="submit" value="Yorumu Gönder">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="lg:w-1/4 w-full flex-shrink-0">
