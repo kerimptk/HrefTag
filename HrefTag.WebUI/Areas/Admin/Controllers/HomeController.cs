@@ -45,7 +45,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Dashboard()
         {
-            var yazilar = _yaziService.GetListWithKategoriByOnayli();
+            var yazilar = _yaziService.GetList();
             var yazilarMap = _mapper.Map<List<YaziDto>>(yazilar);
 
             var kategoriler = _kategoriService.GetList();

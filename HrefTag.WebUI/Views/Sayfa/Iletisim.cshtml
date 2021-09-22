@@ -6,94 +6,35 @@
 }
 
 
-<div class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <ul class="page-header-breadcrumb">
-                    <li><a href="~/index.html">Ana Sayfa</a></li>
-                    <li>İletişim</li>
-                </ul>
-                <h1>İletişim</h1>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Page Header -->
-<!-- section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-8">
-                <div class="section-row">
-                    <form asp-controller="Sayfa" asp-action="iletisimegec" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span>Adınız</span>
-                                    <input class="input" required type="text" name="Ad">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span>Soyadınız</span>
-                                    <input class="input" required type="text" name="Soyad">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <span>Email</span>
-                                    <input class="input" required type="email" name="Email">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <span>Konu</span>
-                                    <select class="form-control" required name="Konu">
-                                        <option selected disabled value="">Seçiniz</option>
-                                        <option value="Öneri / İstek">Öneri / İstek</option>
-                                        <option value="Hata Bildirimi">Hata Bildirimi</option>
-                                        <option value="Reklam ve İşbirliği">Reklam ve İşbirliği</option>
-                                        <option value="Diğer">Diğer</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea class="input" name="Mesaj" required placeholder="Mesajınız"></textarea>
-                                </div>
-                                <button class="primary-button">Gönder</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="section-row">
-                    <h3>İletişime Geç</h3>
-                    @foreach (var item in Model.iletisimBilgileriDtos)
-                    {
-                        <p>@item.Aciklama</p>
-                        <ul class="list-style">
-                            <li><p><strong>Email:</strong> <a href="@item.Eposta">@item.Eposta</a></p></li>
-                            <li><p><strong>Telefon:</strong> @item.Telefon</p></li>
-                            <li><p><strong>Adres:</strong> @item.Adres</p></li>
-                        </ul>
-                    }
-                </div>
-            </div>
+<div id="wrapper">
+    <!-- Main Contents -->
+    <div class="main_content">
+        <div class="mcontainer">
 
-        </div>
-        <!-- /row -->
-        <div class="row">
-            @foreach (var item in Model.iletisimBilgileriDtos)
-            {
-                @Html.Raw(item.Harita)
-            }
+            <div class="lg:flex  lg:space-x-12">
+
+                <div class="lg:w-3/4">
+
+                    <div class="divide-y">
+                        @foreach (var item in Model.iletisimBilgileriDtos)
+                        {
+                            <p>@item.Aciklama</p>
+                            <ul class="list-style">
+                                <li><p><strong>Email:</strong> <a href="@item.Eposta">@item.Eposta</a></p></li>
+                                <li><p><strong>Telefon:</strong> @item.Telefon</p></li>
+                                <li><p><strong>Adres:</strong> @item.Adres</p></li>
+                            </ul>
+                        }
+                        <div class="row">
+                            @foreach (var item in Model.iletisimBilgileriDtos)
+                            {
+                                @Html.Raw(item.Harita)
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-    <!-- /container -->
 </div>
-<!-- /section -->

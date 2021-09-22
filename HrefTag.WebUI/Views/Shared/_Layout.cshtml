@@ -24,20 +24,22 @@
 </head>
 <body>
 
-    <!-- Header -->
-    @await Component.InvokeAsync("Header")
-    @await Component.InvokeAsync("Sidebar")
+    <div id="wrapper">
 
-    @RenderBody()
+        <!-- Header -->
+        @await Component.InvokeAsync("Header")
+        @await Component.InvokeAsync("Sidebar")
 
-    <!-- Javascript
-    ================================================== -->
-    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="~/assets/js/uikit.js"></script>
-    <script src="~/assets/js/simplebar.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    <script src="~/assets/js/bootstrap-select.min.js"></script>
-    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+        @RenderBody()
 
+        <!-- Javascript
+        ================================================== -->
+        <script src="~/assets/js/jquery-3.3.1.min.js"></script>
+        <script src="~/assets/js/uikit.js"></script>
+        <script src="~/assets/js/simplebar.js"></script>
+        <script src="~/assets/js/custom.js"></script>
+        <script src="~/assets/js/bootstrap-select.min.js"></script>
+        <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    </div>
 </body>
 </html>

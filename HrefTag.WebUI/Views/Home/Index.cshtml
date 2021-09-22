@@ -9,7 +9,7 @@
             <div class="row border-2 border-solid border-gray-100">
                 <div class="lg:flex lg:space-x-12 mt-4">
                     <div class="row">
-                        <div class="col-4 float-left">
+                        <div class="col-4 float-left"  style="min-width:300px;">
                             <h2 class="text-xl font-semibold"> Son İçerikler </h2>
                             @foreach (var item in Model.blogYaziListDtos.Take(4))
                             {
@@ -23,7 +23,7 @@
                                 </div>
                             }
                         </div>
-                        <div class="col-4 float-left">
+                        <div class="col-4 float-left"  style="min-width:300px;">
                             <h2 class="text-xl font-semibold"> Çok Okunanlar </h2>
                             @foreach (var item in Model.populerIcerkler.Take(4))
                             {
@@ -37,7 +37,7 @@
                                 </div>
                             }
                         </div>
-                        <div class="col-4 float-left">
+                        <div class="col-4 float-left"  style="min-width:300px;">
                             <h2 class="text-xl font-semibold"> Editörün Seçtikleri </h2>
                             @foreach (var item in Model.oneCikanlar.Take(4))
                             {
