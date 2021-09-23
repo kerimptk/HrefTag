@@ -35,7 +35,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
                         SearchOption.AllDirectories)
                         )
             {
-                dosya.Add(file.Substring(65));
+                dosya.Add(file.Substring(56));
             }
             return View(new AdminOrtamKutuphanesiViewModel()
             {
