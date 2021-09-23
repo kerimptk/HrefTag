@@ -1,0 +1,249 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminPostaKutusuViewModel
+
+@{
+    ViewData["Title"] = "Posta Kutusu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Posta Kutusu</h3>
+            </div>
+
+        </div>
+        <div class="col-12">
+            <div class="card card-info card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Yeni Gelenler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Okundu Olarak İşaretlenenler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Geri Dönüşüm Kutusu</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>E-Mail Adresi</th>
+                                            <th>Web Site</th>
+                                            <th>Mesaj</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.postaKutusuDtos.Where(x => x.OnayDurumuId == 0))
+                                        {
+                                            <tr>
+                                                <td>@item.Ad</td>
+                                                <td>@item.Soyad</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.WebSite</td>
+                                                <td>@item.Mesaj</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>E-Mail Adresi</th>
+                                            <th>Web Site</th>
+                                            <th>Mesaj</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.postaKutusuDtos.Where(x => x.OnayDurumuId == 1))
+                                        {
+                                            <tr>
+                                                <td>@item.Ad</td>
+                                                <td>@item.Soyad</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.WebSite</td>
+                                                <td>@item.Mesaj</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                            <div class="p-3">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Ad</th>
+                                            <th>Soyad</th>
+                                            <th>E-Mail Adresi</th>
+                                            <th>Web Site</th>
+                                            <th>Mesaj</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.postaKutusuDtos.Where(x => x.SilId == 1))
+                                        {
+                                            <tr>
+                                                <td>@item.Ad</td>
+                                                <td>@item.Soyad</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.WebSite</td>
+                                                <td>@item.Mesaj</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Account" asp-action="KaliciSil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kullanici Silme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kullanıcı silinecektir. Emin misiniz?</p>
+                    <input id="txtid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-passwordReset">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Account" asp-action="PasswordReset" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Şifre Değiştir</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input name="PasswordResetUserDto.Password" type="password" class="form-control" placeholder="Yeni Şifre">
+                </div>
+                <div class="form-group">
+                    <label>Şifre Tekrar</label>
+                    <input name="PasswordResetUserDto.PasswordTekrar" type="password" class="form-control" placeholder="Şifre Tekrar">
+                </div>
+                <div class="modal-body">
+                    <p>Şifreyi değiştirmek istediğinizden emin misiniz.</p>
+                    <input id="txtpasswordResetId" type="text" name="PasswordResetUserDto.Id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Account" asp-action="KullaniciDuzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kullanici Güncelleme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz kullanıcı bilgisi güncellenecektir.. Emin misiniz?</p>
+                    <input id="txtduzenleid" type="text" name="id" value="" hidden />
+                    <div class="form-group">
+                        <label name="UserName">Kullanıcı Adı</label>
+                        <input name="UserName" id="txtduzenleAd" type="text" class="form-control" placeholder="Kullanıcı Adı">
+                    </div>
+                    <div class="form-group">
+                        <label name="Email">Email Adresi</label>
+                        <input name="Email" id="txtduzenleEmail" type="text" class="form-control" placeholder="Kullanıcı Adı">
+                    </div>
+                    <div class="form-group" hidden>
+                        <label name="PasswordHash">Şifre</label>
+                        <input name="PasswordHash" id="txtduzenleSifre" type="password" class="form-control" placeholder="Şifre">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function silId(id) {
+        document.getElementById("txtid").value = id;
+    }
+
+    function passwordResetId(id) {
+        document.getElementById("txtpasswordResetId").value = id;
+    }
+
+    function duzenleId(id, ad, email, sifre) {
+        document.getElementById("txtduzenleid").value = id;
+        document.getElementById("txtduzenleAd").value = ad;
+        document.getElementById("txtduzenleEmail").value = email;
+        document.getElementById("txtduzenleSifre").value = sifre;
+    }
+    function aktifPasif(id) {
+        window.location.href = "/Admin/Account/aktifPasif?Id=" + id
+    }
+</script>

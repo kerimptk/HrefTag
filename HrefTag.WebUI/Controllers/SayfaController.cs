@@ -9,6 +9,7 @@ using AutoMapper;
 using Blog.Domain.DataTransferObjects;
 using HrefTag.WebUI.ViewModels;
 using Blog.Domain.Entities;
+using Blog.Domain.Enum;
 
 namespace BlogUI.Controllers
 {
@@ -61,25 +62,45 @@ namespace BlogUI.Controllers
         [Route("Sayfa/iletisim")]
         public IActionResult iletisim()
         {
+            var populerIcerikler = _yaziService.GetListCokOkunanlar();
+            var populerIceriklerMap = _mapper.Map<List<PopulerIceriklerDto>>(populerIcerikler);
+
             var iletisimBilgileri = _iletisimBilgileriService.GetList();
             var iletisimBilgileriMap = _mapper.Map<List<IletisimBilgileriDto>>(iletisimBilgileri);
 
             var viewModel = new IletisimViewModel()
             {
-                iletisimBilgileriDtos = iletisimBilgileriMap
+                iletisimBilgileriDtos = iletisimBilgileriMap,
+                populerIceriklerDtos = populerIceriklerMap
             };
 
             return View(viewModel);
         }
 
-        [Route("Sayfa/iletisimegec")]
+        [Route("Sayfa/SoruSor")]
+        public IActionResult SoruSor()
+        {
+            var populerIcerikler = _yaziService.GetListCokOkunanlar();
+            var populerIceriklerMap = _mapper.Map<List<PopulerIceriklerDto>>(populerIcerikler);
+
+            var viewModel = new SayfaViewModel()
+            {
+                populerIceriklerDtos = populerIceriklerMap
+            };
+            return View(viewModel);
+        }
+
         [HttpPost]
-        public IActionResult iletisimegec(PostaKutusu item)
+        [Route("Sayfa/SoruGonderildi")]
+        public IActionResult SoruGonderildi(PostaKutusu item)
         {
             item.InsertDate = DateTime.Now;
-            item.OnayDurumuId = 0;
+            item.OnayDurumuId = (int)EOnayDurum.Taslak;
+            item.Konu = "Soru";
+
             _postaKutusuService.Add(item);
-            return RedirectToAction("iletisim");
+
+            return RedirectToAction("SoruSor", "Sayfa");
         }
     }
 }

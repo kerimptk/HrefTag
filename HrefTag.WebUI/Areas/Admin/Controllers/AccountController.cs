@@ -98,13 +98,13 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             return View(userMapper);
         }
 
-        [HttpGet("KullaniciListesi")]
+        [HttpGet("KullaniciIslemleri")]
         [Authorize]
-        public IActionResult KullaniciListesi()
+        public IActionResult KullaniciIslemleri()
         {
             var users = _userService.GetList();
             var usersMap = _mapper.Map<List<UserListDto>>(users);
-            var viewModel = new AdminKullaniciListesiViewModel()
+            var viewModel = new AdminKullaniciViewModel()
             {
                 userListDtos = usersMap
             };
@@ -112,9 +112,9 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         }
 
 
-        [HttpGet("KullaniciDuzenle")]
+        [HttpGet("ProfilDuzenle")]
         [Authorize]
-        public IActionResult KullaniciDuzenle()
+        public IActionResult ProfilDuzenle()
         {
             var id = GetUserId();
             var user = _userService.GetById(id);
@@ -130,7 +130,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         public IActionResult PasswordReset(PasswordResetUserDto passwordResetUserDto)
         {
             _authService.ResetPassword(passwordResetUserDto);
-            return RedirectToAction("KullaniciListesi", "Account");
+            return RedirectToAction("KullaniciIslemleri", "Account");
         }
 
         [Authorize]
@@ -147,14 +147,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             };
             _userService.Update(user);
 
-            return RedirectToAction("KullaniciListesi", "Account");
-        }
-
-        [HttpGet("KullaniciEkle")]
-        [Authorize]
-        public IActionResult KullaniciEkle()
-        {
-            return View();
+            return RedirectToAction("KullaniciIslemleri", "Account");
         }
 
         [HttpPost("KullaniciEkle")]
@@ -163,8 +156,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         {
             _authService.Register(registerDto, registerDto.Password.ToString());
 
-            return RedirectToAction("KullaniciListesi", "Account");
+            return RedirectToAction("KullaniciIslemleri", "Account");
         }
-
     }
 }

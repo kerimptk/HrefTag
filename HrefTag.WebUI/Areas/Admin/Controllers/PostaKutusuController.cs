@@ -23,17 +23,8 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult OkunmamisMesajlar()
-        {
-            var mesajlar = _postaKutusuService.GetOkunmamisList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            var viewModel = new AdminPostaKutusuViewModel() { 
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
 
-        public IActionResult TumMesajlar()
+        public IActionResult GelenSorular()
         {
             var mesajlar = _postaKutusuService.GetList();
             var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
@@ -43,51 +34,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             };
             return View(viewModel);
         }
-
-
-        public IActionResult IstekveOneriler()
-        {
-            var mesajlar = _postaKutusuService.GetOneriIstekList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            var viewModel = new AdminPostaKutusuViewModel()
-            {
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
-
-        public IActionResult HataBildirimleri()
-        {
-            var mesajlar = _postaKutusuService.GetHataBildirimiList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            var viewModel = new AdminPostaKutusuViewModel()
-            {
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
-
-        public IActionResult ReklamveIsBirligiTalepleri()
-        {
-            var mesajlar = _postaKutusuService.GetReklamVeIsBirligiList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            var viewModel = new AdminPostaKutusuViewModel()
-            {
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
-
-        public IActionResult DigerMesajlar()
-        {
-            var mesajlar = _postaKutusuService.GetDigerList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-            var viewModel = new AdminPostaKutusuViewModel()
-            {
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> CopeAt(int id)
@@ -108,19 +55,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             return RedirectToAction("OkunmamisMesajlar");
         }
 
-        public async Task<IActionResult> geridonusumkutusu()
-        {
-            var mesajlar = _postaKutusuService.GetSilinmisList();
-            var mesajlarMap = _mapper.Map<List<PostaKutusuDto>>(mesajlar);
-
-            var viewModel = new AdminPostaKutusuViewModel()
-            {
-                postaKutusuDtos = mesajlarMap
-            };
-            return View(viewModel);
-        }
-
-
+        
         [HttpPost]
         public async Task<IActionResult> KaliciSil(int id)
         {

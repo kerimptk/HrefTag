@@ -27,6 +27,11 @@ namespace Blog.Domain.Configuration
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
+            builder.Property(e => e.WebSite)
+                .HasColumnName("website")
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
             builder.Property(e => e.Konu)
                 .HasColumnName("konu")
                 .HasMaxLength(50)
@@ -44,6 +49,10 @@ namespace Blog.Domain.Configuration
 
             builder.Property(e => e.OnayDurumuId)
                 .HasColumnName("onay_durumu_id")
+                .HasDefaultValueSql("((0))");
+
+            builder.Property(e => e.SilId)
+                .HasColumnName("SilId")
                 .HasDefaultValueSql("((0))");
         }
     }

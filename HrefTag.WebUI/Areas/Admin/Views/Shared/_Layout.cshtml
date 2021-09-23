@@ -191,79 +191,18 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Account" asp-action="KullaniciIslemleri" class="nav-link">
                                 <i class="nav-icon fas fa-user-check"></i>
-                                <p>
-                                    Kullanıcı İşlemleri
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                <p>Kullanıcı İşlemleri</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Account" asp-action="KullaniciEkle" class="nav-link">
-                                        <i class="far fa-circle nav-icon text-info"></i>
-                                        <p>Yeni Kullanıcı</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Account" asp-action="KullaniciListesi" class="nav-link">
-                                        <i class="far fa-circle nav-icon text-info"></i>
-                                        <p>Kullanıcı İşlemleri</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="GelenSorular" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
-                                <p>
-                                    Posta Kutusu
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
+                                <p>Posta Kutusu</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="OkunmamisMesajlar" class="nav-link">
-                                        <i class="nav-icon far fa-envelope nav-icon text-info"></i>
-                                        <p>Okunmamış Mesajlar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="IstekveOneriler" class="nav-link">
-                                        <i class="nav-icon far fa-envelope nav-icon text-info"></i>
-                                        <p>Istek ve Onerilerr</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="HataBildirimleri" class="nav-link">
-                                        <i class="nav-icon far fa-envelope text-info"></i>
-                                        <p>Hata Bildirimleri</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="ReklamveIsBirligiTalepleri" class="nav-link">
-                                        <i class="nav-icon far fa-envelope text-info"></i>
-                                        <p>Reklam ve İşbirliği Talepleri</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="DigerMesajlar" class="nav-link">
-                                        <i class="nav-icon far fa-envelope text-info"></i>
-                                        <p>Diğer Mesajlar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a asp-area="Admin" asp-controller="PostaKutusu" asp-action="GeriDonusumKutusu" class="nav-link">
-                                        <i class="nav-icon far fa-envelope text-info"></i>
-                                        <p>
-                                            Geri Dönüşüm Kutusu
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
 
                         <li class="nav-item">
                             <a asp-area="Admin" asp-controller="Araclar" asp-action="index" class="nav-link">

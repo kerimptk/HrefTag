@@ -1,0 +1,72 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model SayfaViewModel
+@{
+    ViewData["Title"] = "Soru Sor";
+}
+
+<div id="wrapper">
+    <div class="main_content">
+        <div class="mcontainer">
+            <div class="lg:flex lg:space-x-10">
+                <div class="lg:w-3/4">
+                    <div>
+                        <h3 class="text-2xl font-semibold mt-3 mb-3">
+                            Uzmanlık alanlarımız dahilinde sormak istediğin konuyu sor.
+                            <br />Senin için yanıtlayalım.
+                        </h3>
+                    </div>
+                    <form asp-controller="Sayfa" asp-action="SoruGonderildi" method="post">
+                        <div class="flex space-x-4 mb-5 relative">
+                            <div class="flex-1">
+                                <div class="grid md:grid-cols-4 gap-4">
+                                    <div>
+                                        <input type="text" name="Ad" placeholder="Ad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="Soyad" placeholder="Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
+                                    </div>
+                                    <div>
+                                        <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                                    </div>
+                                    <div class="col-span-4">
+                                        <textarea name="Mesaj" cols="30" rows="6" placeholder="Sormak istediğini detaylıca açıkla senin için yanıtlayalım."
+                                                  class="bg-gradient-to-b from-gray-100 to-gray-100" required></textarea>
+                                    </div>
+                                    <div class="col-span-2 flex justify-between py-4">
+                                        <input type="submit" value="Soruyu Gönder">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="lg:w-1/4 w-full flex-shrink-0">
+
+                    <div uk-sticky="offset:100" class="uk-sticky">
+
+                        <h2 class="text-2xl font-semibold mb-3"> Popüler İçerikler </h2>
+                        <ul>
+                            @foreach (var item in Model.populerIceriklerDtos.OrderByDescending(i => i.OkunmaSayisi).Take(6))
+                            {
+                            <li>
+                                <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
+                                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
+                                    <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
+                                    <div class="flex items-center my-auto text-xs space-x-1.5">
+                                        <div>Okunma Sayısı</div>
+                                        <div>@item.OkunmaSayisi</div>
+                                    </div>
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
