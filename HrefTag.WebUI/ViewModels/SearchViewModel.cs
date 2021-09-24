@@ -7,6 +7,7 @@ namespace HrefTag.WebUI.ViewModels
     {
         public List<SearchResponseDto> searchResponseDtos { get; set; }
         public List<ReklamAlanlariDto> reklamAlanlariDtos { get; set; }
+        public List<PopulerIceriklerDto> populerIceriklerDtos { get; set; }
         public string keyword { get; set; }
     }
 }

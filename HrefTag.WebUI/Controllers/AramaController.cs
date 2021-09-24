@@ -49,16 +49,16 @@ namespace HrefTag.WebUI.Controls
         [HttpPost]
         public IActionResult AramaSonuclari(HeaderViewModel headerViewModel)
         {
-            var reklamlar = _reklamAlanlariService.GetList();
-            var reklamMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
-
             var sonuclar = _yaziService.GetAramaSonucList(headerViewModel.keyword.ToString()).ToList();
             var sonuclarMap = _mapper.Map<List<SearchResponseDto>>(sonuclar);
+
+            var populerIcerikler = _yaziService.GetListCokOkunanlar();
+            var populerIceriklerMap = _mapper.Map<List<PopulerIceriklerDto>>(populerIcerikler);
 
             var ViewModel = new SearchViewModel()
             {
                 searchResponseDtos = sonuclarMap,
-                reklamAlanlariDtos = reklamMap
+                populerIceriklerDtos = populerIceriklerMap
             };
             return View(ViewModel);
         }
