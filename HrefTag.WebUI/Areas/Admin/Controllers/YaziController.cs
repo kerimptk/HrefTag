@@ -195,6 +195,7 @@ namespace BlogUI.Areas.Admin.Controllers
             eskiYazi.OnayDurumuId = yazi.OnayDurumuId;
             eskiYazi.OneCikan = yazi.OneCikan;
             eskiYazi.SilId = eskiYazi.SilId;
+            eskiYazi.DuyuruMu = yazi.DuyuruMu;
             eskiYazi.UpdateDate = DateTime.Now;
             eskiYazi.UrlBaslik = eskiYazi.UrlBaslik;
             eskiYazi.UserId = eskiYazi.UserId;

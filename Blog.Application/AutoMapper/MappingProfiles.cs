@@ -27,6 +27,11 @@ namespace Blog.Application.AutoMapper
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
                 .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)))
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));
+            
+            CreateMap<Yazi, DuyurularDto>()
+                .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
+                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().Ad)))
+                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));
 
             CreateMap<KategoriYazi, KategoriYaziListDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.Kategori.UrlAd)))

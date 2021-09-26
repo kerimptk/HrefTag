@@ -12,6 +12,7 @@ namespace Blog.Domain.DataTransferObjects
         public string Icerik { get; set; }
         public string OneCikanGorsel { get; set; }
         public int OneCikan { get; set; }
+        public int? DuyuruMu { get; set; }
         public int OnayDurumuId { get; set; }
         public int? OkunmaSayisi { get; set; }
         public int UserId { get; set; }

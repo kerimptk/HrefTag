@@ -55,6 +55,7 @@
                         <option value="1">Evet</option>
                     </select>
                 </div>
+
                 @if (Model.GenelAyarlarDto.EditorunSectikleriAktif == true)
                 {
                     <label for="input Description">Editörün Sektiklerinde Yayınlansın mı?</label>
@@ -65,6 +66,14 @@
                         </select>
                     </div>
                 }
+
+                <label>Duyurularda Yayınlansın Mı?</label>
+                <div class="card card-primary">
+                    <select class="form-control custom-select" asp-for="DuyuruMu" required>
+                        <option value="0">Hayır</option>
+                        <option value="1">Evet</option>
+                    </select>
+                </div>
 
                 <label for="input Description">Kategori Seçimi</label>
                 <div class="card card-primary">
@@ -87,7 +96,7 @@
                     <div class="form-group">
                         <label for="input Description">Özet Bilgi</label>
                         <div>
-                            <textarea name="Ozet" asp-for="Ozet" placeholder="Maksimum 160 karakter" required rows="5" cols="40" maxlength="160">
+                            <textarea name="Ozet" asp-for="Ozet" placeholder="Maksimum 160 karakter" required rows="5" cols="30" maxlength="160">
                                                 
                                             </textarea>
                         </div>

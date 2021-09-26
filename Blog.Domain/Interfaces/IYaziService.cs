@@ -13,7 +13,8 @@ namespace Blog.Domain.Interfaces
         List<Yazi> GetListOnayli();
         List<Yazi> GetListCokOkunanlar();
         List<Yazi> GetAramaSonucList(string keyword);
-        List<Yazi> GetListOneCikan();
+        List<Yazi> GetListOneCikan(); 
+        List<Yazi> GetListDuyurular();
         Yazi GetById(int id);
         Yazi GetWithKategoriYaziById(int id);
         Yazi GetOnayliByUrlBaslik(string urlbaslik);
