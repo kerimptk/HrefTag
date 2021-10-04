@@ -41,9 +41,9 @@ namespace Blog.Application.Services
             return new SuccessResult(Messages.Basarili);
         }
 
-        public List<IletisimBilgileri> GetList()
+        public IletisimBilgileri GetById(int id)
         {
-            return _iletisimBilgileriRepository.GetList().ToList();
+            return _iletisimBilgileriRepository.Get(i => i.Id == id);
         }
 
         public IDataResult<IletisimBilgileri> Update(IletisimBilgileri entity)

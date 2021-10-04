@@ -14,25 +14,22 @@
             <div class="lg:flex  lg:space-x-12">
 
                 <div class="lg:w-3/4">
-
+                    <div class="h-44 mb-4 md:h-72 overflow-hidden relative rounded-lg w-full">
+                        <img src="~/uploads/@Model.iletisimBilgileriDto.OneCikanGorsel" alt="@Model.iletisimBilgileriDto.SayfaBasligi" class="w-full h-full absolute inset-0 object-cover">
+                    </div>
+                    <h1 class="lg:text-3xl text-2xl font-semibold mb-6 text-center"> @Model.iletisimBilgileriDto.SayfaBasligi </h1>
                     <div class="divide-y">
-                        @foreach (var item in Model.iletisimBilgileriDtos)
-                        {
-                            <p>@item.Aciklama</p>
-                            <ul class="list-style">
-                                <li><p><strong>Email:</strong> <a href="@item.Eposta">@item.Eposta</a></p></li>
-                                <li><p><strong>Telefon:</strong> @item.Telefon</p></li>
-                                <li><p><strong>Adres:</strong> @item.Adres</p></li>
-                            </ul>
-                        }
+
+                        <p>@Model.iletisimBilgileriDto.Aciklama</p>
+                        <ul class="list-style">
+                            <li><p><strong>Email:</strong> <a href="@Model.iletisimBilgileriDto.Eposta">@Model.iletisimBilgileriDto.Eposta</a></p></li>
+                            <li><p><strong>Telefon:</strong> @Model.iletisimBilgileriDto.Telefon</p></li>
+                            <li><p><strong>Adres:</strong> @Model.iletisimBilgileriDto.Adres</p></li>
+                        </ul>
                         <div class="row">
-                            @foreach (var item in Model.iletisimBilgileriDtos)
-                            {
-                                @Html.Raw(item.Harita)
-                            }
+                            @Html.Raw(Model.iletisimBilgileriDto.Harita)
                         </div>
                     </div>
-
                 </div>
                 <div class="lg:w-1/4 w-full flex-shrink-0">
 
@@ -42,16 +39,16 @@
                         <ul>
                             @foreach (var item in Model.populerIceriklerDtos.OrderByDescending(i => i.OkunmaSayisi).Take(6))
                             {
-                                <li>
-                                    <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
-                                       class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
-                                        <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
-                                        <div class="flex items-center my-auto text-xs space-x-1.5">
-                                            <div>Okunma Sayısı</div>
-                                            <div>@item.OkunmaSayisi</div>
-                                        </div>
-                                    </a>
-                                </li>
+                            <li>
+                                <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
+                                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
+                                    <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
+                                    <div class="flex Model.iletisimBilgileriDtos-center my-auto text-xs space-x-1.5">
+                                        <div>Okunma Sayısı</div>
+                                        <div>@item.OkunmaSayisi</div>
+                                    </div>
+                                </a>
+                            </li>
                             }
                         </ul>
                         <br>

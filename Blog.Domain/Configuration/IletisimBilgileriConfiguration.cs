@@ -14,6 +14,16 @@ namespace Blog.Domain.Configuration
 
             builder.Property(e => e.Id).HasColumnName("id");
 
+            builder.Property(e => e.SayfaBasligi)
+                .HasColumnName("sayfa_basligi")
+                .HasMaxLength(2500)
+                .IsUnicode(false);
+
+           builder.Property(e => e.OneCikanGorsel)
+                .HasColumnName("one_cikan_gorsel")
+                .HasMaxLength(2500)
+                .IsUnicode(false);
+
             builder.Property(e => e.Aciklama)
                 .HasColumnName("aciklama")
                 .HasMaxLength(2500)

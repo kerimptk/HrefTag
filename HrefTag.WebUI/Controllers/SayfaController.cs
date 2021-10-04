@@ -65,12 +65,12 @@ namespace BlogUI.Controllers
             var populerIcerikler = _yaziService.GetListCokOkunanlar();
             var populerIceriklerMap = _mapper.Map<List<PopulerIceriklerDto>>(populerIcerikler);
 
-            var iletisimBilgileri = _iletisimBilgileriService.GetList();
-            var iletisimBilgileriMap = _mapper.Map<List<IletisimBilgileriDto>>(iletisimBilgileri);
+            var iletisimBilgileri = _iletisimBilgileriService.GetById(1);
+            var iletisimBilgileriMap = _mapper.Map<IletisimBilgileriDto>(iletisimBilgileri);
 
             var viewModel = new IletisimViewModel()
             {
-                iletisimBilgileriDtos = iletisimBilgileriMap,
+                iletisimBilgileriDto = iletisimBilgileriMap,
                 populerIceriklerDtos = populerIceriklerMap
             };
 

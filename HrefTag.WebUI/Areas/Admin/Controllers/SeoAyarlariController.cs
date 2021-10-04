@@ -44,6 +44,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             seoAyarlari.Analytics = seoAyarlariDto.Analytics;
             seoAyarlari.Description = seoAyarlariDto.Description;
             seoAyarlari.Keywords = seoAyarlariDto.Keywords;
+            seoAyarlari.Adsense = seoAyarlariDto.Adsense;
             seoAyarlari.Title = seoAyarlariDto.Title;
             seoAyarlari.UpdateDate = DateTime.Now;
             _seoAyarlariService.Update(seoAyarlari);

@@ -6,29 +6,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <br />
-            <br />
-            <div class="col-8">
-                <div class="text-center" style="font-size:36px;">
-                    Aradığın sayfayı bulamadık.<br /> 404 Not Found!
+<div id="wrapper">
+    <!-- Main Contents -->
+    <div class="main_content">
+        <div class="mcontainer">
+                    <div class="row">
+                        <br />
+                        <br />
+                        <div class="col-8">
+                            <div class="text-center" style="font-size:36px;">
+                                Aradığın sayfayı bulamadık.<br /> 404 Not Found!
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="col-8 align-content-center">
+                            <div class="text-center" style="font-size:24px;">
+                                Şansını arama yaparak denemek ister misin?
+                                <hr>
+                                <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
+                                    <input type="text" name="keyword" required placeholder="Ne aramıştınız...">
+                                    <input type="submit" value="Ara" class="btn btn-success m-2">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br />
-            <br />
-            <div class="col-8 align-content-center">
-                <div class="text-center" style="font-size:24px;">
-                    Şansını arama yaparak denemek ister misin?
-                    <hr>
-                    <form asp-controller="Arama" asp-action="AramaYap" method="post">
-                        <input type="text" name="aranan" required placeholder="Ne aramıştınız...">
-                        <input type="submit" value="Ara" class="btn btn-success m-2">
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-</div>

@@ -5,6 +5,6 @@ namespace HrefTag.WebUI.ViewModels
 {
     public class AdminIletisimBilgileriViewModel
     {
-        public List<IletisimBilgileriDto> iletisimBilgileriDtos { get; set; }
+        public IletisimBilgileriDto iletisimBilgileriDto { get; set; }
     }
 }

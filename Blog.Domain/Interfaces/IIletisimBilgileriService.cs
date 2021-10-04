@@ -6,7 +6,7 @@ namespace Blog.Domain.Interfaces
 {
     public interface IIletisimBilgileriService
     {
-        List<IletisimBilgileri> GetList();
+        IletisimBilgileri GetById(int id);
         IDataResult<IletisimBilgileri> Add(IletisimBilgileri entity);
         IDataResult<IletisimBilgileri> Update(IletisimBilgileri entity);
         IResult Delete(IletisimBilgileri entity);

@@ -13,35 +13,53 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form" asp-area="Admin" asp-controller="IletisimBilgileri" asp-action="index" method="post">
+    <form role="form" asp-area="Admin" asp-controller="IletisimBilgileri" asp-action="index" enctype="multipart/form-data" method="post">
 
         <div class="card-body">
-            @foreach (var item in Model.iletisimBilgileriDtos)
-            {
-                <input type="text" name="id" value="@item.Id" hidden />
-                <div class="row float-left">
-                    <div class="col-6 form-group">
-                        <label name="Eposta">Eposta Adresi</label>
-                        <input name="Eposta" type="text" class="form-control" value="@item.Eposta" placeholder="Site Adı">
+            <div class="row float-left">
+                <div class="col-5 form-group">
+                    <label name="SayfaBasligi">İletişim Sayfası Başlığı</label>
+                    <input name="SayfaBasligi" type="text" class="form-control" value="@Model.iletisimBilgileriDto.SayfaBasligi" placeholder="Sayfa Başlığı">
+                </div>
+                <div class="col-4 form-group">
+                    <label name="Eposta">Eposta Adresi</label>
+                    <input name="Eposta" type="text" class="form-control" value="@Model.iletisimBilgileriDto.Eposta" placeholder="Site Adı">
+                </div>
+                <div class="col-3 form-group">
+                    <label name="Telefon">Telefon</label>
+                    <input name="Telefon" type="text" class="form-control" value="@Model.iletisimBilgileriDto.Telefon" placeholder="Site Başlığı">
+                </div>
+                <div class="col-3 form-group">
+                    <label name="Adres">Adres</label>
+                    <textarea name="Adres" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@Model.iletisimBilgileriDto.Adres</textarea>
+                </div>
+                <div class="col-3 form-group">
+                    <label name="Aciklama">Açıklama Metni</label>
+                    <textarea name="Aciklama" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@Model.iletisimBilgileriDto.Aciklama</textarea>
+                </div>
+                <div class="col-6 form-group">
+                    <label name="Harita">Harita Kodu</label>
+                    <textarea name="Harita" class="form-control" rows="7" placeholder="Maximum 2500 karakter...">@Model.iletisimBilgileriDto.Harita</textarea>
+                </div>
+                <div class="col-6  float-left">
+                    <div class="col-6  float-left">
+                        <div class="form-group">
+                            <label name="OneCikanGorsel">İletişim Sayfası Üst Resim</label>
+                            <dl>
+                                <dd>
+                                    <input type="file" name="OneCikanGorsel" id="OneCikanGorsel" class="inputfile" asp-for="@Model.iletisimBilgileriDto.OneCikanGorsel">
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
-                    <div class="col-6 form-group">
-                        <label name="Telefon">Telefon</label>
-                        <input name="Telefon" type="text" class="form-control" value="@item.Telefon" placeholder="Site Başlığı">
-                    </div>
-                    <div class="col-3 form-group">
-                        <label name="Adres">Adres</label>
-                        <textarea name="Adres" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@item.Adres</textarea>
-                    </div>
-                    <div class="col-3 form-group">
-                        <label name="Aciklama">Açıklama Metni</label>
-                        <textarea name="Aciklama" class="form-control" rows="7" placeholder="Maximum 1000 karakter...">@item.Aciklama</textarea>
-                    </div>
-                    <div class="col-6 form-group">
-                        <label name="Harita">Harita Kodu</label>
-                        <textarea name="Harita" class="form-control" rows="7" placeholder="Maximum 2500 karakter...">@item.Harita</textarea>
+                    <div class="col-6  float-left">
+                        @if (Model.iletisimBilgileriDto.OneCikanGorsel != null)
+                        {
+                            <img width="150" src="/uploads/@Model.iletisimBilgileriDto.OneCikanGorsel">
+                        }
                     </div>
                 </div>
-            }
+            </div>
         </div>
         <!-- /.card-body -->
 

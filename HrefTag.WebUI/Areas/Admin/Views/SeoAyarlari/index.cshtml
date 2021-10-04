@@ -16,30 +16,33 @@
     <form role="form" asp-area="Admin" asp-controller="SeoAyarlari" asp-action="index" method="post">
 
         <div class="card-body">
-                <input type="text" name="id" value="@Model.seoAyarlariDto.Id" hidden />
-                <div class="row float-left">
-                    <div class="col-6 form-group">
-                        <label name="Ad">Site Adı</label>
-                        <input name="Ad" type="text" class="form-control" value="@Model.seoAyarlariDto.Ad" placeholder="Site Adı">
-                    </div>
-                    <div class="col-6 form-group">
-                        <label name="Title">Site Başlığı</label>
-                        <input name="Title" type="text" class="form-control" value="@Model.seoAyarlariDto.Title" placeholder="Site Başlığı">
-                    </div>
-                    <div class="col-4 form-group">
-                        <label name="Description">Description</label>
-                        <textarea name="Description" class="form-control" rows="4" placeholder="Site Description (Max 160 karakter)">@Model.seoAyarlariDto.Description</textarea>
-                    </div>
-                    <div class="col-4 form-group">
-                        <label name="Keywords">Keywords</label>
-                        <textarea name="Keywords" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Keywords</textarea>
-                    </div>
-                    <div class="col-4 form-group">
-                        <label name="Analytics">Analytics Kodu</label>
-                        <textarea name="Analytics" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Analytics</textarea>
-                    </div>
+            <input type="text" name="id" value="@Model.seoAyarlariDto.Id" hidden />
+            <div class="row float-left">
+                <div class="col-6 form-group">
+                    <label name="Ad">Site Adı</label>
+                    <input name="Ad" type="text" class="form-control" value="@Model.seoAyarlariDto.Ad" placeholder="Site Adı">
                 </div>
-            }
+                <div class="col-6 form-group">
+                    <label name="Title">Site Başlığı</label>
+                    <input name="Title" type="text" class="form-control" value="@Model.seoAyarlariDto.Title" placeholder="Site Başlığı">
+                </div>
+                <div class="col-4 form-group">
+                    <label name="Description">Description</label>
+                    <textarea name="Description" class="form-control" rows="4" placeholder="Site Description (Max 160 karakter)">@Model.seoAyarlariDto.Description</textarea>
+                </div>
+                <div class="col-4 form-group">
+                    <label name="Keywords">Keywords</label>
+                    <textarea name="Keywords" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Keywords</textarea>
+                </div>
+                <div class="col-4 form-group">
+                    <label name="Analytics">Analytics Kodu</label>
+                    <textarea name="Analytics" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Analytics</textarea>
+                </div>
+                <div class="col-4 form-group">
+                    <label name="Adsense">Reklam Platformları İçin Kod</label>
+                    <textarea name="Adsense" class="form-control" rows="4" placeholder="Maximum 1000 karakter...">@Model.seoAyarlariDto.Adsense</textarea>
+                </div>
+            </div>
         </div>
         <!-- /.card-body -->
 

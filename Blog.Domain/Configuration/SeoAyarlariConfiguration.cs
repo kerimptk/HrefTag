@@ -32,6 +32,11 @@ namespace Blog.Domain.Configuration
                 .HasMaxLength(500)
                 .IsUnicode(false);
 
+            builder.Property(e => e.Adsense)
+                .HasColumnName("adsense")
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
             builder.Property(e => e.Title)
                 .HasColumnName("title")
                 .HasMaxLength(500);
