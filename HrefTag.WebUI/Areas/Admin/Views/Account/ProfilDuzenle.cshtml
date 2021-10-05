@@ -8,7 +8,7 @@
 
 
 <div class="col-12">
-    <form asp-area="Admin" asp-controller="Account" asp-action="ProfilDuzenle" enctype="multipart/form-data" method="post">
+    <form asp-area="Admin" asp-controller="Account" asp-action="ProfilDuzenleOnay" enctype="multipart/form-data" method="post">
         <!-- Profile Image -->
         <div class="card card-primary card-outline col-3 float-left">
             <div class="card-body box-profile">
@@ -20,13 +20,13 @@
                 <div class="text-center">
                     <dl>
                         <dd>
-                            <input type="file" name="OneCikanGorsel" id="OneCikanGorsel" class="inputfile" name="OneCikanGorsel">
+                            <input type="file" name="ImagePath" id="OneCikanGorsel" class="inputfile">
                         </dd>
                     </dl>
                 </div>
                 <input type="text" name="Id" value="@Model.profilDto.Id" class="form-control profile-username text-center" hidden>
-                <input type="text" name="NameSurname" value="@Model.profilDto.Name" class="form-control profile-username text-center">
-                <input type="text" name="NameSurname" value="@Model.profilDto.Surname" class="form-control profile-username text-center">
+                <input type="text" name="Name" value="@Model.profilDto.Name" class="form-control profile-username text-center">
+                <input type="text" name="Surname" value="@Model.profilDto.Surname" class="form-control profile-username text-center">
 
                 <input type="text" name="Job" value="@Model.profilDto.Job" class="form-control text-muted text-center">
 

@@ -44,7 +44,8 @@ namespace Blog.Application.AutoMapper
                 /*.ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname))*/;
 
             CreateMap<Yazi, YaziDto>()
-                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)));
+                .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))
+                .ForMember(d => d.CreateUserAvatar, o => o.MapFrom(s => (s.User.ImagePath)));
 
             CreateMap<Kategori, KategoriDto>();
 

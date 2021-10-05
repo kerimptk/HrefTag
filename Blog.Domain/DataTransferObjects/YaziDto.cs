@@ -17,5 +17,6 @@ namespace Blog.Domain.DataTransferObjects
         public int YorumSayisi { get; set; }
         public DateTime InsertDate { get; set; }
         public string CreateUserFullName { get; set; }
+        public string CreateUserAvatar { get; set; }
     }
 }

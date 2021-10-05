@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -124,6 +125,42 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
                 profilDto = userMap
             };
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProfilDuzenleOnay(ProfilDto profilDto)
+        {
+            var user = _userService.GetById(profilDto.Id);
+            user.Name = profilDto.Name;
+            user.Surname = profilDto.Surname;
+            user.Email = user.Email;
+            user.About = profilDto.About;
+            user.Adress = profilDto.Adress;
+            user.Skills = profilDto.Skills;
+            user.Education = profilDto.Education;
+            user.Job = profilDto.Job;
+            user.PasswordHash = user.PasswordHash;
+            user.PasswordSalt = user.PasswordSalt;
+            user.Status = user.Status;
+            user.UserName = user.UserName;
+
+            var files = HttpContext.Request.Form.Files;
+            foreach (var file in files)
+            {
+                string fName = Guid.NewGuid().ToString() + file.FileName;
+                if (file.Name == "ImagePath")
+                    user.ImagePath = fName;
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\uploads\", fName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
+            _userService.Update(user);
+
+            return RedirectToAction("ProfilBilgileri", "Account");
         }
 
         [Authorize]
