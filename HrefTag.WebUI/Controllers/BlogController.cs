@@ -15,25 +15,31 @@ namespace HrefTag.WebUI.Controllers
     {
         readonly IYaziService _yaziService;
         readonly IYorumService _yorumService;
+        readonly IKategoriService _kategoriService;
+        readonly IKategoriYaziService _kategoriYaziService;
         readonly IReklamAlanlariService _reklamAlanlariService;
         readonly IMapper _mapper;
 
         public BlogController(
             IYaziService yaziService,
             IYorumService yorumService,
+            IKategoriService kategoriService,
+            IKategoriYaziService kategoriYaziService,
             IReklamAlanlariService reklamAlanlariService,
             IMapper mapper
             )
         {
             _yaziService = yaziService;
             _yorumService = yorumService;
+            _kategoriService = kategoriService;
+            _kategoriYaziService = kategoriYaziService;
             _reklamAlanlariService = reklamAlanlariService;
             _mapper = mapper;
         }
 
         [Route("Blog")]
         public IActionResult Index()
-        {
+        {   
             var yazilar = _yaziService.GetListWithKategoriByOnayli();
             var yazilarMap = _mapper.Map<List<BlogYaziListDto>>(yazilar);
 
@@ -59,6 +65,10 @@ namespace HrefTag.WebUI.Controllers
             yazilar.OkunmaSayisi++;
             _yaziService.Update(yazilar);
 
+            var yaziKategorisi = _kategoriYaziService.GetListKategoriByYaziId(yazilar.Id);
+            var kategoriYaziList = _kategoriYaziService.GetListByKategoriIdWithYazi(yaziKategorisi[0].KategoriId);
+            var kategoriYaziListMap = _mapper.Map<List<KategoriYaziListDto>>(kategoriYaziList);
+
             var reklamlar = _reklamAlanlariService.GetList();
             var reklamMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
 
@@ -73,6 +83,7 @@ namespace HrefTag.WebUI.Controllers
             var viewModel = new YaziViewModel()
             {
                 Yazi = YaziMap,
+                kategoriYaziListDtos = kategoriYaziListMap,
                 populerIceriklerDtos = populerIceriklerMap,
                 Reklamlar = reklamMap,
                 Yorumlar = yorumlarMap
