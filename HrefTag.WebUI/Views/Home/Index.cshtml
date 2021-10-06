@@ -8,7 +8,6 @@
         <div class="mcontainer">
 
             <div class="relative" uk-slider="finite: true">
-
                 <div class="uk-slider-container px-1 py-3">
                     <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
                         @foreach (var item in Model.oneCikanlar.Take(8))
@@ -16,7 +15,7 @@
                             <li>
                                 <div>
                                     <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative inline-block">
-                                        <img src="/uploads/@item.OneCikanGorsel" alt="" class="w-full h-full absolute inset-0 object-cover">
+                                        <img src="/uploads/@item.OneCikanGorsel" alt="@item.Baslik" class="w-full h-full absolute inset-0 object-cover">
                                     </a>
                                     <div class="pt-3">
                                         <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="font-semibold line-clamp-2">@item.Baslik </a>
@@ -36,7 +35,7 @@
                         <div class="row">
                             <div class="col-8 float-left" style="min-width:300px;">
                                 <h2 class="text-xl font-semibold"> Son İçerikler </h2>
-                                @foreach (var item in Model.blogYaziListDtos.Take(8))
+                                @foreach (var item in Model.blogYaziListDtos.Take(10))
                                 {
                                     <div class=" col-6 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" style="min-width:300px">
                                         <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
@@ -50,7 +49,7 @@
                             </div>
                             <div class="col-4 float-left" style="min-width:300px;">
                                 <h2 class="text-xl font-semibold">Popüler İçerikler</h2>
-                                @foreach (var item in Model.populerIcerkler.Take(4))
+                                @foreach (var item in Model.populerIcerkler.Take(5))
                                 {
                                     <div class="flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md -mx-2 px-2">
                                         <div class="w-14 h-14 flex-shrink-0 rounded-md relative">

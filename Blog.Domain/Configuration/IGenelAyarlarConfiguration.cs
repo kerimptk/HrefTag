@@ -25,6 +25,15 @@ namespace Blog.Domain.Configuration
             builder.Property(e => e.AraclarAktif)
                 .HasColumnName("araclar_aktif");
 
+            builder.Property(e => e.DuyurularAktif)
+                .HasColumnName("duyurular_aktif");
+
+            builder.Property(e => e.SoruSorAktif)
+                .HasColumnName("soru_sor_aktif");
+
+            builder.Property(e => e.YazarlarAktif)
+                .HasColumnName("yazarlar_aktif");
+
             builder.Property(e => e.EditorunSectikleriAktif)
                 .HasColumnName("editorun_sectikleri_aktif");
 

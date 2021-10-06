@@ -49,7 +49,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
         public IActionResult Login()
         {
             if (HttpContext.User.Identity != null && HttpContext.User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Dashboard", "Home");
 
             return View();
         }

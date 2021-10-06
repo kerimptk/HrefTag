@@ -66,15 +66,16 @@
                         </select>
                     </div>
                 }
-
-                <label>Duyurularda Yayınlansın Mı?</label>
-                <div class="card card-primary">
-                    <select class="form-control custom-select" asp-for="DuyuruMu" required>
-                        <option value="0">Hayır</option>
-                        <option value="1">Evet</option>
-                    </select>
-                </div>
-
+                @if (Model.GenelAyarlarDto.DuyurularAktif == true)
+                {
+                    <label>Duyurularda Yayınlansın Mı?</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="DuyuruMu" required>
+                            <option value="0">Hayır</option>
+                            <option value="1">Evet</option>
+                        </select>
+                    </div>
+                }
                 <label for="input Description">Kategori Seçimi</label>
                 <div class="card card-primary">
 

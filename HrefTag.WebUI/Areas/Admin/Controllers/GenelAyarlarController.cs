@@ -61,6 +61,9 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             genelAyarlar.EditorunSectikleriAktif = genelAyarlarDto.EditorunSectikleriAktif;
             genelAyarlar.PopulerIceriklerAktif = genelAyarlarDto.PopulerIceriklerAktif;
             genelAyarlar.VideoIceriklerAktif = genelAyarlarDto.VideoIceriklerAktif;
+            genelAyarlar.DuyurularAktif = genelAyarlarDto.DuyurularAktif;
+            genelAyarlar.YazarlarAktif= genelAyarlarDto.YazarlarAktif; 
+            genelAyarlar.SoruSorAktif = genelAyarlarDto.SoruSorAktif;
             genelAyarlar.UpdateDate = DateTime.Now;
 
             _genelAyarlarService.Update(genelAyarlar);

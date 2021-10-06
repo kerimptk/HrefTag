@@ -50,13 +50,16 @@
                     </a>
                 </li>
             }
-            <li>
-                <a asp-controller="Duyurular" asp-action="index">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-red-500">
-                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
-                    </svg><span>Duyurular</span>
-                </a>
-            </li>
+            @if (Model.genelAyarlarDto.DuyurularAktif == true)
+            {
+                <li>
+                    <a asp-controller="Duyurular" asp-action="index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-red-500">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+                        </svg><span>Duyurular</span>
+                    </a>
+                </li>
+            }
             @if (Model.genelAyarlarDto.AraclarAktif == true)
             {
                 <li>
@@ -67,14 +70,28 @@
                     </a>
                 </li>
             }
-            <li>
-                <a asp-controller="Sayfa" asp-action="SoruSor">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
-                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                    </svg><span> Soru Sor </span>
-                </a>
-            </li>
+            @if (Model.genelAyarlarDto.SoruSorAktif == true)
+            {
+                <li>
+                    <a asp-controller="Sayfa" asp-action="SoruSor">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                        </svg><span> Soru Sor </span>
+                    </a>
+                </li>
+            }
+            @if (Model.genelAyarlarDto.YazarlarAktif == true)
+            {
+                <li>
+                    <a asp-controller="Sayfa" asp-action="Yazarlarimiz">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-pink-500">
+                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+                            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+                        </svg> <span> Yazar Kadromuz</span>
+                    </a>
+                </li>
+            }
             @foreach (var item in Model.sayfaDtos)
             {
                 <li>

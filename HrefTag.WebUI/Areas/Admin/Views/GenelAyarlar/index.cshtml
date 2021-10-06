@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">             
+            <div class="row">
                 <div class="col-4  float-left">
                     <label name="VideoIceriklerAktif">Video İçerikler</label>
                     <div class="card card-primary">
@@ -78,6 +78,33 @@
                     <label name="AraclarAktif">Hazır Site Araçları</label>
                     <div class="card card-primary">
                         <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.AraclarAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4  float-left">
+                    <label name="AraclarAktif">Duyurular Menüsü Aktif</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.DuyurularAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4  float-left">
+                    <label name="AraclarAktif">Yazarlar Sayfası Aktif</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.YazarlarAktif" required>
+                            <option value="False">Pasif</option>
+                            <option value="True">Aktif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4  float-left">
+                    <label name="AraclarAktif">Soru Sor Sayfası Aktif</label>
+                    <div class="card card-primary">
+                        <select class="form-control custom-select" asp-for="@Model.genelAyarlarDto.SoruSorAktif" required>
                             <option value="False">Pasif</option>
                             <option value="True">Aktif</option>
                         </select>

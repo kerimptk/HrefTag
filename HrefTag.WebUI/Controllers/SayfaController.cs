@@ -19,18 +19,21 @@ namespace BlogUI.Controllers
         IIletisimBilgileriService _iletisimBilgileriService;
         IYaziService _yaziService;
         IPostaKutusuService _postaKutusuService;
-        IMapper _mapper;
+        IMapper _mapper; 
+        IUserService _userService;
         public SayfaController(
             ISayfaService sayfaService,
             IIletisimBilgileriService iletisimBilgileriService,
             IPostaKutusuService postaKutusuService,
             IYaziService yaziService,
+            IUserService userService,
             IMapper mapper)
         {
             _sayfaService = sayfaService;
             _yaziService = yaziService;
             _iletisimBilgileriService = iletisimBilgileriService;
             _postaKutusuService = postaKutusuService;
+            _userService = userService;
             _mapper = mapper;
 
         }
@@ -86,6 +89,18 @@ namespace BlogUI.Controllers
             var viewModel = new SayfaViewModel()
             {
                 populerIceriklerDtos = populerIceriklerMap
+            };
+            return View(viewModel);
+        }
+
+        [Route("Sayfa/Yazarlarimiz")]
+        public IActionResult Yazarlarimiz()
+        {
+            var users = _userService.GetListAktif();
+            var usersMap = _mapper.Map<List<UserListDto>>(users);
+            var viewModel = new YazarlarViewModel()
+            {
+                userListDtos = usersMap
             };
             return View(viewModel);
         }

@@ -92,29 +92,24 @@
                     <h3 class="mb-8 mt-20 font-semibold text-xl"> Yorum Yap </h3>
                     <form asp-controller="Blog" asp-action="yorumYap" method="post">
                         <input type="text" name="YaziId" hidden value="@Model.Yazi.Id" class="form-control">
-                        <div class="flex space-x-4 mb-5 relative">
-                            <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
-                            <div class="flex-1">
-                                <div class="grid md:grid-cols-4 gap-4">
-                                    <div>
-                                        <input type="text" name="AdSoyad" placeholder="Ad Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div>
-                                        <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div>
-                                        <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div>
-                                        <input type="text" name="Meslek" placeholder="Meslek Bilgisi" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div class="col-span-4">
-                                        <textarea name="KullaniciYorumu" cols="30" rows="6" class="bg-gradient-to-b from-gray-100 to-gray-100"></textarea>
-                                    </div>
-                                    <div class="col-span-2 flex justify-between py-4">
-                                        <input type="submit" value="Yorumu Gönder">
-                                    </div>
-                                </div>
+                        <div>
+                            <div>
+                                <input type="text" name="AdSoyad" placeholder="Ad Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3">
+                            </div>
+                            <div>
+                                <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3">
+                            </div>
+                            <div>
+                                <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3">
+                            </div>
+                            <div>
+                                <input type="text" name="Meslek" placeholder="Meslek Bilgisi" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-md-4 float-left mb-3">
+                            </div>
+                            <div class="col-span-4">
+                                <textarea name="KullaniciYorumu" cols="30" rows="6" class="bg-gradient-to-b from-gray-100 to-gray-100"></textarea>
+                            </div>
+                            <div class="col-span-2 flex justify-between py-4">
+                                <input type="submit" value="Yorumu Gönder">
                             </div>
                         </div>
                     </form>

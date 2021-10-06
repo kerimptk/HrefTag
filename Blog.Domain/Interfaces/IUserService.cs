@@ -10,6 +10,7 @@ namespace Blog.Domain.Interfaces
         User FindByEmailAsyncUser(string email);
         User GetById(int id);
         List<User> GetList();
+        List<User> GetListAktif();
         User GetByUsername(string username);
         bool IsUserExistByUsername(string username, string currentUsername = null);
         IResult IsUserExistByEmail(string email, string currentEmail = null);

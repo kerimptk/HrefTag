@@ -90,5 +90,10 @@ namespace Blog.Application.Services
         {
             return _userRepository.GetList().ToList();
         }
+
+        public List<User> GetListAktif()
+        {
+            return _userRepository.GetList().Where(i=> i.Status == true).ToList();
+        }
     }
 }
