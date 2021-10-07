@@ -22,7 +22,7 @@ namespace BlogUI.Models.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var kategoriler = _kategoriService.GetList().Where(x => x.YaziSayisi > 0 || x.YaziSayisi != null);
+            var kategoriler = _kategoriService.GetList();
             var kategorilerMap = _mapper.Map<List<KategoriDto>>(kategoriler);
 
             var ViewModel = new KategoriListViewModel()

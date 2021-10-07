@@ -6,7 +6,7 @@
 }
 <div class="row p-3">
 
-    <div class="col-4">
+    <div class="col-3">
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
@@ -26,27 +26,18 @@
                     </div>
                     <div class="form-group">
                         <label name="RenkKodu">Kategori Rengi Seçiniz</label>
-                        <select class="form-control" name="RenkKodu">
-                            <option value="-">Seçiniz</option>
-                            <option value="cat-1">cat-1 / Yeşil</option>
-                            <option value="cat-2">cat-2 / Turuncu</option>
-                            <option value="cat-3">cat-3 / Mavi</option>
-                            <option value="cat-4">cat-4 / Mor</option>
-                            @*<option value="cat-5">cat-5 / Turkuaz</option>
-                                <option value="cat-6">cat-6 / Kırmızı</option>
-                                <option value="cat-7">cat-7 / Pembe</option>*@
+                        <input name="RenkKodu" required type="text" class="form-control" placeholder="Örn : 72a2d5">
+                    </div>
+                    <div class="form-group">
+                        <label name="ParentId">Üst Kategorisi Varmı?</label>
+                        <select class="form-control" name="ParentId">
+                            <option>Seçiniz</option>
+                            @foreach (var item in Model.kategoriDtos)
+                            {
+                                <option value="@item.Id">@item.Ad</option>
+                            }
                         </select>
                     </div>
-                    @*<div class="form-group">
-                            <label name="ParentId">Üst Kategorisi Varmı?</label>
-                            <select class="form-control" name="ParentId">
-                                <option>Seçiniz</option>
-                                @foreach (var item in Model.GetTblKategoriler)
-                                {
-                                    <option value="@item.Id">@item.Ad</option>
-                                }
-                            </select>
-                        </div>*@
                 </div>
                 <!-- /.card-body -->
 
@@ -58,7 +49,7 @@
     </div>
 
 
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Kategori Listesi</h3>
@@ -71,7 +62,7 @@
                             <th>Kategori Adı</th>
                             <th>Url Adı</th>
                             <th>Renk Kodu</th>
-                            @*<th>Üst Kategori</th>*@
+                            <th>Parent Id</th>
                             <th>İşlemler</th>
                         </tr>
                     </thead>
@@ -83,9 +74,9 @@
                                 <td>@item.Ad</td>
                                 <td>@item.UrlAd</td>
                                 <td>@item.RenkKodu</td>
-                                @*<td>@item.ParentId</td>*@
+                                <td>@item.ParentId</td>
                                 <td>
-                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id','@item.Ad','@item.UrlAd','@item.RenkKodu')" data-toggle="modal" data-target="#modal-duzenle">
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id', '@item.Ad', '@item.UrlAd', '@item.RenkKodu', '@item.ParentId')" data-toggle="modal" data-target="#modal-duzenle">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Düzenle
@@ -148,7 +139,7 @@
                 <div class="modal-body">
                     <p>Seçmiş olduğunuz kategori bilgisi güncellenecektir.. Emin misiniz?</p>
                     <input id="txtduzenleid" type="text" name="id" value="" hidden />
-                    @*<input id="txtduzenleParentId" type="text" name="parentId" value="" hidden/>*@
+                    @*<input id="txtduzenleParentId" type="text" name="parentId" value="" hidden />*@
 
                     <div class="form-group">
                         <label name="Ad">Kategori Adı</label>
@@ -162,16 +153,16 @@
                         <label name="RenkKodu">Renk Kodu</label>
                         <input name="RenkKodu" id="txtduzenleRenkKodu" type="text" class="form-control" placeholder="Renk Kodu">
                     </div>
-                    @*<div class="form-group">
-                            <label name="ParentId">Üst Kategorisi Varmı?</label>
-                            <select class="form-control" name="ParentId">
-                                <option>Seçiniz</option>
-                                @foreach (var item in Model.GetTblKategoriler)
-                                {
-                                    <option name="ParentId" value="@item.ParentId">@item.Ad</option>
-                                }
-                            </select>
-                        </div>*@
+                    <div class="form-group">
+                        <label name="ParentId">Üst Kategorisi Varmı?</label>
+                        <select class="form-control custom-select" name="ParentId" id="txtduzenleParentId">
+                            <option selected value="">Seçim Yapınız</option>
+                            @foreach (var item in Model.kategoriDtos)
+                            {
+                                <option name="ParentId" id="txtduzenleParentId" value="@item.Id">@item.Ad</option>
+                            }
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
@@ -191,11 +182,13 @@
         document.getElementById("txtid").value = id;
     }
 
-    function duzenleId(id, ad, UrlAd, RenkKodu, /*ParentId*/) {
+    function duzenleId(id, ad, UrlAd, RenkKodu, ParentId) {
+        debugger;
+
         document.getElementById("txtduzenleid").value = id;
         document.getElementById("txtduzenleAd").value = ad;
         document.getElementById("txtduzenleUrlAd").value = UrlAd;
         document.getElementById("txtduzenleRenkKodu").value = RenkKodu;
-        //document.getElementById("txtduzenleParentId").value = ParentId;
+        document.getElementById("txtduzenleParentId").value = ParentId;
     }
 </script>

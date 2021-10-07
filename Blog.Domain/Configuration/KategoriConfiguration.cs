@@ -19,6 +19,8 @@ namespace Blog.Domain.Configuration
 
             builder.Property(e => e.ParentId).HasColumnName("parent_id");
 
+            builder.Property(e => e.ParentMi).HasColumnName("parent_mi");
+
             builder.Property(e => e.RenkKodu)
                 .HasColumnName("renk_kodu")
                 .HasMaxLength(10)

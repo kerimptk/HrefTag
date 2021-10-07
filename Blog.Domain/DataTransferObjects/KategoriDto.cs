@@ -8,6 +8,7 @@
         public int? ParentId { get; set; }
         public string RenkKodu { get; set; }
         public bool Selected { get; set; }
+        public bool ParentMi { get; set; }
 
         public int? YaziSayisi { get; set; }
     }

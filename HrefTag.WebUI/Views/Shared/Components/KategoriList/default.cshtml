@@ -2,20 +2,49 @@
 @model KategoriListViewModel;
 
 
-<div>
-    <h2 class="text-2xl font-semibold mb-3"> Kategoriler </h2>
-    <ul class="mb-3">
-        @foreach (var item in Model.kategoriDtos)
-        {
-            <li>
+<h3 class="mb-4 font-semibold text-xl" id="curriculum"> Kategoriler </h3>
+@foreach (var item in Model.kategoriDtos.Where(i => i.ParentId == null))
+{
+
+    @if (item.ParentMi == false)
+    {
+        <ul class="mb-4">
+            <li class="card hover:shadow-md px-4 py-3 rounded-md">
                 <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
-                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
-                    <h3 class="font-medium line-clamp-2">
-                        <span style="background:#@item.RenkKodu">&nbsp</span>&nbsp @item.Ad
-                        <span class="float-right">  (@item.YaziSayisi)</span>
-                    </h3>
+                   class="font-semibold text-base">
+                    <span style="background-color:#@item.RenkKodu"> &nbsp;</span>
+                    &nbsp;@item.Ad
                 </a>
             </li>
-        }
-    </ul>
-</div>
+        </ul>
+    }
+    else
+    {
+        <ul class="uk-accordion  mb-4" uk-accordion>
+            <li class="card hover:shadow-md px-4 py-3 rounded-md">
+                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
+                   class="uk-accordion-title font-semibold text-base">
+                    <span style="background-color:#@item.RenkKodu"> &nbsp;</span>
+                    &nbsp;@item.Ad
+                </a>
+
+                <div class="uk-accordion-content mt-3 -mx-6" aria-hidden="false">
+                    <ul class="course-curriculum-list font-semibold space-y-1">
+                        @foreach (var subitem in Model.kategoriDtos.Where(i => i.ParentId == item.Id))
+                        {
+                            <li class="hover:bg-gray-100 px-6 py-2.5 flex">
+                                &nbsp;&nbsp;<span style="background-color:#@subitem.RenkKodu"> &nbsp;</span>&nbsp;
+                                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@subitem.UrlAd" title="@subitem.Ad">
+                                    &nbsp; @subitem.Ad
+                                </a>
+                                <span class="text-sm ml-auto"> (@subitem.YaziSayisi) </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    }
+}
+
+

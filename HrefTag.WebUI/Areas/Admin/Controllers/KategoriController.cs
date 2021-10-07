@@ -18,7 +18,7 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
     {
         IKategoriService _kategoriService;
         IMapper _mapper;
-        public KategoriController (IKategoriService kategoriService,
+        public KategoriController(IKategoriService kategoriService,
             IMapper mapper)
         {
             _kategoriService = kategoriService;
@@ -29,8 +29,9 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             var kategoriler = _kategoriService.GetList();
             var kategorilerMap = _mapper.Map<List<KategoriDto>>(kategoriler);
 
-            var viewModel = new AdminKategoriViewModel() {
-                kategoriDtos=kategorilerMap
+            var viewModel = new AdminKategoriViewModel()
+            {
+                kategoriDtos = kategorilerMap,
             };
             return View(viewModel);
         }
@@ -56,9 +57,11 @@ namespace HrefTag.WebUI.Areas.Admin.Controllers
             var eski = _kategoriService.GetById(item.Id);
             eski.UpdateDate = DateTime.Now;
             eski.Ad = item.Ad;
-            eski.ParentId = item.ParentId;
             eski.RenkKodu = item.RenkKodu;
             eski.UrlAd = item.UrlAd;
+            eski.YaziSayisi = eski.YaziSayisi;
+            eski.ParentId = item.ParentId;
+           
             _kategoriService.Update(eski);
             return RedirectToAction("Index");
         }
