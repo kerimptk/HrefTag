@@ -15,7 +15,7 @@
           data-ajax-success="success"
           data-ajax-failure="failure">
 
-        <div class="card card-primary col-9 float-left">
+        <div class="card card-outline card-info col-9 float-left">
             <div class="card-body">
                 <div class="form-group" hidden>
                     <input type="text" asp-for="@Model.yaziUpdateDto.Id" class="form-control">
@@ -30,17 +30,12 @@
                     <section class="content">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-outline card-info">
-                                    <div class="card-body pad">
-                                        <div class="mb-3">
-                                            <textarea asp-for="@Model.yaziUpdateDto.Icerik" required class="textarea" rows="10">
+                                <div class="mb-3 card-body">
+                                    <textarea asp-for="@Model.yaziUpdateDto.Icerik" required rows="10" id="summernote">
                                                 @Model.yaziUpdateDto.Icerik
                                             </textarea>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            <!-- /.col-->
                         </div>
                         <!-- ./row -->
                     </section>

@@ -10,10 +10,9 @@
         <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
         <!-- Ekko Lightbox -->
         <link rel="stylesheet" href="~/plugins/ekko-lightbox/ekko-lightbox.css">
-
+        <!-- Datatables -->
         <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
         <!-- Tempusdominus Bbootstrap 4 -->
         <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -30,7 +29,12 @@
         <!-- summernote -->
         <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.css">
         <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- CodeMirror -->
+        <link rel="stylesheet" href="~/plugins/codemirror/codemirror.css">
+        <link rel="stylesheet" href="~/plugins/codemirror/theme/monokai.css">
+        <!-- SimpleMDE -->
+        <link rel="stylesheet" href="~/plugins/simplemde/simplemde.min.css">
 
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -299,7 +303,7 @@
         <script>$.widget.bridge('uibutton', $.ui.button)</script>
         <!-- Bootstrap 4 -->
         <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+        <!-- Datatables-->
         <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
         <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -326,11 +330,30 @@
         <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="~/dist/js/adminlte.js"></script>
+        <script src="~/dist/js/adminlte.min.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="~/dist/js/pages/dashboard.js"></script>
+        <!-- CodeMirror -->
+        <script src="~/plugins/codemirror/codemirror.js"></script>
+        <script src="~/plugins/codemirror/mode/css/css.js"></script>
+        <script src="~/plugins/codemirror/mode/xml/xml.js"></script>
+        <script src="~/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
         <!-- AdminLTE for demo purposes -->
+        <script src="~/dist/js/demo.js"></script>
 
 
+        <script>
+            $(function () {
+                // Summernote
+                $('#summernote').summernote()
+
+                // CodeMirror
+                CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                    mode: "htmlmixed",
+                    theme: "monokai"
+                });
+            })
+        </script>
 
         <script src="~/dist/js/demo.js"></script>
         <script>
