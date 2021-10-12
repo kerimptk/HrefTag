@@ -49,7 +49,6 @@ namespace HrefTag.WebUI
                    areaName: "Admin",
                    pattern: "Admin/{Controller=Home}/{action=index}/{id?}");
 
-
                 endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -57,11 +56,6 @@ namespace HrefTag.WebUI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Blog}/{action=Index}/{id?}");
-
-                //endpoints.MapControllerRoute(
-                //        name: "blog",
-                //        pattern: "{*article}",
-                //        defaults: new { controller = "Blog", action = "Yazi" });
 
                 endpoints.MapControllerRoute(
                         name: "default",

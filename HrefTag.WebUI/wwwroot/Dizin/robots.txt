@@ -1,0 +1,7 @@
+# R10.net Robots.txt Servisi # 
+User-Agent: *
+Allow: / 
+
+Sitemap: https://dijitalcanta.comUser-agent: *
+Disallow: /login
+Disallow: /Login

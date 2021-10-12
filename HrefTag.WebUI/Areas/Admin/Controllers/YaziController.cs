@@ -63,7 +63,7 @@ namespace BlogUI.Areas.Admin.Controllers
 
         public IActionResult YaziEkleme()
         {
-            var kategoriler = _kategoriService.GetList();
+            var kategoriler = _kategoriService.GetList().Where(x=> x.ParentMi != true).ToList();
             var kategorilerMap = _mapper.Map<List<KategoriDto>>(kategoriler);
 
             var ayar = _genelAyarlarService.GetById(1);
@@ -155,7 +155,7 @@ namespace BlogUI.Areas.Admin.Controllers
             var ayar = _genelAyarlarService.GetById(1);
             var ayarMap = _mapper.Map<GenelAyarlarDto>(ayar);
 
-            var kategoriler = _kategoriService.GetList();
+            var kategoriler = _kategoriService.GetList().Where(x => x.ParentMi != true).ToList();
             var kategoriDtos = _mapper.Map<List<KategoriDto>>(kategoriler);
 
             var ViewModel = new AdminYaziUpdateViewModel()
