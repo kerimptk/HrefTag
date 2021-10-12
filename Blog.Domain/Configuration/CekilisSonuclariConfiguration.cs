@@ -46,7 +46,6 @@ namespace Blog.Domain.Configuration
                 .HasMaxLength(500)
                 .IsUnicode(false);
 
-            builder.Property(e => e.YayinlansinMi).HasColumnName("yayinlansin_mi");
         }
     }
 }

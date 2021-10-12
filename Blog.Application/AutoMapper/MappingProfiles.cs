@@ -53,8 +53,7 @@ namespace Blog.Application.AutoMapper
 
             CreateMap<YaziInsertDto, Yazi>()
                 .ForMember(i => i.KategoriYazilar, c => c.MapFrom(f => new List<KategoriYazi>()))
-                .ForMember(i => i.InsertDate, c => c.MapFrom(f => DateTime.Now))
-                .ForMember(i => i.UrlBaslik, c => c.MapFrom(f => BaseCore.Utilities.Helpers.UrlHelper.ToUrlSlug(f.Baslik) + "-" + DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Year));
+                .ForMember(i => i.InsertDate, c => c.MapFrom(f => DateTime.Now));
 
             CreateMap<YaziUpdateDto, Yazi>()
                 .ForMember(i => i.KategoriYazilar, c => c.MapFrom(f => new List<KategoriYazi>()))

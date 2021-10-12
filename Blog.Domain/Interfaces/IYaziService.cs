@@ -18,6 +18,7 @@ namespace Blog.Domain.Interfaces
         Yazi GetById(int id);
         Yazi GetWithKategoriYaziById(int id);
         Yazi GetOnayliByUrlBaslik(string urlbaslik);
+        Yazi GetByUrlBaslik(string urlbaslik);
         IDataResult<Yazi> Add(Yazi entity);
         IDataResult<Yazi> Update(Yazi entity);
         IResult Delete(Yazi entity);

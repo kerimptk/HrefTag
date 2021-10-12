@@ -6,97 +6,69 @@
 
 
 <!-- section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-8">
-                <!-- post -->
-                <form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
-                    <div class="col-md-3 float-left">
-                        <div>
-                            <label>Çekiliş Adı</label>
-                            <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control" required>
-                        </div>
-                        <div>
-                            <label>Çekilişi Yapan</label>
-                            <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control" required>
-                        </div>
-                        <div>
-                            <label>Asıl Kazanan Sayısı</label>
-                            <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control" required>
-                        </div>
-                        <div>
-                            <label>Yedek Kazanan Sayısı</label>
-                            <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control" required>
-                        </div>
-                        <div class="card card-primary">
-                            <label>Çekiliş Sitede Yayınlansın mı?</label>
-                            <select class="form-control custom-select" asp-for="cekilisSonuclariDto.YayinlansinMi" required readonly>
-                                <option value="0">Hayır</option>
-                                <option value="1">Evet</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label> </label>
-                            <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
-                        </div>
+<div id="wrapper">
+    <div class="main_content">
+        <div class="mcontainer">
+            <!-- post -->
+            <form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
+                <div class="col-md-3 float-left">
+                    <div>
+                        <label>Çekiliş Adı</label>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
                     </div>
-                    <div class="col-md-6 float-left">
-                        <div class="row mb-2 mt-2">
-                            Lütfen listeye ekleyeceğiniz isimleri arasına virgül (,) koyarak ayırınız.
-                        </div>
-                        <div>
-                            <textarea asp-for="cekilisSonuclariDto.CekilisListesi" required readonly class="textarea"
-                                      style="width: 100%; height: 300px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                        </div>
+                    <div>
+                        <label>Çekilişi Yapan</label>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
                     </div>
-                    <div class="col-md-3 float-left">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Asıl Talihliler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>@Model.cekilisSonuclariDto.AsilKazananlar</td>
-                                </tr>
-                            </tbody>
-                            <thead>
-                                <tr>
-                                    <th>Yedek Talihliler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>@Model.cekilisSonuclariDto.YedekKazananlar</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div>
+                        <label>Asıl Kazanan Sayısı</label>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
                     </div>
+                    <div>
+                        <label>Yedek Kazanan Sayısı</label>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
+                    </div>
+                    <div>
+                        <label> </label>
+                        <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
+                    </div>
+                </div>
+                <div class="col-md-6 float-left">
+                    <div class="row mb-2 mt-2">
+                        Katılımcı Listesi
+                    </div>
+                    <div>
+                        <textarea asp-for="cekilisSonuclariDto.CekilisListesi" class=" bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15">
+                                            </textarea>
+                    </div>
+                </div>
+                <div class="col-md-3 float-left">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Asıl Talihliler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                </form>
-                <!-- /post -->
-            </div>
-            <div class="col-md-4">
+                            <tr>
+                                <td>@Model.cekilisSonuclariDto.AsilKazananlar</td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th>Yedek Talihliler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.cekilisSonuclariDto.YedekKazananlar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <partial name="Reklamlar/AllPageSidebar" for="@Model.reklamAlanlariDtos" />
-
-                @await Component.InvokeAsync("SidebarTop")
-
-                @await Component.InvokeAsync("FeaturePostWidget")
-
-                <partial name="Reklamlar/SidebarCategorysTop" for="@Model.reklamAlanlariDtos" />
-
-                @await Component.InvokeAsync("SidebarBottom")
-
-            </div>
+            </form>
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /section -->

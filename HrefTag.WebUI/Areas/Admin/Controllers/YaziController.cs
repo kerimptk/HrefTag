@@ -63,7 +63,7 @@ namespace BlogUI.Areas.Admin.Controllers
 
         public IActionResult YaziEkleme()
         {
-            var kategoriler = _kategoriService.GetList().Where(x=> x.ParentMi != true).ToList();
+            var kategoriler = _kategoriService.GetList().Where(x => x.ParentMi != true).ToList();
             var kategorilerMap = _mapper.Map<List<KategoriDto>>(kategoriler);
 
             var ayar = _genelAyarlarService.GetById(1);
@@ -89,6 +89,19 @@ namespace BlogUI.Areas.Admin.Controllers
 
             yazi.UserId = GetUserId();
 
+            var UrlBaslikBasic = BaseCore.Utilities.Helpers.UrlHelper.ToUrlSlug(yazi.Baslik);
+
+            var baslikCount = _yaziService.GetByUrlBaslik(UrlBaslikBasic);
+
+            var maxId = _yaziService.GetList().OrderByDescending(i => i.Id).ToList().FirstOrDefault();
+            if (baslikCount == null)
+            {
+                yazi.UrlBaslik = UrlBaslikBasic;
+            }
+            else
+            {
+                yazi.UrlBaslik = UrlBaslikBasic + '-' + (maxId.Id + 1);
+            }
             var files = HttpContext.Request.Form.Files;
 
             if (files == null || files.Count == 0)

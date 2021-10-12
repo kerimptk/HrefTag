@@ -12,6 +12,5 @@ namespace Blog.Domain.DataTransferObjects
         public string CekilisListesi { get; set; }
         public string AsilKazananlar { get; set; }
         public string YedekKazananlar { get; set; }
-        public bool? YayinlansinMi { get; set; }
     }
 }

@@ -84,13 +84,17 @@ namespace Blog.Application.Services
             return _yaziRepository.Get(i => i.UrlBaslik == urlbaslik && i.OnayDurumuId == 1);
         }
 
+        public Yazi GetByUrlBaslik(string urlbaslik)
+        {
+            return _yaziRepository.Get(i => i.UrlBaslik == urlbaslik);
+        }
         public List<Yazi> GetListOneCikan()
         {
-            return _yaziRepository.GetListWithKategori(i => i.OneCikan == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList().ToList();
+            return _yaziRepository.GetListWithKategori(i => i.OneCikan == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList();
         }
         public List<Yazi> GetListDuyurular()
         {
-            return _yaziRepository.GetListWithKategori(i => i.DuyuruMu == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList().ToList();
+            return _yaziRepository.GetListWithKategori(i => i.DuyuruMu == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList();
         }
 
         public List<Yazi> GetListSilinmemisWithUser()

@@ -40,7 +40,7 @@ namespace HrefTag.WebUI.Controllers
             return View(viewModel);
         }
 
-        public IActionResult cekilisaraci()
+        public IActionResult CekilisAraci()
         {
             return View();
         }
@@ -91,16 +91,12 @@ namespace HrefTag.WebUI.Controllers
             cekilisSonuclariDto.CekilisTarihi = DateTime.Now;
             cekilisSonuclariDto.AsilSayisi = cekilisSonuclariDto.AsilSayisi;
             cekilisSonuclariDto.YedekSayisi = cekilisSonuclariDto.YedekSayisi;
-            cekilisSonuclariDto.YayinlansinMi = cekilisSonuclariDto.YayinlansinMi;
 
             var cekilisSonuclariMap = _mapper.Map<CekilisSonuclari>(cekilisSonuclariDto);
 
             var CekilisDonen = _cekilisSonuclariService.Add(cekilisSonuclariMap);
 
-       
-
             return RedirectToAction("CekilisSonucu", new { id = CekilisDonen.Data.Id });
-
         }
 
         public IActionResult CekilisSonucu(int id)
