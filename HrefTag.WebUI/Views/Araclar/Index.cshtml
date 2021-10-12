@@ -7,16 +7,29 @@
 <div id="wrapper">
     <div class="main_content">
         <div class="mcontainer">
-            <a asp-controller="Araclar" asp-action="CekilisAraci" class="text-sm font-semibold capitalize">
-                <div class="col-4 flex items-center card hover:shadow-lg px-4 py-3 rounded-md w-full border-solid border-gray-100" style="min-width:300px">
-                    <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
-                        <img src="/StatikResimler/statik.png" class="absolute w-full h-full inset-0 rounded-md object-cover" alt="Çekiliş Aracı">
-                    </div>
-                    <div class="flex-1 ml-2">
-                        Çekiliş Aracı
-                    </div>
+            <div class="col-4 flex items-center card hover:shadow-lg px-4 py-3 rounded-md w-full border-solid border-gray-100" style="min-width:300px">
+
+                <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
+                    <img src="/StatikResimler/statik.png" class="absolute w-full h-full inset-0 rounded-md object-cover" alt="Çekiliş Aracı">
                 </div>
-            </a>
+                <div class="flex-1 ml-2">
+                    <a asp-controller="Araclar" asp-action="CekilisAraci" class="text-sm font-semibold capitalize">
+                        Çekiliş Aracı
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-4 flex items-center card hover:shadow-lg px-4 py-3 rounded-md w-full border-solid border-gray-100" style="min-width:300px">
+
+                <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
+                    <img src="/StatikResimler/statik.png" class="absolute w-full h-full inset-0 rounded-md object-cover" alt="Çekiliş Aracı">
+                </div>
+                <div class="flex-1 ml-2">
+                    <a asp-controller="Araclar" asp-action="HarfKelimeSayaci" class="text-sm font-semibold capitalize">
+                        Harf ve Kelime Sayacı
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

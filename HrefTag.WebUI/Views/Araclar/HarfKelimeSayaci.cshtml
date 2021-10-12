@@ -1,0 +1,24 @@
+﻿@using Blog.Domain.DataTransferObjects
+@model HarfKelimeSayaciDto
+@{
+    ViewData["Title"] = "Harf ve Kelime Sayacı";
+}
+
+<!-- section -->
+<div id="wrapper">
+    <div class="main_content">
+        <div class="mcontainer">
+            <!-- post -->
+            <form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
+                
+                    <div class="row mb-2 mt-2">
+                        Lütfen harf ve kelime sayısını öğrenmek istediğiniz metni aşağıya girin.
+                    </div>
+                    <div>    
+                         <textarea asp-for="Metin" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15" placeholder="Lütfen harf ve kelime sayısını öğrenmek istediğiniz metni aşağıya girin.">
+                                            </textarea>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
