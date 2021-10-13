@@ -12,23 +12,29 @@ namespace HrefTag.WebUI.Controllers
         IReklamAlanlariService _reklamAlanlariService;
         readonly IYaziService _yaziService;
         ISosyalMedyaService _sosyalMedyaService;
+        IGenelAyarlarService _genelAyarlarService;
         readonly IMapper _mapper;
         public HomeController(
             IReklamAlanlariService reklamAlanlariService,
             IYaziService yaziService,
             ISosyalMedyaService sosyalMedyaService,
-            IMapper mapper
+            IMapper mapper,
+            IGenelAyarlarService genelAyarlarService
             )
         {
             _reklamAlanlariService = reklamAlanlariService;
             _yaziService = yaziService;
             _sosyalMedyaService = sosyalMedyaService;
             _mapper = mapper;
+            _genelAyarlarService = genelAyarlarService;
         }
 
 
         public IActionResult Index()
         {
+            var ayarlar = _genelAyarlarService.GetById(1);
+            var ayarlarMap = _mapper.Map<GenelAyarlarDto>(ayarlar);
+
             var yazilar = _yaziService.GetListWithKategoriByOnayli();
             var yazilarMap = _mapper.Map<List<BlogYaziListDto>>(yazilar);
 
@@ -50,7 +56,8 @@ namespace HrefTag.WebUI.Controllers
                 populerIcerkler = populerMap,
                 oneCikanlar = oneCikanMap,
                 reklamAlanlariDtos = reklamlarMap,
-                sosyalMedyaDto = sosyalMedyaMap
+                sosyalMedyaDto = sosyalMedyaMap,
+                genelAyarlarDto = ayarlarMap
             };
             return View(viewModel);
         }

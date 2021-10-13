@@ -6,5 +6,6 @@ namespace HrefTag.WebUI.ViewModels
     public class AraclarViewModel
     {
         public List<ReklamAlanlariDto> reklamAlanlariDtos { get; set; }
+        public HarfKelimeSayaciDto harfKelimeSayaciDto { get; set; }
     }
 }

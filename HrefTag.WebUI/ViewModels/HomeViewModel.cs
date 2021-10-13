@@ -10,6 +10,7 @@ namespace HrefTag.WebUI.ViewModels
         public List<BlogYaziListDto> oneCikanlar { get; set; }
         public List<ReklamAlanlariDto> reklamAlanlariDtos { get; set; }
         public SosyalMedyaDto sosyalMedyaDto { get; set; }
+        public GenelAyarlarDto genelAyarlarDto{ get; set; }
 
     }
 }

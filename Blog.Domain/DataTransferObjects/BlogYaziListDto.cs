@@ -2,6 +2,7 @@
 {
     public class BlogYaziListDto
     {
+        public int Id { get; set; }
         public string Baslik { get; set; }
         public string UrlBaslik { get; set; }
         public string Ozet { get; set; }
@@ -15,5 +16,6 @@
         public string KategoriUrlAd { get; set; }
         public string KategoriAd { get; set; }
         public string CreateUserFullName { get; set; }
+        public int? DuyuruMu { get; set; }
     }
 }

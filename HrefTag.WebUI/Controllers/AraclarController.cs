@@ -116,7 +116,6 @@ namespace HrefTag.WebUI.Controllers
             return View(viewModel);
         }
 
-        [Route("Araclar")]
         public IActionResult HarfKelimeSayaci()
         {
             var reklamlar = _reklamAlanlariService.GetList();
@@ -129,22 +128,23 @@ namespace HrefTag.WebUI.Controllers
             return View(viewModel);
         }
 
-        //[HttpPost]
-        //public IActionResult HarfKelimeSayaci(HarfKelimeSayaciDto harfKelimeSayaciDto)
-        //{
-        //    var reklamlar = _reklamAlanlariService.GetList();
-        //    var reklamlarMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
+        [HttpPost]
+        public IActionResult HarfKelimeSayaci(HarfKelimeSayaciDto harfKelimeSayaciDto)
+        {
+            var reklamlar = _reklamAlanlariService.GetList();
+            var reklamlarMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
 
-        //    string[] liste = harfKelimeSayaciDto.Metin.Split(' ');
-        //    harfKelimeSayaciDto.HarfSayisi = liste.Count();
-        //    harfKelimeSayaciDto.KelimeSayisi = harfKelimeSayaciDto.Metin.Length;
+            string[] liste = harfKelimeSayaciDto.Metin.Split(' ');
+            harfKelimeSayaciDto.KelimeSayisi = liste.Count();
+            harfKelimeSayaciDto.HarfSayisi = harfKelimeSayaciDto.Metin.Length;
 
-        //    var viewModel = new AraclarViewModel()
-        //    {
-        //        reklamAlanlariDtos = reklamlarMap,
-        //    };
-        //    return View(viewModel);
-        //}
+            var viewModel = new AraclarViewModel()
+            {
+                reklamAlanlariDtos = reklamlarMap,
+                harfKelimeSayaciDto = harfKelimeSayaciDto
+            };
+            return View(viewModel);
+        }
     }
 }
 
