@@ -5,7 +5,7 @@
 <meta name="author" content="Kerim Potuk">
 <meta name="description" content="@Html.Raw(@Model.seoAyarlariDto.Description)">
 <meta name="keywords" content="@Html.Raw(@Model.seoAyarlariDto.Keywords)">
-<title>"@Html.Raw(@Model.seoAyarlariDto.Ad) - "@Html.Raw(@Model.seoAyarlariDto.Title)"</title>
+<title>@ViewData["Title"] | @Html.Raw(@Model.seoAyarlariDto.Title)</title>
 
 
 @Html.Raw(Model.seoAyarlariDto.Analytics)

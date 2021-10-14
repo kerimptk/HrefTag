@@ -1,7 +1,7 @@
 ﻿@using HrefTag.WebUI.ViewModels
 @model YaziViewModel
 @{
-    ViewData["Title"] = "Yazi";
+    ViewData["Title"] = Html.Raw(@Html.Raw(@Model.Yazi.Baslik));
 }
 
 <div class="main_content">
@@ -13,10 +13,10 @@
 
                 <div class="card p-4">
                     <div class="h-44 mb-4 md:h-72 overflow-hidden relative rounded-lg w-full">
-                        <img src="~/uploads/@Model.Yazi.OneCikanGorsel" alt="@Model.Yazi.Baslik" class="w-full h-full absolute inset-0 object-cover">
+                        <img src="~/uploads/@Model.Yazi.OneCikanGorsel" alt="@Html.Raw(@Model.Yazi.Baslik)" class="w-full h-full absolute inset-0 object-cover">
                     </div>
 
-                    <h1 class="lg:text-3xl text-2xl font-semibold mb-6"> @Model.Yazi.Baslik </h1>
+                    <h1 class="lg:text-3xl text-2xl font-semibold mb-6"> @Html.Raw(@Model.Yazi.Baslik) </h1>
 
                     <div class="space-y-3">
                         @Html.Raw(Model.Yazi.Icerik)
@@ -25,9 +25,9 @@
                     <div class="sharethis-inline-share-buttons my-2"></div>
 
                     <div class="flex items-center space-x-3 my-3 p-4 border-t">
-                        <img src="~/uploads/@Model.Yazi.CreateUserAvatar" alt="@Model.Yazi.CreateUserFullName" class="w-10 rounded-full">
+                        <img src="~/uploads/@Model.Yazi.CreateUserAvatar" alt="@Html.Raw(@Model.Yazi.CreateUserFullName)" class="w-10 rounded-full">
                         <div>
-                            <div class="text-base font-semibold"> @Model.Yazi.CreateUserFullName </div>
+                            <div class="text-base font-semibold"> @Html.Raw(@Model.Yazi.CreateUserFullName) </div>
                             <div class="text-xs">Bu içerik @Model.Yazi.OkunmaSayisi kez okundu.</div>
                         </div>
                     </div>
@@ -45,12 +45,12 @@
                                         <div>
                                             <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
                                                class="w-full md:h-32 h-28 overflow-hidden rounded-lg relative block">
-                                                <img src="~/uploads/@item.OneCikanGorsel" alt="@item.Baslik"
+                                                <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)"
                                                      class="w-full h-full absolute inset-0 object-cover">
                                             </a>
                                             <div class="pt-3">
                                                 <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
-                                                   class="font-semibold line-clamp-2">@item.Baslik</a>
+                                                   class="font-semibold line-clamp-2">@Html.Raw(@item.Baslik)</a>
                                             </div>
                                         </div>
                                     </li>
@@ -78,10 +78,10 @@
                         <div class="flex gap-x-4 mb-5 relative">
                             <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-full shadow w-12 h-12">
                             <div>
-                                <h4 class="text-base m-0"> @item.AdSoyad</h4>
-                                <span class="text-gray-700 text-sm"> @item.Meslek </span>
+                                <h4 class="text-base m-0"> @Html.Raw(@item.AdSoyad)</h4>
+                                <span class="text-gray-700 text-sm"> @Html.Raw(@item.Meslek) </span>
                                 <p class="mt-3">
-                                    @item.KullaniciYorumu
+                                    @Html.Raw(@item.KullaniciYorumu)
                                 </p>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                             <li>
                                 <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
                                    class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
-                                    <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
+                                    <h3 class="font-medium line-clamp-2"> @Html.Raw(@item.Baslik)</h3>
                                     <div class="flex items-center my-auto text-xs space-x-1.5">
                                         <div>Okunma Sayısı</div>
                                         <div>@item.OkunmaSayisi</div>

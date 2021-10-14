@@ -1,7 +1,7 @@
 ﻿@using HrefTag.WebUI.ViewModels
 @model BlogViewModel
 @{
-    ViewData["Title"] = "Ana Sayfa";
+    ViewData["Title"] = Html.Raw("Tüm blog içerikleri");
 }
 
 
@@ -23,15 +23,15 @@
                             <div class="lg:flex lg:space-x-6 py-6 item">
                                 <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik">
                                     <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
-                                        <img src="~/uploads/@item.OneCikanGorsel" alt="@item.Baslik" class="w-full h-full absolute inset-0 object-cover">
+                                        <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)" class="w-full h-full absolute inset-0 object-cover">
                                         <div class="absolute bg-blue-100 font-semibold px-2.5 py-1 rounded-full text-blue-500 text-xs top-2.5 left-2.5">
-                                            @item.KategoriAd
+                                            @Html.Raw(@item.KategoriAd)
                                         </div>
                                     </div>
                                 </a>
                                 <div class="flex-1 lg:pt-0 pt-4">
                                     <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik"
-                                       class="text-xl font-semibold line-clamp-2"> @item.Baslik</a>
+                                       class="text-xl font-semibold line-clamp-2"> @Html.Raw(@item.Baslik)</a>
                                     <p class="line-clamp-3 pt-1"> @item.Ozet </p>
                                     <div class="flex space-x-2 items-center text-sm pt-1 text-sm">
                                         <div class="flex items-center pt-3">
@@ -39,7 +39,7 @@
                                             <div class="flex items-center mx-4">
                                                 <ion-icon name="chatbubble-ellipses-outline" class="text-xl mr-2"></ion-icon> @item.YorumSayisi Yorum
                                             </div>
-                                            <div class="flex items-center"> <ion-icon name="bookmark-outline" class="text-xl mr-2"></ion-icon> @item.CreateUserFullName</div>
+                                            <div class="flex items-center"> <ion-icon name="bookmark-outline" class="text-xl mr-2"></ion-icon> @Html.Raw(@item.CreateUserFullName)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                 <li>
                                     <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
                                        class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
-                                        <h3 class="font-medium line-clamp-2"> @item.Baslik</h3>
+                                        <h3 class="font-medium line-clamp-2">@Html.Raw(@item.Baslik)</h3>
                                         <div class="flex items-center my-auto text-xs space-x-1.5">
                                             <div>Okunma Sayısı</div>
                                             <div>@item.OkunmaSayisi</div>

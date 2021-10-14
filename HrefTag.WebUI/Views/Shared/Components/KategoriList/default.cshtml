@@ -10,10 +10,10 @@
     {
         <ul class="mb-4">
             <li class="card hover:shadow-md px-4 py-3 rounded-md">
-                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
+                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@Html.Raw(@item.Ad)"
                    class="font-semibold text-base">
                     <span style="background-color:#@item.RenkKodu"> &nbsp;</span>
-                    &nbsp;@item.Ad
+                    &nbsp;@Html.Raw(@item.Ad)
                 </a>
             </li>
         </ul>
@@ -22,10 +22,10 @@
     {
         <ul class="uk-accordion  mb-4" uk-accordion>
             <li class="card hover:shadow-md px-4 py-3 rounded-md">
-                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@item.Ad"
+                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@item.UrlAd" title="@Html.Raw(@item.Ad)"
                    class="uk-accordion-title font-semibold text-base">
                     <span style="background-color:#@item.RenkKodu"> &nbsp;</span>
-                    &nbsp;@item.Ad
+                    &nbsp;@Html.Raw(@item.Ad)
                 </a>
 
                 <div class="uk-accordion-content mt-3 -mx-6" aria-hidden="false">
@@ -34,8 +34,8 @@
                         {
                             <li class="hover:bg-gray-100 px-6 py-2.5 flex">
                                 &nbsp;&nbsp;<span style="background-color:#@subitem.RenkKodu"> &nbsp;</span>&nbsp;
-                                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@subitem.UrlAd" title="@subitem.Ad">
-                                    &nbsp; @subitem.Ad
+                                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@subitem.UrlAd" title="@Html.Raw(subitem.Ad)">
+                                    &nbsp; @Html.Raw(subitem.Ad)
                                 </a>
                                 <span class="text-sm ml-auto"> (@subitem.YaziSayisi) </span>
                             </li>

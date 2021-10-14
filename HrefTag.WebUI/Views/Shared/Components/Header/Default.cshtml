@@ -11,8 +11,8 @@
 
                 <div id="logo">
                     <a asp-controller="Home" asp-action="index">
-                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Model.seoAyarlariDto.Ad">
-                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Model.seoAyarlariDto.Ad" class="logo_mobile">
+                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)">
+                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)" class="logo_mobile">
                     </a>
                 </div>
             </div>

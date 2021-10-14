@@ -1,7 +1,7 @@
 ﻿@using HrefTag.WebUI.ViewModels
 @model YazarlarViewModel
 @{
-    ViewData["Title"] = "Yazarlarimiz";
+    ViewData["Title"] = Html.Raw("Yazarlarimiz");
 }
 
 <div class="main_content">
@@ -13,45 +13,45 @@
                 <div class="lg:w-3/4  card">
                     <hr class="border-gray-100">
                     <div class="md:p-7 p-3">
-                        <h1 class="block text-xl font-bold mb-6">@item.Name @item.Surname</h1>
+                        <h1 class="block text-xl font-bold mb-6">@Html.Raw(@item.Name) @Html.Raw(@item.Surname)</h1>
                         <div class="md:flex">
                             <div class="md:w-3/4 space-y-4 -mt-2">
 
                                 <div class="flex items-center space-x-3">
                                     <ion-icon name="code-working-outline" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
                                     <div class="flex-1">
-                                        <div>@item.Job </div>
+                                        <div>@Html.Raw(@item.Job) </div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
                                     <ion-icon name="school-outline" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
                                     <div class="flex-1">
-                                        <div>@item.Education</div>
+                                        <div>@Html.Raw(@item.Education)</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
                                     <ion-icon name="albums" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
                                     <div class="flex-1">
-                                        <div>@item.Skills</div>
+                                        <div>@Html.Raw(@item.Skills)</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
                                     <ion-icon name="unlink" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
                                     <div class="flex-1">
-                                        <div>@item.Email</div>
+                                        <div>@Html.Raw(@item.Email)</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-3">
                                     <ion-icon name="people-outline" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
                                     <div class="flex-1">
-                                        <div>@item.About</div>
+                                        <div>@Html.Raw(@item.About)</div>
                                     </div>
                                 </div>
 
                             </div>
 
                             <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
-                                <img src="~/uploads/@item.ImagePath" alt="@item.Name @item.Surname" class="w-full h-full absolute inset-0 object-cover">
+                                <img src="~/uploads/@item.ImagePath" alt="@Html.Raw(@item.Name) @Html.Raw(@item.Surname)" class="w-full h-full absolute inset-0 object-cover">
                             </div>
                         </div>
                     </div>

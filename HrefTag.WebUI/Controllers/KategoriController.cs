@@ -30,6 +30,7 @@ namespace HrefTag.WebUI.Controllers
         [Route("Kategori/{kat}")]
         public IActionResult kategori(string kat)
         {
+
             var kategori = _kategoriService.GetByAd(kat);
 
             if (kategori == null)
@@ -40,12 +41,16 @@ namespace HrefTag.WebUI.Controllers
             var kategoriYazilar = _kategoriYaziService.GetListByKategoriIdWithYazi(kategori.Id);
             var kategoriYaziMap = _mapper.Map<List<KategoriYaziListDto>>(kategoriYazilar);
 
+            var kategoriAd = _kategoriService.GetById(kategori.Id);
+            var kategoriAdMap = _mapper.Map<KategoriDto>(kategoriAd);
+
             var reklamlar = _reklamAlanlariService.GetList();
             var reklamlarMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
 
             var viewModel = new KategoriYaziViewModel()
             {
                 kategoriYaziListDtos = kategoriYaziMap,
+                kategoriDto = kategoriAdMap,
                 reklamAlanlariDtos = reklamlarMap
             };
 

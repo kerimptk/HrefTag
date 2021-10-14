@@ -1,7 +1,7 @@
 ﻿@using HrefTag.WebUI.ViewModels
 @model CekilisAraciViewModel
 @{
-    ViewData["Title"] = "Çekiliş Sonucu";
+    ViewData["Title"] = Html.Raw("Çekiliş Sonucu");
 }
 
 
@@ -14,19 +14,19 @@
                 <div class="col-md-3 float-left">
                     <div>
                         <label>Çekiliş Adı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
                     </div>
                     <div>
                         <label>Çekilişi Yapan</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
                     </div>
                     <div>
                         <label>Asıl Kazanan Sayısı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
                     </div>
                     <div>
                         <label>Yedek Kazanan Sayısı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required required>
+                        <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
                     </div>
                     <div>
                         <label> </label>
@@ -52,7 +52,7 @@
                         <tbody>
 
                             <tr>
-                                <td>@Model.cekilisSonuclariDto.AsilKazananlar</td>
+                                <td>@Html.Raw(@Model.cekilisSonuclariDto.AsilKazananlar)</td>
                             </tr>
                         </tbody>
                         <thead>
@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>@Model.cekilisSonuclariDto.YedekKazananlar</td>
+                                <td>@Html.Raw(@Model.cekilisSonuclariDto.YedekKazananlar)</td>
                             </tr>
                         </tbody>
                     </table>
