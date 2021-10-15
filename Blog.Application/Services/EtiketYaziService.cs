@@ -58,5 +58,11 @@ namespace Blog.Application.Services
                 return new ErrorDataResult<EtiketYazi>(entity, Messages.Hata);
             return new SuccessDataResult<EtiketYazi>(entity, Messages.Basarili);
         }
+
+        public List<EtiketYazi> GetListWithEtiket(int id)
+        {
+            return _etiketYaziRepository.GetListWithEtiket(i => i.YaziId == id).ToList();
+        }
+
     }
 }

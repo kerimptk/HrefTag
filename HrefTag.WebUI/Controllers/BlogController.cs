@@ -17,6 +17,7 @@ namespace HrefTag.WebUI.Controllers
         readonly IYorumService _yorumService;
         readonly IKategoriService _kategoriService;
         readonly IKategoriYaziService _kategoriYaziService;
+        readonly IEtiketYaziService _etiketYaziService;
         readonly IReklamAlanlariService _reklamAlanlariService;
         readonly IMapper _mapper;
 
@@ -25,6 +26,7 @@ namespace HrefTag.WebUI.Controllers
             IYorumService yorumService,
             IKategoriService kategoriService,
             IKategoriYaziService kategoriYaziService,
+            IEtiketYaziService etiketYaziService,
             IReklamAlanlariService reklamAlanlariService,
             IMapper mapper
             )
@@ -34,6 +36,7 @@ namespace HrefTag.WebUI.Controllers
             _kategoriService = kategoriService;
             _kategoriYaziService = kategoriYaziService;
             _reklamAlanlariService = reklamAlanlariService;
+            _etiketYaziService = etiketYaziService;
             _mapper = mapper;
         }
 
@@ -69,6 +72,9 @@ namespace HrefTag.WebUI.Controllers
             var kategoriYaziList = _kategoriYaziService.GetListByKategoriIdWithYazi(yaziKategorisi[0].KategoriId);
             var kategoriYaziListMap = _mapper.Map<List<KategoriYaziListDto>>(kategoriYaziList);
 
+            var etiket = _etiketYaziService.GetListWithEtiket(yazilar.Id);
+            var etiketMap = _mapper.Map<List<EtiketYaziDto>>(etiket);
+
             var reklamlar = _reklamAlanlariService.GetList();
             var reklamMap = _mapper.Map<List<ReklamAlanlariDto>>(reklamlar);
 
@@ -86,7 +92,8 @@ namespace HrefTag.WebUI.Controllers
                 kategoriYaziListDtos = kategoriYaziListMap,
                 populerIceriklerDtos = populerIceriklerMap,
                 Reklamlar = reklamMap,
-                Yorumlar = yorumlarMap
+                Yorumlar = yorumlarMap,
+                etiketYaziDtos = etiketMap
             };
             return View(viewModel);
         }

@@ -7,6 +7,7 @@ namespace Blog.Domain.Interfaces
     public interface IEtiketYaziService
     {
         List<EtiketYazi> GetList();
+        List<EtiketYazi> GetListWithEtiket(int id);
         EtiketYazi GetById(int id);
         IDataResult<EtiketYazi> Add(EtiketYazi entity);
         IDataResult<EtiketYazi> Update(EtiketYazi entity);

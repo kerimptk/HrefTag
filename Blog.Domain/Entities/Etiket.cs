@@ -2,8 +2,9 @@
 
 namespace Blog.Domain.Entities
 {
-    public class Etiket : AuditableEntity<int>
+    public class Etiket
     {
+        public int Id { get; set; }
         public string Ad { get; set; }
     }
 }

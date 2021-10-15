@@ -2,8 +2,9 @@
 
 namespace Blog.Domain.Entities
 {
-    public class EtiketYazi : AuditableEntity<int>
+    public class EtiketYazi
     {
+        public int Id { get; set; }
         public virtual Yazi Yazi { get; set; }
         public int? YaziId { get; set; }
 

@@ -8,5 +8,6 @@ namespace HrefTag.WebUI.ViewModels
         public YaziUpdateDto yaziUpdateDto { get; set; }
         public List<KategoriDto> kategoriDtos { get; set; }
         public GenelAyarlarDto genelAyarlarDto { get; set; }
+        public List<EtiketYaziDto> etiketYaziDtos { get; set; }
     }
 }

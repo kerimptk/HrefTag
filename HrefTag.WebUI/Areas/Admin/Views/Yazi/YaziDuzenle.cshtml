@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label>Etiketler (Aralarına virgül koyarak giriniz)</label>
-                    @*<input type="text" asp-for="@Model.TblYazilar.TblEtiketYazi" placeholder="Yazı etiketleri..." class="form-control">*@
+                    <input type="text" placeholder="Yazı etiketleri..." class="form-control" asp-for="@Model.yaziUpdateDto.EtiketListesi" value="@ViewBag.Value"/>
                 </div>
             </div>
         </div>

@@ -1,7 +1,10 @@
-﻿namespace Blog.Domain.DataTransferObjects
+﻿using System;
+
+namespace Blog.Domain.DataTransferObjects
 {
     public class EtiketDto
     {
         public string Ad { get; set; }
+        public int SilId { get; set; }
     }
 }

@@ -58,5 +58,10 @@ namespace Blog.Application.Services
                 return new ErrorDataResult<Etiket>(entity, Messages.Hata);
             return new SuccessDataResult<Etiket>(entity, Messages.Basarili);
         }
+
+        public Etiket GetByEtiketAdi(string etiketAdi)
+        {
+            return _etiketRepository.Get(i => i.Ad == etiketAdi);
+        }
     }
 }

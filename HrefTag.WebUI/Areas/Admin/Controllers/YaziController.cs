@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogUI.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
     [Authorize]
     public class YaziController : BaseController
@@ -29,12 +30,16 @@ namespace BlogUI.Areas.Admin.Controllers
         IKategoriYaziService _kategoriYaziService;
         IYorumService _yorumService;
         IGenelAyarlarService _genelAyarlarService;
+        IEtiketService _etiketService;
+        IEtiketYaziService _etiketYaziService;
         IMapper _mapper;
         public YaziController(IHttpContextAccessor _httpContextAccessor, IYaziService yaziService,
             IKategoriService kategoriService,
             IKategoriYaziService kategoriYaziService,
             IYorumService yorumService,
             IGenelAyarlarService genelAyarlarService,
+            IEtiketService etiketService,
+            IEtiketYaziService etiketYaziService,
             IMapper mapper) : base(_httpContextAccessor)
         {
             _yaziService = yaziService;
@@ -42,10 +47,13 @@ namespace BlogUI.Areas.Admin.Controllers
             _kategoriYaziService = kategoriYaziService;
             _yorumService = yorumService;
             _mapper = mapper;
+            _etiketService = etiketService;
+            _etiketYaziService = etiketYaziService;
             _genelAyarlarService = genelAyarlarService;
             _httpContextAccessor = httpContextAccessor;
         }
 
+        string etiketListesi;
 
         public IActionResult YaziListesi()
         {
@@ -121,7 +129,21 @@ namespace BlogUI.Areas.Admin.Controllers
                     }
                 }
             }
+
             _yaziService.Add(yazi);
+
+            string[] etiketler = yaziInsertDto.etiketDto.Ad.Split(',');
+            foreach (var item in etiketler)
+            {
+                if (_etiketService.GetList().Where(x => x.Ad == item).Count() == 0)
+                {
+                    _etiketService.Add(new Etiket() { Ad = item });
+                }
+                var eklenenYazi = _yaziService.GetByUrlBaslik(yazi.UrlBaslik);
+                var eklenenEtiket = _etiketService.GetByEtiketAdi(item);
+                _etiketYaziService.Add(new EtiketYazi() { YaziId = eklenenYazi.Id, EtiketId = eklenenEtiket.Id });
+            }
+
 
             return RedirectToAction("YaziListesi");
         }
@@ -165,6 +187,17 @@ namespace BlogUI.Areas.Admin.Controllers
 
             var yaziMap = _mapper.Map<YaziUpdateDto>(yazi);
 
+            var etiketler = _etiketYaziService.GetListWithEtiket(id);
+            var etiketlerMap = _mapper.Map<List<EtiketYaziDto>>(etiketler);
+
+            foreach (var item in etiketlerMap.ToList())
+            {
+                etiketListesi = etiketListesi + item.Etiket.Ad + ',';
+            }
+
+
+            ViewBag.Value = etiketListesi;
+
             var ayar = _genelAyarlarService.GetById(1);
             var ayarMap = _mapper.Map<GenelAyarlarDto>(ayar);
 
@@ -175,7 +208,8 @@ namespace BlogUI.Areas.Admin.Controllers
             {
                 yaziUpdateDto = yaziMap,
                 kategoriDtos = kategoriDtos,
-                genelAyarlarDto = ayarMap
+                genelAyarlarDto = ayarMap,
+                etiketYaziDtos = etiketlerMap
             };
             return View(ViewModel);
         }
@@ -230,6 +264,27 @@ namespace BlogUI.Areas.Admin.Controllers
                         await file.CopyToAsync(stream);
                 }
             }
+
+            var silinecekEtiketler = _etiketYaziService.GetList().Where(i=> i.YaziId == eskiYazi.Id).ToList();
+            foreach (var item in silinecekEtiketler)
+            {
+                _etiketYaziService.Delete(item);
+            }
+
+
+
+            string[] etiketler = yaziUpdateDto.EtiketListesi.Split(',');
+            foreach (var item in etiketler)
+            {
+                if (_etiketService.GetList().Where(x => x.Ad == item).Count() == 0)
+                {
+                    _etiketService.Add(new Etiket() { Ad = item });
+                }
+                var eklenenYazi = _yaziService.GetByUrlBaslik(yazi.UrlBaslik);
+                var eklenenEtiket = _etiketService.GetByEtiketAdi(item);
+                _etiketYaziService.Add(new EtiketYazi() { YaziId = eskiYazi.Id, EtiketId = eklenenEtiket.Id });
+            }
+
             var result = _yaziService.Update(eskiYazi);
             if (result.Success)
                 return Ok(result.Message);

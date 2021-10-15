@@ -19,6 +19,7 @@ namespace Blog.Domain.DataTransferObjects
         public DateTime InsertDate { get; set; }
         public List<KategoriDto> kategoriDtos { get; set; }
         public GenelAyarlarDto GenelAyarlarDto { get; set; }
+        public EtiketDto etiketDto { get; set; }
         public List<int> SelectedCategoryIds { get; set; }
 
     }
