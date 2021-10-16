@@ -11,9 +11,9 @@ namespace Blog.Application.AutoMapper
     {
         public MappingProfiles()
         {
-            CreateMap<EtiketDto, Etiket>();
+            CreateMap<Etiket, EtiketDto>();
 
-            CreateMap<EtiketYazi, EtiketYaziDto > ();
+            CreateMap<EtiketYazi, EtiketYaziDto>();
 
             CreateMap<Yazi, BlogYaziListDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))

@@ -1,58 +1,56 @@
 ﻿@using HrefTag.WebUI.ViewModels;
 @model HeaderViewModel;
-<header>
-    <div class="header_wrap">
-        <div class="header_inner mcontainer">
-            <div class="left_side">
 
-                <span class="slide_menu" uk-toggle="target: #wrapper ; cls: is-collapse is-active">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3 4h18v2H3V4zm0 7h12v2H3v-2zm0 7h18v2H3v-2z" fill="currentColor"></path></svg>
-                </span>
+    <header>
+        <div class="header_wrap">
+            <div class="header_inner mcontainer">
+                <div class="left_side">
 
-                <div id="logo">
-                    <a asp-controller="Home" asp-action="index">
-                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)">
-                        <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)" class="logo_mobile">
-                    </a>
-                </div>
-            </div>
+                    <span class="slide_menu" uk-toggle="target: #wrapper ; cls: is-collapse is-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3 4h18v2H3V4zm0 7h12v2H3v-2zm0 7h18v2H3v-2z" fill="currentColor"></path></svg>
+                    </span>
 
-            <!-- search icon for mobile -->
-            <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
-            <div class="header_search">
-                <i class="uil-search-alt"></i>
-                <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
-                    <input type="text" class="form-control" asp-for="@Model.keyword" placeholder="Arama Yap" autocomplete="off" required>
-                </form>
-            </div>
-
-            <div class="right_side">
-
-                <div class="header_widgets">
-                    <div class="sm-icons float-left">
-                        <a href="https://www.twitter.com/@Model.sosyalMedyaDto.Twitter" target="_blank" class="text-md font-semibold capitalize">
-                            <img alt="Twitter" src="~/StatikResimler/twitter.png" class="border-2 border-white">
+                    <div id="logo">
+                        <a asp-controller="Home" asp-action="index">
+                            <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)">
+                            <img src="~/uploads/@Model.genelAyarlarDto.LogoUrl" alt="@Html.Raw(@Model.seoAyarlariDto.Ad)" class="logo_mobile">
                         </a>
                     </div>
-                    <div class="sm-icons float-left">
-                        <a href="https://www.instagram.com/@Model.sosyalMedyaDto.Instagram" target="_blank" class="text-md font-semibold capitalize">
-                            <img alt="Instagram" src="~/StatikResimler/instagram.png" class="border-2 border-white">
-                        </a>
-                    </div>
-                    <div class="sm-icons float-left">
-                        <a href="https://www.linkedin.com/@Model.sosyalMedyaDto.Linkedin" target="_blank" class="text-md font-semibold capitalize">
-                            <img alt="Linkedin" src="~/StatikResimler/linkedin.png" class="border-2 border-white">
-                        </a>
-                    </div>
-                    <div class="sm-icons float-left">
-                        <a href="https://www.youtube.com/channel/@Model.sosyalMedyaDto.Youtube" target="_blank" class="text-md font-semibold capitalize">
-                            <img alt="Youtube" src="~/StatikResimler/youtube.png" class="border-2 border-white">
-                        </a>
-                    </div>
-
                 </div>
 
+                <!-- search icon for mobile -->
+                <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
+                <div class="header_search">
+                    <i class="uil-search-alt"></i>
+                    <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
+                        <input type="text" class="form-control" asp-for="@Model.keyword" placeholder="Arama Yap" autocomplete="off" required>
+                    </form>
+                </div>
+
+                <div class="right_side">
+                    <div class="header_widgets">
+                        <div class="sm-icons float-left">
+                            <a href="https://www.twitter.com/@Model.sosyalMedyaDto.Twitter" target="_blank" class="text-md font-semibold capitalize">
+                                <img alt="Twitter" src="~/StatikResimler/twitter.png" class="border-2 border-white">
+                            </a>
+                        </div>
+                        <div class="sm-icons float-left">
+                            <a href="https://www.instagram.com/@Model.sosyalMedyaDto.Instagram" target="_blank" class="text-md font-semibold capitalize">
+                                <img alt="Instagram" src="~/StatikResimler/instagram.png" class="border-2 border-white">
+                            </a>
+                        </div>
+                        <div class="sm-icons float-left">
+                            <a href="https://www.linkedin.com/@Model.sosyalMedyaDto.Linkedin" target="_blank" class="text-md font-semibold capitalize">
+                                <img alt="Linkedin" src="~/StatikResimler/linkedin.png" class="border-2 border-white">
+                            </a>
+                        </div>
+                        <div class="sm-icons float-left">
+                            <a href="https://www.youtube.com/channel/@Model.sosyalMedyaDto.Youtube" target="_blank" class="text-md font-semibold capitalize">
+                                <img alt="Youtube" src="~/StatikResimler/youtube.png" class="border-2 border-white">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
