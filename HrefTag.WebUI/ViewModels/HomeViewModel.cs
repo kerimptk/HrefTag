@@ -8,6 +8,7 @@ namespace HrefTag.WebUI.ViewModels
         public List<BlogYaziListDto> blogYaziListDtos { get; set; }
         public List<BlogYaziListDto> populerIcerkler { get; set; }
         public List<BlogYaziListDto> oneCikanlar { get; set; }
+        public List<EtiketDto> etiketDtos { get; set; }
         public List<ReklamAlanlariDto> reklamAlanlariDtos { get; set; }
         public SosyalMedyaDto sosyalMedyaDto { get; set; }
         public SeoAyarlariDto seoAyarlariDto { get; set; }

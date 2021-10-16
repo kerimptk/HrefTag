@@ -63,5 +63,10 @@ namespace Blog.Application.Services
         {
             return _kategoriRepository.Get(i => i.UrlAd == kat);
         }
+
+        public List<Kategori> GetParentKategoriList()
+        {
+            return _kategoriRepository.GetList().Where(i => i.ParentMi == true).ToList();
+        }
     }
 }

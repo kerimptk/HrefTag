@@ -14,6 +14,7 @@ namespace HrefTag.WebUI.Controllers
         ISosyalMedyaService _sosyalMedyaService;
         IGenelAyarlarService _genelAyarlarService;
         ISeoAyarlariService _seoAyarlariService;
+        IEtiketService _etiketService;
         readonly IMapper _mapper;
         public HomeController(
             IReklamAlanlariService reklamAlanlariService,
@@ -21,7 +22,8 @@ namespace HrefTag.WebUI.Controllers
             ISosyalMedyaService sosyalMedyaService,
             IMapper mapper,
             IGenelAyarlarService genelAyarlarService,
-            ISeoAyarlariService seoAyarlariService
+            ISeoAyarlariService seoAyarlariService,
+            IEtiketService etiketService
             )
         {
             _reklamAlanlariService = reklamAlanlariService;
@@ -30,6 +32,7 @@ namespace HrefTag.WebUI.Controllers
             _mapper = mapper;
             _genelAyarlarService = genelAyarlarService;
             _seoAyarlariService = seoAyarlariService;
+            _etiketService = etiketService;
         }
 
 
@@ -56,6 +59,9 @@ namespace HrefTag.WebUI.Controllers
             var sosyalMedya = _sosyalMedyaService.GetById(1);
             var sosyalMedyaMap = _mapper.Map<SosyalMedyaDto>(sosyalMedya);
 
+            var etiketler = _etiketService.GetList();
+            var etiketlerMap = _mapper.Map<List<EtiketDto>>(etiketler);
+
             var viewModel = new HomeViewModel()
             {
                 blogYaziListDtos = yazilarMap,
@@ -64,7 +70,8 @@ namespace HrefTag.WebUI.Controllers
                 reklamAlanlariDtos = reklamlarMap,
                 sosyalMedyaDto = sosyalMedyaMap,
                 genelAyarlarDto = ayarlarMap,
-                seoAyarlariDto = seoMap
+                seoAyarlariDto = seoMap,
+                etiketDtos = etiketlerMap
             };
             return View(viewModel);
         }

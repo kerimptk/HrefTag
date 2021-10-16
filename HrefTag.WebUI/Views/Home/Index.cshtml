@@ -6,23 +6,11 @@
 }
 <div class="main_content">
     <div class="mcontainer">
-        @if (Model.genelAyarlarDto.DuyurularAktif == true)
-        {
-            @foreach (var item in Model.blogYaziListDtos.Where(i => i.DuyuruMu == 1).Take(3).OrderByDescending(i => i.Id).ToList())
-            {
-                <div class="col-12 flex items-center shadow-lg p-3 rounded-md w-full border-solid border-gray-100">
-                    <div class="flex-1 ml-2">
-                        <a asp-controller="Duyurular" asp-action="index" class="text-sm font-semibold capitalize">
-                            <marquee direction=left> @Html.Raw(@item.Baslik)</marquee>
-                        </a>
-                    </div>
-                </div>
-            }
-        }
+
 
         @if (Model.genelAyarlarDto.EditorunSectikleriAktif == true)
         {
-            <div class="grid md:grid-cols-4 grid-cols-2 gap-3 mt-5 border-t">
+            <div class="grid md:grid-cols-4 grid-cols-2 gap-3 border-t">
                 @foreach (var item in Model.oneCikanlar.Take(8))
                 {
                     <div class="transform hover:scale-105">
@@ -56,39 +44,20 @@
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
 
+        <div class="row">
+            <div class="lg:flex lg:space-x-12 mt-4">
+                <div class="row">
+                    <div class="w-full" style="min-width:300px;">
 
-        <div class="relative" uk-slider="finite: true">
-            @*<div class="uk-slider-container px-1 py-3">
-                    <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
-                        @foreach (var item in Model.oneCikanlar.Take(8))
+                        <h2 class="text-xl font-semibold"> Duyurular </h2>
+                        @if (Model.genelAyarlarDto.DuyurularAktif == true)
                         {
-                            <li>
-                                <div>
-                                    <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative inline-block">
-                                        <img src="/uploads/@item.OneCikanGorsel" alt="@item.Baslik" class="w-full h-full absolute inset-0 object-cover">
-                                    </a>
-                                    <div class="pt-3">
-                                        <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="font-semibold line-clamp-2">@item.Baslik </a>
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                    <a class="absolute bg-white top-16 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="previous"> <i class="icon-feather-chevron-left"></i></a>
-                    <a class="absolute bg-white top-16 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
-                </div>*@
-
-            <div class="row">
-                <div class="lg:flex lg:space-x-12 mt-4">
-                    <div class="row">
-                        <div class="col-8 float-left" style="min-width:300px;">
-                            <h2 class="text-xl font-semibold"> Son İçerikler </h2>
-                            @foreach (var item in Model.blogYaziListDtos.Take(10))
+                            @foreach (var item in Model.blogYaziListDtos.Where(i => i.DuyuruMu == 1).Take(4).OrderByDescending(i => i.Id).ToList())
                             {
-                                <div class=" col-6 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" style="min-width:300px">
+                                <div class=" col-3 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" >
                                     <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
                                         <img src="/uploads/@item.OneCikanGorsel" class="absolute w-full h-full inset-0 rounded-md object-cover" alt=" @Html.Raw(@item.Baslik)">
                                     </div>
@@ -97,22 +66,87 @@
                                     </div>
                                 </div>
                             }
-                        </div>
-                        <div class="col-4 float-left" style="min-width:300px;">
-                            <h2 class="text-xl font-semibold">Popüler İçerikler</h2>
-                            @foreach (var item in Model.populerIcerkler.Take(5))
-                            {
-                                <div class="flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md -mx-2 px-2">
-                                    <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
-                                        <img src="/uploads/@item.OneCikanGorsel" class="absolute w-full h-full inset-0 rounded-md object-cover" alt=" @Html.Raw(@item.Baslik)">
-                                    </div>
-                                    <div class="flex-1">
-                                        <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="text-md font-semibold capitalize">@Html.Raw(@item.Baslik) </a>
-                                    </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="lg:flex lg:space-x-12 mt-4">
+                <div class="row">
+                    <div class="lg:w-3/4 w-full" style="min-width:300px;">
+                        <h2 class="text-xl font-semibold"> Son İçerikler </h2>
+                        @foreach (var item in Model.blogYaziListDtos.Take(10))
+                        {
+                            <div class=" col-6 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" style="min-width:300px">
+                                <div class="w-14 h-14 flex-shrink-0 rounded-md relative">
+                                    <img src="/uploads/@item.OneCikanGorsel" class="absolute w-full h-full inset-0 rounded-md object-cover" alt=" @Html.Raw(@item.Baslik)">
                                 </div>
-                            }
+                                <div class="flex-1">
+                                    <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="text-sm font-semibold capitalize"> @Html.Raw(@item.Baslik) </a>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="m-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
+                                    crossorigin="anonymous"></script>
+                            <!-- Ana Sayfa Orta Kısım Kare -->
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-8594746141557193"
+                                 data-ad-slot="7290062078"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                        <div class="m-3">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
+                                    crossorigin="anonymous"></script>
+                            <!-- Ana Sayfa Orta Kısım Kare -->
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-8594746141557193"
+                                 data-ad-slot="7290062078"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                        <div class="my-3">
+                            <h4 class="text-lg font-semibold mb-3">Etiket Bulutu</h4>
+                            <div class="flex items-center flex-wrap gap-2 my-4">
+                                @foreach (var item in Model.etiketDtos)
+                                {
+                                    <a href="#" class="bg-indigo-200 py-1.5 px-4 rounded-full">@item.Ad</a>
+                                }
+                            </div>
                         </div>
                     </div>
+
+                    <div class="lg:w-1/4 w-full">
+                        <h3 class="text-xl font-bold mb-2"> Popüler İçerikler </h3>
+                        @foreach (var item in Model.populerIcerkler.Take(5))
+                        {
+                            <div>
+                                <div class="py-2 relative">
+                                    <a href=asp-controller ="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="w-full h-32 overflow-hidden rounded-lg relative shadow-sm flex-shrink-0 block">
+                                        <img src="/uploads/@item.OneCikanGorsel" class="w-full h-full absolute inset-0 object-cover" alt=" @Html.Raw(@item.Baslik)">
+                                    </a>
+                                    <div class="flex-1 pt-3 relative">
+                                        <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="line-clamp-2 font-semibold">@Html.Raw(@item.Baslik) </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
                 </div>
             </div>
         </div>

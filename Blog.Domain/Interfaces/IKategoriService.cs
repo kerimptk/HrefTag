@@ -7,6 +7,7 @@ namespace Blog.Domain.Interfaces
     public interface IKategoriService
     {
         List<Kategori> GetList();
+        List<Kategori> GetParentKategoriList();
         Kategori GetById(int id);
         Kategori GetByAd(string ad);
         IDataResult<Kategori> Add(Kategori entity);
