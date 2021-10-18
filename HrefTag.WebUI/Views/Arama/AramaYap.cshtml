@@ -3,43 +3,48 @@
 @{
     ViewData["Title"] = Html.Raw("Arama Yap");
 }
+<div class="main_content">
+    <div class="mcontainer">
+        <div class="lg:flex lg:space-x-10">
+            <div class="lg:w-3/4">
 
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row">
-
-                    <div class="clearfix visible-md visible-lg"></div>
-
-                    <div class="search-form" style="margin-bottom:50px;">
-                        <label class="text-center p-2 h2">Arama yapmak için aşağıdaki arama kutucuğuna değer giriniz.</label>
-                    </div>
-                    <!-- post -->
-                    <div class="search-form" style="margin-bottom:50px;">
-                        <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
-                            <input style="width: 60%; height: 75px;margin:0px 10%" type="text" asp-for="@Model.keyword" placeholder="Arama Yap...">
-
-                            <input type="submit" value="Arama Yap" class="btn btn-success pr-2 pl-2" style="height: 75px;">
-                        </form>
-                    </div>
-                    <!-- /post -->
+                <div class="search-form" style="margin-bottom:50px;">
+                    <label class="text-center p-2 h2">Arama yapmak için aşağıdaki arama kutucuğuna değer giriniz.</label>
                 </div>
-            </div>
+                <!-- post -->
+                <div class="search-form" style="margin-bottom:50px;">
+                    <form asp-controller="Arama" asp-action="AramaSonuclari" method="post">
+                        <input style="width: 60%; height: 75px;margin:0px 10%" type="text" asp-for="@Model.keyword" placeholder="Arama Yap...">
 
-            <div class="col-md-4">
-                <partial name="Reklamlar/AllPageSidebar" for="@Model.reklamAlanlariDtos" />
-                <!-- post widget -->
-                @await Component.InvokeAsync("SidebarTop")
-                <!-- /post widget -->
-                <!-- catagories -->
-                @await Component.InvokeAsync("SidebarBottom")
+                        <input type="submit" value="Arama Yap" class="btn btn-success pr-2 pl-2" style="height: 75px;">
+                    </form>
+                </div>
+                <!-- /post -->
             </div>
         </div>
-        <!-- /row -->
+
+        <div class="lg:w-1/4 w-full flex-shrink-0">
+
+            @await Component.InvokeAsync("KategoriList")
+
+            @await Component.InvokeAsync("PopulerIcerikler")
+
+            <div uk-sticky="offset:100" class="uk-sticky">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
+                        crossorigin="anonymous"></script>
+                <!-- Sidebar Esnek Dik -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8594746141557193"
+                     data-ad-slot="8547828668"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
     </div>
-    <!-- /container -->
+    <!-- /row -->
 </div>
-<!-- /section -->

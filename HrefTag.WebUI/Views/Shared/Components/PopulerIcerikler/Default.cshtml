@@ -1,0 +1,22 @@
+﻿@using HrefTag.WebUI.ViewModels;
+@model PopulerIceriklerViewModel;
+
+<h3 class="text-xl font-bold mb-2"> Popüler İçerikler </h3>
+@foreach (var item in Model.blogYaziListDtos.Take(5))
+{
+    <div>
+        <div class="py-2 relative">
+            <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="w-full h-32 overflow-hidden rounded-lg relative shadow-sm flex-shrink-0 block">
+                <img src="/uploads/@item.OneCikanGorsel" class="w-full h-full absolute inset-0 object-cover" alt=" @Html.Raw(@item.Baslik)">
+            </a>
+            <div class="flex-1 pt-3 relative">
+                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" class="line-clamp-2 font-semibold">@Html.Raw(@item.Baslik) </a>
+            </div>
+
+            <div class="flex items-center my-auto text-xs space-x-1.5">
+                <div>Okunma Sayısı</div>
+                <div>@item.OkunmaSayisi</div>
+            </div>
+        </div>
+    </div>
+}

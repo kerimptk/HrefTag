@@ -9,6 +9,7 @@ namespace Blog.Domain.Interfaces
         List<Etiket> GetList();
         Etiket GetById(int id);
         Etiket GetByEtiketAdi(string etiketAdi);
+        Etiket GetByEtiketUrlAd(string urlAd);
         IDataResult<Etiket> Add(Etiket entity);
         IDataResult<Etiket> Update(Etiket entity);
         IResult Delete(Etiket entity);

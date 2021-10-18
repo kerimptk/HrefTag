@@ -16,6 +16,11 @@ namespace Blog.Domain.Configuration
                 .HasColumnName("ad")
                 .HasMaxLength(100)
                 .IsUnicode(false);
+
+            builder.Property(e => e.UrlAd)
+                .HasColumnName("url_ad")
+                .HasMaxLength(100)
+                .IsUnicode(false);
         }
     }
 

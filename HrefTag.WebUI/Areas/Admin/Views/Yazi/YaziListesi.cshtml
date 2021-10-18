@@ -16,13 +16,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th hidden>Eklenme Tarihi</th>
                             <th>ID</th>
                             <th>Başlık</th>
                             <th>Oluşturan</th>
                             <th>Durum</th>
                             <th>Eklenme Tarihi</th>
-                            <th>Okunma Sayısı</th>
+                            <th>Okunma</th>
                             <th>Yorum</th>
                             <th>İşlem Yap</th>
                         </tr>
@@ -31,7 +30,6 @@
                         @foreach (var item in Model.yaziDtos)
                         {
                         <tr>
-                            <td hidden>@item.InsertDate</td>
                             <td>@item.Id</td>
                             <td>@item.Baslik</td>
                             <td>@item.CreateUserFullName</td>
@@ -74,6 +72,7 @@
 
 
 @section Scripts{
+
 
     <script>
         function yayinlaId(id) {

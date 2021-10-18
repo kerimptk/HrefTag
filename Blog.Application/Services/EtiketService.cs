@@ -63,5 +63,9 @@ namespace Blog.Application.Services
         {
             return _etiketRepository.Get(i => i.Ad == etiketAdi);
         }
+        public Etiket GetByEtiketUrlAd(string urlAd)
+        {
+            return _etiketRepository.Get(i => i.UrlAd == urlAd);
+        }
     }
 }

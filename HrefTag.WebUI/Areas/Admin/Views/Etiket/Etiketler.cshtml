@@ -1,0 +1,126 @@
+﻿@using HrefTag.WebUI.ViewModels
+@model AdminEtiketViewModel
+
+@{
+    ViewData["Title"] = "Etiketler";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-3">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Etiket Listesi</h3>
+            </div>
+            <div class="p-3">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Etiket Adı</th>
+                            <th>Url'de Görünen Adı</th>
+                            <th>İşlem Yap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.etiketDtos)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Ad</td>
+                                <td>@item.UrlAd</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" onclick="duzenleId('@item.Id', '@item.Ad', '@item.UrlAd')" data-toggle="modal" data-target="#modal-duzenle">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" onclick="silId('@item.Id')" data-toggle="modal" data-target="#modal-danger">
+                                        <i class="nav-icon fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+            <form asp-area="Admin" asp-controller="Etiket" asp-action="etiketSil" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Etiket Silme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz etiket silinecektir. Silme işleminden sonra bu işlem geri alınamaz. Emin misiniz?</p>
+                    <input id="txtid" type="text" name="id" value="" hidden />
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Onayla</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="modal-duzenle">
+    <div class="modal-dialog">
+        <div class="modal-content bg-info">
+            <form asp-area="Admin" asp-controller="Etiket" asp-action="etiketDuzenle" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Etiket Güncelleme İşlemi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Seçmiş olduğunuz etiket bilgisi güncellenecektir.. Emin misiniz?</p>
+                    <input id="txtduzenleId" type="text" name="Id" hidden/>
+
+                    <div class="form-group">
+                        <label name="Ad">Etiket Adı</label>
+                        <input name="Ad" id="txtduzenleAd" type="text" class="form-control" placeholder="Etiket Adı">
+                    </div>
+                    <div class="form-group">
+                        <label name="UrlAd">Url Adı</label>
+                        <input name="UrlAd" id="txtduzenleUrlAd" type="text" class="form-control" placeholder="Url Adı">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-light">Güncelle</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<script>
+    function silId(id) {
+        document.getElementById("txtid").value = id;
+    }
+
+    function duzenleId(Id, Ad, UrlAd ) {
+        document.getElementById("txtduzenleId").value = Id;
+        document.getElementById("txtduzenleAd").value = Ad;
+        document.getElementById("txtduzenleUrlAd").value = UrlAd;
+    }
+</script>

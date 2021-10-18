@@ -9,6 +9,7 @@ namespace Blog.Domain.Interfaces
         List<EtiketYazi> GetList();
         List<EtiketYazi> GetListWithEtiket(int id);
         EtiketYazi GetById(int id);
+        List<EtiketYazi> GetListByEtiketIdWithYazi(int id);
         IDataResult<EtiketYazi> Add(EtiketYazi entity);
         IDataResult<EtiketYazi> Update(EtiketYazi entity);
         IResult Delete(EtiketYazi entity);

@@ -33,25 +33,23 @@
                 </div>
                 <div class="lg:w-1/4 w-full flex-shrink-0">
 
-                    <div uk-sticky="offset:100" class="uk-sticky">
+                    @await Component.InvokeAsync("KategoriList")
 
-                        <h2 class="text-2xl font-semibold mb-3"> Popüler İçerikler </h2>
-                        <ul>
-                            @foreach (var item in Model.populerIceriklerDtos.OrderByDescending(i => i.OkunmaSayisi).Take(6))
-                            {
-                            <li>
-                                <a asp-controller="Blog" asp-action="yazi" asp-route-Post="@item.UrlBaslik"
-                                   class="hover:bg-gray-100 rounded-md p-2 -mx-2 block">
-                                    <h3 class="font-medium line-clamp-2"> @Html.Raw(@item.Baslik)</h3>
-                                    <div class="flex Model.iletisimBilgileriDtos-center my-auto text-xs space-x-1.5">
-                                        <div>Okunma Sayısı</div>
-                                        <div>@item.OkunmaSayisi</div>
-                                    </div>
-                                </a>
-                            </li>
-                            }
-                        </ul>
-                        <br>
+                    @await Component.InvokeAsync("PopulerIcerikler")
+
+                    <div uk-sticky="offset:100" class="uk-sticky">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
+                                crossorigin="anonymous"></script>
+                        <!-- Sidebar Esnek Dik -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-8594746141557193"
+                             data-ad-slot="8547828668"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </div>
                 </div>
             </div>

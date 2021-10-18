@@ -1,7 +1,7 @@
-﻿@using HrefTag.WebUI.ViewModels
-@model KategoriYaziViewModel
+﻿    @using HrefTag.WebUI.ViewModels
+@model EtiketYaziViewModel
 @{
-    ViewData["Title"] = Html.Raw(@Model.kategoriDto.Ad);
+    ViewData["Title"] = Html.Raw(@Model.etiketDto.Ad);
 }
 
 
@@ -17,9 +17,8 @@
 
                     <div class="divide-y">
                         @{int sayi = 0;}
-                        @foreach (var item in Model.kategoriYaziListDtos)
+                        @foreach (var item in Model.etiketYaziListDtos)
                         {
-
 
                             <div class="lg:flex lg:space-x-6 py-6">
                                 <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)">
@@ -46,8 +45,10 @@
                                 </div>
                             </div>
                             sayi++;
+
                             if (sayi % 3 == 1)
                             {
+
                                 <div class="lg:flex lg:space-x-6 py-6" style="min-height:auto">
                                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
                                             crossorigin="anonymous"></script>

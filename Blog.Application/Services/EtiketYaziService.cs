@@ -63,6 +63,9 @@ namespace Blog.Application.Services
         {
             return _etiketYaziRepository.GetListWithEtiket(i => i.YaziId == id).ToList();
         }
-
+        public List<EtiketYazi> GetListByEtiketIdWithYazi(int id)
+        {
+            return _etiketYaziRepository.GetListWithEtiket(i => i.EtiketId == id).ToList();
+        }
     }
 }

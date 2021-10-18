@@ -15,6 +15,16 @@ namespace Blog.Application.AutoMapper
 
             CreateMap<EtiketYazi, EtiketYaziDto>();
 
+            CreateMap<EtiketYazi, EtiketYaziListDto>()
+                .ForMember(d => d.EtiketUrlAd, o => o.MapFrom(s => (s.Etiket.UrlAd)))
+                .ForMember(d => d.UrlBaslik, o => o.MapFrom(s => (s.Yazi.UrlBaslik)))
+                .ForMember(d => d.EtiketAd, o => o.MapFrom(s => (s.Etiket.Ad)))
+                .ForMember(d => d.KategoriAd, o => o.MapFrom(s => (s.Yazi.KategoriYazilar.Select(i => i.Kategori.Ad))))
+                .ForMember(d => d.OneCikanGorsel, o => o.MapFrom(s => s.Yazi.OneCikanGorsel))
+                .ForMember(d => d.OkunmaSayisi, o => o.MapFrom(s => s.Yazi.OkunmaSayisi))
+                .ForMember(d => d.Baslik, o => o.MapFrom(s => s.Yazi.Baslik))
+                .ForMember(d => d.Ozet, o => o.MapFrom(s => s.Yazi.Ozet));
+
             CreateMap<Yazi, BlogYaziListDto>()
                 .ForMember(d => d.KategoriUrlAd, o => o.MapFrom(s => (s.KategoriYazilar.Select(i => i.Kategori).FirstOrDefault().UrlAd)))
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))
@@ -42,8 +52,7 @@ namespace Blog.Application.AutoMapper
                 .ForMember(d => d.OneCikanGorsel, o => o.MapFrom(s => s.Yazi.OneCikanGorsel))
                 .ForMember(d => d.OkunmaSayisi, o => o.MapFrom(s => s.Yazi.OkunmaSayisi))
                 .ForMember(d => d.Baslik, o => o.MapFrom(s => s.Yazi.Baslik))
-                .ForMember(d => d.Ozet, o => o.MapFrom(s => s.Yazi.Ozet))
-                /*.ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname))*/;
+                .ForMember(d => d.Ozet, o => o.MapFrom(s => s.Yazi.Ozet));
 
             CreateMap<Yazi, YaziDto>()
                 .ForMember(d => d.CreateUserFullName, o => o.MapFrom(s => (s.User.Name + " " + s.User.Surname)))

@@ -1,4 +1,5 @@
 ﻿using BaseCore.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.Domain.Entities
 {
