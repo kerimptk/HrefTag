@@ -1,4 +1,4 @@
-﻿    @using HrefTag.WebUI.ViewModels
+﻿@using HrefTag.WebUI.ViewModels
 @model EtiketYaziViewModel
 @{
     ViewData["Title"] = Html.Raw(@Model.etiketDto.Ad);
@@ -16,10 +16,8 @@
                 <div class="lg:w-3/4">
 
                     <div class="divide-y">
-                        @{int sayi = 0;}
                         @foreach (var item in Model.etiketYaziListDtos)
                         {
-
                             <div class="lg:flex lg:space-x-6 py-6">
                                 <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)">
                                     <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
@@ -44,25 +42,6 @@
                                     </div>
                                 </div>
                             </div>
-                            sayi++;
-
-                            if (sayi % 3 == 1)
-                            {
-
-                                <div class="lg:flex lg:space-x-6 py-6" style="min-height:auto">
-                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                                            crossorigin="anonymous"></script>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-format="fluid"
-                                         data-ad-layout-key="-fb+5w+4e-db+86"
-                                         data-ad-client="ca-pub-8594746141557193"
-                                         data-ad-slot="8498583413"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                </div>
-                            }
                         }
                     </div>
                 </div>

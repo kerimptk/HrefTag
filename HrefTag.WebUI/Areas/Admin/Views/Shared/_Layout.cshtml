@@ -53,9 +53,6 @@
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item has-treeview">
-                        <a asp-area="Admin" asp-controller="OrtamKutuphanesi" asp-action="Index" class="nav-link">Ortam Kütüphanesi</a>
-                    </li>
-                    <li class="nav-item has-treeview">
                         <a asp-controller="ToDoList" asp-action="index" class="nav-link ">To Do List</a>
                     </li>
                     <li class="nav-item">
@@ -164,6 +161,12 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="Admin" asp-controller="OrtamKutuphanesi" asp-action="Index" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>Ortam Kütüphanesi</p>
+                                </a>
                             </li>
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">

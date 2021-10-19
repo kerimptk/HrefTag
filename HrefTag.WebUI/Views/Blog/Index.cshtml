@@ -10,8 +10,7 @@
         <div class="mcontainer">
             <div class="lg:flex lg:space-x-12">
                 <div class="lg:w-3/4">
-                    <div class="divide-y">
-                        @{int sayi = 0;}
+                    <div class="divide-y contents">
                         @foreach (var item in Model.blogYaziListDtos)
                         {
                             <div class="lg:flex lg:space-x-6 py-6 item">
@@ -38,23 +37,6 @@
                                     </div>
                                 </div>
                             </div>
-                            sayi++;
-                            if (sayi % 3 == 1)
-                            {
-                                <div class="lg:flex lg:space-x-6 py-6" style="min-height:250px">
-                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                                            crossorigin="anonymous"></script>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-format="fluid"
-                                         data-ad-layout-key="-fb+5w+4e-db+86"
-                                         data-ad-client="ca-pub-8594746141557193"
-                                         data-ad-slot="8498583413"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                </div>
-                            }
                         }
                     </div>
                 </div>
