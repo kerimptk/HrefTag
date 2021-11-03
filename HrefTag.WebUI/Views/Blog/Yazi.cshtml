@@ -1,7 +1,12 @@
 ﻿@using HrefTag.WebUI.ViewModels
 @model YaziViewModel
 @{
-    ViewData["Title"] = Html.Raw(@Html.Raw(@Model.Yazi.Baslik));
+    ViewData["Title"] = Html.Raw(@Model.Yazi.Baslik);
+    ViewData["twitter:card"] = "summary_large_image";
+    ViewData["twitter:title"] = Html.Raw(@Model.Yazi.Baslik);
+    ViewData["twitter:description"] = Html.Raw(@Model.Yazi.Baslik);
+    ViewData["twitter:url"] = "https://www.dijitalcanta.com/" + Html.Raw(Model.Yazi.UrlBaslik);
+    ViewData["twitter:image"] = "https://www.dijitalcanta.com/uploads/" + Html.Raw(@Model.Yazi.OneCikanGorsel);
 }
 
 

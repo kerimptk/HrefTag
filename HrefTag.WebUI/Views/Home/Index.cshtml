@@ -3,34 +3,41 @@
 @{
     ViewData["Title"] = Html.Raw(Model.seoAyarlariDto.Keywords);
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    ViewData["twitter:card"] = "summary_large_image";
+    ViewData["twitter:title"] = Html.Raw(@Model.seoAyarlariDto.Title);
+    ViewData["twitter:description"] = Html.Raw(@Model.seoAyarlariDto.Description);
+    ViewData["twitter:url"] = "https://www.dijitalcanta.com";
+    ViewData["twitter:image"] = "https://www.dijitalcanta.com/uploads/statik.png";
 }
 
 
 @if (Model.genelAyarlarDto.EditorunSectikleriAktif == true)
 {
-    <div class="uk-position-relative uk-visible-toggle" style="background-color:#000;" tabindex="-1" uk-slideshow="animation: push">
+<div class="uk-position-relative uk-visible-toggle" style="background-color:#000;" tabindex="-1" uk-slideshow="animation: push">
 
-        <ul class="uk-slideshow-items">
-            @foreach (var item in Model.oneCikanlar.Take(8))
+    <ul class="uk-slideshow-items">
+        @foreach (var item in Model.oneCikanlar.Take(8))
             {
 
 
-                <li>
-                    <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)" uk-cover style="opacity:0.8;">
-                    <div class="text-center uk-position-bottom p-5 backdrop-filter backdrop-blur-md">
-                        <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik">
-                            <h2 class="font-bold text-2xl text-white">@Html.Raw(@item.Baslik)</h2>
-                            <p class="text-lg text-white">@Html.Raw(@item.Ozet)</p>
-                        </a>
-                    </div>
-                </li>
+        <li>
+            <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)" uk-cover style="opacity:0.8;">
+            <div class="text-center uk-position-bottom p-5 backdrop-filter backdrop-blur-md">
+                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik">
+                    <h1 class="font-bold text-2xl text-white">@Html.Raw(@item.Baslik)</h1>
+                    <p class="text-lg text-white">@Html.Raw(@item.Ozet)</p>
+                </a>
+            </div>
+        </li>
 
             }
-        </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover text-white p-4" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover text-white p-4" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-    </div>
-    <br>
+    </ul>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover text-white p-4" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover text-white p-4" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+</div>
+<br>
 }
 
 
@@ -53,14 +60,18 @@
         <h2 class="text-xl font-semibold"> Son İçerikler </h2>
         @foreach (var item in Model.blogYaziListDtos.Take(30))
         {
-            <div class=" col-md-6 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" style="min-width: 225px">
-                <div class="w-28 h-28 flex-shrink-0 rounded-md relative">
-                    <img src="/uploads/@item.OneCikanGorsel" class="absolute w-full h-full inset-0 rounded-md object-cover" alt=" @Html.Raw(@item.Baslik)">
-                </div>
-                <div class="flex-1">
-                    <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)" class="text-sm font-semibold capitalize"> @Html.Raw(@item.Baslik) </a>
-                </div>
+        <div class=" col-md-6 float-left flex items-center space-x-4 py-2 hover:bg-gray-100 rounded-md px-2" style="min-width: 225px">
+            <div class="w-28 h-28 flex-shrink-0 rounded-md relative">
+                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik"
+                   title="@Html.Raw(@item.Baslik)" class="text-sm font-semibold capitalize">
+                    <img src="/uploads/@item.OneCikanGorsel" class="absolute w-full h-full inset-0 rounded-md object-cover"
+                         alt=" @Html.Raw(@item.Baslik)">
+                </a>
             </div>
+            <div class="flex-1">
+                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)" class="text-sm font-semibold capitalize"> @Html.Raw(@item.Baslik) </a>
+            </div>
+        </div>
         }
 
         <div class="row my-3">

@@ -34,9 +34,9 @@
                         {
                             <li class="hover:bg-gray-100 px-6 py-2.5 flex">
                                 &nbsp;&nbsp;<span style="background-color:#@subitem.RenkKodu"> &nbsp;</span>&nbsp;
-                                <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@subitem.UrlAd" title="@Html.Raw(subitem.Ad)">
-                                    &nbsp; @Html.Raw(subitem.Ad)
-                                </a>
+                                            <a asp-controller="Kategori" asp-action="kategori" asp-route-kat="@subitem.UrlAd" title="@Html.Raw(subitem.Ad)">
+                                                &nbsp; @Html.Raw(subitem.Ad)
+                                            </a>
                                 <span class="text-sm ml-auto"> (@subitem.YaziSayisi) </span>
                             </li>
                         }

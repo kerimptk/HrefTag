@@ -8,6 +8,13 @@
 <title>@ViewData["Title"] | @Html.Raw(@Model.seoAyarlariDto.Title)</title>
 
 
+<meta name="twitter:card" content="@ViewData["twitter:card"]" />
+<meta name="twitter:title" content="@ViewData["twitter:title"]" />
+<meta name="twitter:description" content="@ViewData["twitter:description"]" />
+<meta name="twitter:url" content="@ViewData["twitter:url"]" />
+<meta name="twitter:image" content="@ViewData["twitter:image"]" />
+
+
 @Html.Raw(Model.seoAyarlariDto.Analytics)
 @Html.Raw(Model.seoAyarlariDto.Adsense)
 
