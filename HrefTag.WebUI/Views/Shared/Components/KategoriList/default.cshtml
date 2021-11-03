@@ -3,7 +3,7 @@
 
 
 <h3 class="mb-4 font-semibold text-xl" id="curriculum"> Kategoriler </h3>
-@foreach (var item in Model.kategoriDtos.Where(i => i.ParentId == null))
+@foreach (var item in Model.kategoriDtos.Where(i => i.ParentId == null).OrderBy(i=> i.Ad))
 {
 
     @if (item.ParentMi == false)
