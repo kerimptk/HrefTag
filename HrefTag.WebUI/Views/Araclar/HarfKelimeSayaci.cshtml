@@ -4,34 +4,27 @@
     ViewData["Title"] = Html.Raw("Harf ve Kelime Sayacı");
 }
 
-<!-- section -->
-<div id="wrapper">
-    <div class="main_content">
-        <div class="mcontainer">
-            <!-- post -->
-            <form asp-controller="Araclar" asp-action="HarfKelimeSayaci" method="post">
 
-                <div>
-                    <textarea asp-for="@Model.harfKelimeSayaciDto.Metin" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3"
-                              rows="15" placeholder="Lütfen harf ve kelime sayısını öğrenmek istediğiniz metni aşağıya girin ve hesapla butonuna tıklayın" required>
+<form asp-controller="Araclar" asp-action="HarfKelimeSayaci" method="post">
+
+    <div>
+        <textarea asp-for="@Model.harfKelimeSayaciDto.Metin" class="bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3"
+                  rows="15" placeholder="Lütfen harf ve kelime sayısını öğrenmek istediğiniz metni aşağıya girin ve hesapla butonuna tıklayın" required>
                                             </textarea>
-                </div>
-                <div>
-                    <input type="submit" value="Hesapla" class="form-control btn btn-success m-2">
-                </div>
-            </form>
-            @if (@Model.harfKelimeSayaciDto == null)
-            {
-                <span>
-                    Girdiğiniz metin için kelime ve harf sayısı henüz hesaplanmadı.
-                </span>
-            }
-            else
-            {
-                <span>
-                    Girdiğiniz metin <b>@Model.harfKelimeSayaciDto.HarfSayisi</b> harf ve <b>@Model.harfKelimeSayaciDto.KelimeSayisi</b> kelimeden oluşmaktadır.
-                </span>
-            }
-        </div>
     </div>
-</div>
+    <div>
+        <input type="submit" value="Hesapla" class="form-control btn btn-success m-2">
+    </div>
+</form>
+@if (@Model.harfKelimeSayaciDto == null)
+{
+    <span>
+        Girdiğiniz metin için kelime ve harf sayısı henüz hesaplanmadı.
+    </span>
+}
+else
+{
+    <span>
+        Girdiğiniz metin <b>@Model.harfKelimeSayaciDto.HarfSayisi</b> harf ve <b>@Model.harfKelimeSayaciDto.KelimeSayisi</b> kelimeden oluşmaktadır.
+    </span>
+}

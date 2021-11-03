@@ -34,10 +34,17 @@
 
         <!-- Header -->
         @await Component.InvokeAsync("Header")
-        @await Component.InvokeAsync("Sidebar")
-
-        @RenderBody()
-
+        @await Component.InvokeAsync("LeftSidebar")
+        <div class="main_content">
+            <div class="mcontainer">
+                <div class="lg:flex lg:space-x-12">
+                    <div class="lg:w-3/4">
+                        @RenderBody()
+                    </div>
+                    @await Component.InvokeAsync("RightSidebar")
+                </div>
+            </div>
+        </div>
         <!-- Javascript
         ================================================== -->
         <script src="~/assets/js/jquery-3.3.1.min.js"></script>

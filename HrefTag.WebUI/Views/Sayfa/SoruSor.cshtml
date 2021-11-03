@@ -4,80 +4,36 @@
     ViewData["Title"] = Html.Raw("Soru Sor Cevaplayalım");
 }
 
-<div id="wrapper">
-    <div class="main_content">
-        <div class="mcontainer">
-            <div class="lg:flex lg:space-x-10">
-                <div class="lg:w-3/4">
-                    <div>
-                        <h3 class="text-2xl font-semibold mt-3 mb-3">
-                            Uzmanlık alanlarımız dahilinde sormak istediğin konuyu sor.
-                            <br />Senin için yanıtlayalım.
-                        </h3>
-                    </div>
-                    <form asp-controller="Sayfa" asp-action="SoruGonderildi" method="post">
-                        <div class="flex space-x-4 mb-5 relative">
-                            <div class="flex-1">
-                                <div class="grid md:grid-cols-4 gap-4">
-                                    <div>
-                                        <input type="text" name="Ad" placeholder="Ad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
-                                    </div>
-                                    <div>
-                                        <input type="text" name="Soyad" placeholder="Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
-                                    </div>
-                                    <div>
-                                        <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
-                                    </div>
-                                    <div>
-                                        <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
-                                    </div>
-                                    <div class="col-span-4">
-                                        <textarea name="Mesaj" cols="30" rows="6" placeholder="Sormak istediğini detaylıca açıkla senin için yanıtlayalım."
-                                                  class="bg-gradient-to-b from-gray-100 to-gray-100" required></textarea>
-                                    </div>
-                                    <div class="col-span-2 flex justify-between py-4">
-                                        <input type="submit" value="Soruyu Gönder">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+<div>
+    <h3 class="text-2xl font-semibold mt-3 mb-3">
+        Uzmanlık alanlarımız dahilinde sormak istediğin konuyu sor.
+        <br />Senin için yanıtlayalım.
+    </h3>
+</div>
+<form asp-controller="Sayfa" asp-action="SoruGonderildi" method="post">
+    <div class="flex space-x-4 mb-5 relative">
+        <div class="flex-1">
+            <div class="grid md:grid-cols-4 gap-4">
+                <div>
+                    <input type="text" name="Ad" placeholder="Ad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
                 </div>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                        crossorigin="anonymous"></script>
-                <!-- Araçlar Sayfası Yatay Esnek -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-8594746141557193"
-                     data-ad-slot="2030511062"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-                <div class="lg:w-1/4 w-full flex-shrink-0">
-
-                    @await Component.InvokeAsync("KategoriList")
-
-                    @await Component.InvokeAsync("PopulerIcerikler")
-
-                    <div uk-sticky="offset:100" class="uk-sticky">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                                crossorigin="anonymous"></script>
-                        <!-- Sidebar Esnek Dik -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8594746141557193"
-                             data-ad-slot="8547828668"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    </div>
-
+                <div>
+                    <input type="text" name="Soyad" placeholder="Soyad" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
+                </div>
+                <div>
+                    <input type="email" name="Email" placeholder="Email" class="bg-gradient-to-b from-gray-100 to-gray-100" required>
+                </div>
+                <div>
+                    <input type="text" name="Website" placeholder="Website" class="bg-gradient-to-b from-gray-100 to-gray-100">
+                </div>
+                <div class="col-span-4">
+                    <textarea name="Mesaj" cols="30" rows="6" placeholder="Sormak istediğini detaylıca açıkla senin için yanıtlayalım."
+                              class="bg-gradient-to-b from-gray-100 to-gray-100" required></textarea>
+                </div>
+                <div class="col-span-2 flex justify-between py-4">
+                    <input type="submit" value="Soruyu Gönder">
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>

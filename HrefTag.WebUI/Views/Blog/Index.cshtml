@@ -4,69 +4,35 @@
     ViewData["Title"] = Html.Raw("Tüm blog içerikleri");
 }
 
-<div id="wrapper">
-    <!-- Main Contents -->
-    <div class="main_content">
-        <div class="mcontainer">
-            <div class="lg:flex lg:space-x-12">
-                <div class="lg:w-3/4">
-                    <div class="divide-y contents">
-                        @foreach (var item in Model.blogYaziListDtos)
-                        {
-                            <div class="lg:flex lg:space-x-6 py-6 item">
-                                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)">
-                                    <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
-                                        <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)" class="w-full h-full absolute inset-0 object-cover">
-                                        <div class="absolute bg-blue-100 font-semibold px-2.5 py-1 rounded-full text-blue-500 text-xs top-2.5 left-2.5">
-                                            @Html.Raw(@item.KategoriAd)
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="flex-1 lg:pt-0 pt-4">
-                                    <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)"
-                                       class="text-xl font-semibold line-clamp-2"> @Html.Raw(@item.Baslik)</a>
-                                    <p class="line-clamp-3 pt-1"> @Html.Raw(@item.Ozet) </p>
-                                    <div class="flex space-x-2 items-center text-sm pt-1 text-sm">
-                                        <div class="flex items-center pt-3">
-                                            <div class="flex items-center">  <ion-icon name="thumbs-up-outline" class="text-xl mr-2"></ion-icon>@item.OkunmaSayisi Görüntülenme </div>
-                                            <div class="flex items-center mx-4">
-                                                <ion-icon name="chatbubble-ellipses-outline" class="text-xl mr-2"></ion-icon> @item.YorumSayisi Yorum
-                                            </div>
-                                            <div class="flex items-center"> <ion-icon name="bookmark-outline" class="text-xl mr-2"></ion-icon> @Html.Raw(@item.CreateUserFullName)</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+<div class="divide-y contents">
+    @foreach (var item in Model.blogYaziListDtos)
+    {
+        <div class="lg:flex lg:space-x-6 py-6 item">
+            <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)">
+                <div class="lg:w-60 w-full h-40 overflow-hidden rounded-lg relative shadow-sm">
+                    <img src="~/uploads/@item.OneCikanGorsel" alt="@Html.Raw(@item.Baslik)" class="w-full h-full absolute inset-0 object-cover">
+                    <div class="absolute bg-blue-100 font-semibold px-2.5 py-1 rounded-full text-blue-500 text-xs top-2.5 left-2.5">
+                        @Html.Raw(@item.KategoriAd)
                     </div>
                 </div>
-                <div class="lg:w-1/4 w-full flex-shrink-0">
-
-                    @await Component.InvokeAsync("KategoriList")
-
-                    @await Component.InvokeAsync("PopulerIcerikler")
-
-                    <div uk-sticky="offset:100" class="uk-sticky">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                                crossorigin="anonymous"></script>
-                        <!-- Sidebar Esnek Dik -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8594746141557193"
-                             data-ad-slot="8547828668"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+            </a>
+            <div class="flex-1 lg:pt-0 pt-4">
+                <a asp-controller="Blog" asp-action="yazi" asp-route-post="@item.UrlBaslik" title="@Html.Raw(@item.Baslik)"
+                   class="text-xl font-semibold line-clamp-2"> @Html.Raw(@item.Baslik)</a>
+                <p class="line-clamp-3 pt-1"> @Html.Raw(@item.Ozet) </p>
+                <div class="flex space-x-2 items-center text-sm pt-1 text-sm">
+                    <div class="flex items-center pt-3">
+                        <div class="flex items-center">  <ion-icon name="thumbs-up-outline" class="text-xl mr-2"></ion-icon>@item.OkunmaSayisi Görüntülenme </div>
+                        <div class="flex items-center mx-4">
+                            <ion-icon name="chatbubble-ellipses-outline" class="text-xl mr-2"></ion-icon> @item.YorumSayisi Yorum
+                        </div>
+                        <div class="flex items-center"> <ion-icon name="bookmark-outline" class="text-xl mr-2"></ion-icon> @Html.Raw(@item.CreateUserFullName)</div>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>
-
 
 
 <!-- Optional JavaScript -->
@@ -81,7 +47,7 @@
 <script>
     $(document).ready(function () {
         $('.contents').btnLoadmore({
-            showItem: 10,
+            showItem: 15,
             whenClickBtn: 5,
             textBtn: 'Devamını Yükle',
             classBtn: 'card hover:shadow-lg px-4 py-3 rounded-md w-full border-solid border-gray-100'

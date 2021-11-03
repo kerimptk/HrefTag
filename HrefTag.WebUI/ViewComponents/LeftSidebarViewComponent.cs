@@ -7,7 +7,7 @@ using Blog.Domain.DataTransferObjects;
 
 namespace HrefTag.WebUI.ViewComponents
 {
-    public class SidebarViewComponent : ViewComponent
+    public class LeftSidebarViewComponent : ViewComponent
     {
         IKategoriService _kategoriService;
         ISayfaService _sayfaService;
@@ -15,7 +15,7 @@ namespace HrefTag.WebUI.ViewComponents
         IGenelAyarlarService _genelAyarlarService;
         ISeoAyarlariService _seoAyarlariService;
         IMapper _mapper;
-        public SidebarViewComponent(
+        public LeftSidebarViewComponent(
              IKategoriService kategoriService,
              ISayfaService sayfaService,
              ISosyalMedyaService sosyalMedyaService,
@@ -48,7 +48,7 @@ namespace HrefTag.WebUI.ViewComponents
             var seoAyarlari = _seoAyarlariService.GetById(1);
             var seoAyarlariMap = _mapper.Map<SeoAyarlariDto>(seoAyarlari);
 
-            var ViewModel = new SidebarViewModel()
+            var ViewModel = new LeftSidebarViewModel()
             {
                 KategoriDtos = kategoriListMap,
                 sayfaDtos = sayfaMap,

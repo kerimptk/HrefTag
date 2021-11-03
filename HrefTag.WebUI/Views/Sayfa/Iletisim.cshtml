@@ -6,53 +6,20 @@
 }
 
 
-<div id="wrapper">
-    <!-- Main Contents -->
-    <div class="main_content">
-        <div class="mcontainer">
 
-            <div class="lg:flex  lg:space-x-12">
+<div class="h-44 mb-4 md:h-72 overflow-hidden relative rounded-lg w-full">
+    <img src="~/uploads/@Model.iletisimBilgileriDto.OneCikanGorsel" alt="@Html.Raw(@Model.iletisimBilgileriDto.SayfaBasligi)" class="w-full h-full absolute inset-0 object-cover">
+</div>
+<h1 class="lg:text-3xl text-2xl font-semibold mb-6 text-center"> @Html.Raw(@Model.iletisimBilgileriDto.SayfaBasligi) </h1>
+<div class="divide-y">
 
-                <div class="lg:w-3/4">
-                    <div class="h-44 mb-4 md:h-72 overflow-hidden relative rounded-lg w-full">
-                        <img src="~/uploads/@Model.iletisimBilgileriDto.OneCikanGorsel" alt="@Html.Raw(@Model.iletisimBilgileriDto.SayfaBasligi)" class="w-full h-full absolute inset-0 object-cover">
-                    </div>
-                    <h1 class="lg:text-3xl text-2xl font-semibold mb-6 text-center"> @Html.Raw(@Model.iletisimBilgileriDto.SayfaBasligi) </h1>
-                    <div class="divide-y">
-
-                        <p>@Html.Raw(@Model.iletisimBilgileriDto.Aciklama)</p>
-                        <ul class="list-style">
-                            <li><p><strong>Email:</strong> <a href="@Html.Raw(@Model.iletisimBilgileriDto.Eposta)">@Html.Raw(@Model.iletisimBilgileriDto.Eposta)</a></p></li>
-                            <li><p><strong>Telefon:</strong> @Html.Raw(@Model.iletisimBilgileriDto.Telefon)</p></li>
-                            <li><p><strong>Adres:</strong> @Html.Raw(@Model.iletisimBilgileriDto.Adres)</p></li>
-                        </ul>
-                        <div class="row">
-                            @Html.Raw(Model.iletisimBilgileriDto.Harita)
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/4 w-full flex-shrink-0">
-
-                    @await Component.InvokeAsync("KategoriList")
-
-                    @await Component.InvokeAsync("PopulerIcerikler")
-
-                    <div uk-sticky="offset:100" class="uk-sticky">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8594746141557193"
-                                crossorigin="anonymous"></script>
-                        <!-- Sidebar Esnek Dik -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8594746141557193"
-                             data-ad-slot="8547828668"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <p>@Html.Raw(@Model.iletisimBilgileriDto.Aciklama)</p>
+    <ul class="list-style">
+        <li><p><strong>Email:</strong> <a href="@Html.Raw(@Model.iletisimBilgileriDto.Eposta)">@Html.Raw(@Model.iletisimBilgileriDto.Eposta)</a></p></li>
+        <li><p><strong>Telefon:</strong> @Html.Raw(@Model.iletisimBilgileriDto.Telefon)</p></li>
+        <li><p><strong>Adres:</strong> @Html.Raw(@Model.iletisimBilgileriDto.Adres)</p></li>
+    </ul>
+    <div class="row">
+        @Html.Raw(Model.iletisimBilgileriDto.Harita)
     </div>
 </div>

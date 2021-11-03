@@ -4,44 +4,37 @@
     ViewData["Title"] = Html.Raw("Çekiliş Aracı");
 }
 
-<!-- section -->
-<div id="wrapper">
-    <div class="main_content">
-        <div class="mcontainer">
-            <!-- post -->
-            <form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
-                <div class="col-md-4 float-left">
-                    <div>
-                        <label>Çekiliş Adı</label>
-                        <input type="text" asp-for="@Model.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Çekilişi Yapan</label>
-                        <input type="text" asp-for="CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Asıl Kazanan Sayısı</label>
-                        <input type="text" asp-for="AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Yedek Kazanan Sayısı</label>
-                        <input type="text" asp-for="YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
-                    </div>
-                </div>
-                <div class="col-md-8 float-left">
-                    <div class="row mb-2 mt-2">
-                        Lütfen listeye ekleyeceğiniz isimleri arasına virgül (,) koyarak ayırınız.
-                    </div>
-                    <div>    
-                         <textarea asp-for="CekilisListesi" class=" bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15" placeholder="Çekiliş listesini aralarına virgül koyarak giriniz.">
-                                            </textarea>
-                    </div>
-                </div>
-
-            </form>
+<!-- post -->
+<form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
+    <div class="col-md-4 float-left">
+        <div>
+            <label>Çekiliş Adı</label>
+            <input type="text" asp-for="@Model.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Çekilişi Yapan</label>
+            <input type="text" asp-for="CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Asıl Kazanan Sayısı</label>
+            <input type="text" asp-for="AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Yedek Kazanan Sayısı</label>
+            <input type="text" asp-for="YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
         </div>
     </div>
-</div>
+    <div class="col-md-8 float-left">
+        <div class="row mb-2 mt-2">
+            Lütfen listeye ekleyeceğiniz isimleri arasına virgül (,) koyarak ayırınız.
+        </div>
+        <div>
+            <textarea asp-for="CekilisListesi" class=" bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15" placeholder="Çekiliş listesini aralarına virgül koyarak giriniz.">
+                                            </textarea>
+        </div>
+    </div>
+
+</form>

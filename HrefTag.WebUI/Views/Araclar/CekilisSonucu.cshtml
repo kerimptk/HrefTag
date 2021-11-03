@@ -5,70 +5,62 @@
 }
 
 
-<!-- section -->
-<div id="wrapper">
-    <div class="main_content">
-        <div class="mcontainer">
-            <!-- post -->
-            <form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
-                <div class="col-md-3 float-left">
-                    <div>
-                        <label>Çekiliş Adı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Çekilişi Yapan</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Asıl Kazanan Sayısı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label>Yedek Kazanan Sayısı</label>
-                        <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
-                    </div>
-                    <div>
-                        <label> </label>
-                        <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
-                    </div>
-                </div>
-                <div class="col-md-6 float-left">
-                    <div class="row mb-2 mt-2">
-                        Katılımcı Listesi
-                    </div>
-                    <div>
-                        <textarea asp-for="cekilisSonuclariDto.CekilisListesi" class=" bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15">
-                                            </textarea>
-                    </div>
-                </div>
-                <div class="col-md-3 float-left">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Asıl Talihliler</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>@Html.Raw(@Model.cekilisSonuclariDto.AsilKazananlar)</td>
-                            </tr>
-                        </tbody>
-                        <thead>
-                            <tr>
-                                <th>Yedek Talihliler</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@Html.Raw(@Model.cekilisSonuclariDto.YedekKazananlar)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </form>
+<form asp-controller="Araclar" asp-action="KazananlariBelirle" method="post">
+    <div class="col-md-4 float-left">
+        <div>
+            <label>Çekiliş Adı</label>
+            <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisAdi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Çekilişi Yapan</label>
+            <input type="text" readonly asp-for="cekilisSonuclariDto.CekilisiYapan" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Asıl Kazanan Sayısı</label>
+            <input type="text" readonly asp-for="cekilisSonuclariDto.AsilSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label>Yedek Kazanan Sayısı</label>
+            <input type="text" readonly asp-for="cekilisSonuclariDto.YedekSayisi" class="form-control bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 mb-3" required>
+        </div>
+        <div>
+            <label> </label>
+            <input type="submit" value="Kazananları Belirle" class="form-control btn btn-success m-2">
         </div>
     </div>
-</div>
+    <div class="col-md-8 float-left">
+        <div class="row mb-2 mt-2">
+            Katılımcı Listesi
+        </div>
+        <div>
+            <textarea asp-for="cekilisSonuclariDto.CekilisListesi" class=" bg-gradient-to-b from-gray-100 to-gray-100 sm-col-12 col-4 float-left mb-3" rows="15">
+                                            </textarea>
+        </div>
+    </div>
+    <div class="col-md-12 mt-4">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Asıl Talihliler</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>@Html.Raw(@Model.cekilisSonuclariDto.AsilKazananlar)</td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th>Yedek Talihliler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.Raw(@Model.cekilisSonuclariDto.YedekKazananlar)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</form>

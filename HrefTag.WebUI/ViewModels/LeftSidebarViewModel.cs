@@ -3,7 +3,7 @@ using Blog.Domain.DataTransferObjects;
 
 namespace HrefTag.WebUI.ViewModels
 {
-    public class SidebarViewModel
+    public class LeftSidebarViewModel
     {
         public List<KategoriDto> KategoriDtos { get; set; }
         public List<YaziDto> yaziDtos { get; set; }
