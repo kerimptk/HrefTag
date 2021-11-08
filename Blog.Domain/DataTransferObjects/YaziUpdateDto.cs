@@ -13,7 +13,6 @@ namespace Blog.Domain.DataTransferObjects
         public string OneCikanGorsel { get; set; }
         public string EtiketListesi { get; set; }
         public int OneCikan { get; set; }
-        public int? DuyuruMu { get; set; }
         public int OnayDurumuId { get; set; }
         public int? OkunmaSayisi { get; set; }
         public DateTime UpdateDate { get; set; }

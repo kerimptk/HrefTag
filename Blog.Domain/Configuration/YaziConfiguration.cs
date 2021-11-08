@@ -43,8 +43,6 @@ namespace Blog.Domain.Configuration
 
             builder.Property(e => e.OneCikan).HasColumnName("one_cikan");
 
-            builder.Property(e => e.DuyuruMu).HasColumnName("duyuru_mu");
-
             builder.Property(e => e.OneCikanGorsel)
                 .HasColumnName("one_cikan_gorsel")
                 .HasMaxLength(500)

@@ -92,10 +92,6 @@ namespace Blog.Application.Services
         {
             return _yaziRepository.GetListWithKategori(i => i.OneCikan == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList();
         }
-        public List<Yazi> GetListDuyurular()
-        {
-            return _yaziRepository.GetListWithKategori(i => i.DuyuruMu == 1 && i.OnayDurumuId == 1).OrderByDescending(i => i.Id).ToList();
-        }
 
         public List<Yazi> GetListSilinmemisWithUser()
         {
