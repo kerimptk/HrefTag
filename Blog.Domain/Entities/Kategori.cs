@@ -7,7 +7,7 @@ namespace Blog.Domain.Entities
         public string Ad { get; set; }
         public string UrlAd { get; set; }
 
-        public bool ParentMi { get; set; }
+        public bool? ParentMi { get; set; }
         public int? ParentId { get; set; }
         public virtual Kategori Parent { get; set; }
 
